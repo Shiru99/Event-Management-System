@@ -32,17 +32,30 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  
+  firebase_auth: ^0.18.3+1
+  firebase_core: 
+  google_sign_in: ^4.5.6
+  cloud_firestore: ^0.14.3+1
+  firebase_database: ^4.3.0
+  firebase_storage: ^5.1.0
+  email_validator: ^1.0.6
+  fluttertoast: ^7.1.4
+  loading_animations: ^2.1.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter.
 flutter:
-
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
   uses-material-design: true
+  fonts:
+    - family: Signatra
+      fonts:
+        - asset: assets/fonts/Signatra.ttf
+  assets:
+    - assets/images/
+
 
   # To add assets to your application, add an assets section, like this:
   # assets:

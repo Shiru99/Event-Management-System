@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>413504642905-j6nt2md106i2b3po32dojagftlp0km1b.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.413504642905-j6nt2md106i2b3po32dojagftlp0km1b</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDWvo3ujvOqf57omKC23VfIaczcRh3mp0k</string>
+	<key>GCM_SENDER_ID</key>
+	<string>413504642905</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.EventManager</string>
+	<key>PROJECT_ID</key>
+	<string>event-manager-9bbbc</string>
+	<key>STORAGE_BUCKET</key>
+	<string>event-manager-9bbbc.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:413504642905:ios:f6d245002c06d72519b648</string>
+	<key>DATABASE_URL</key>
+	<string>https://event-manager-9bbbc.firebaseio.com</string>
+</dict>
+</plist>

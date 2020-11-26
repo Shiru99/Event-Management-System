@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "413504642905",
+    "firebase_url": "https://event-manager-9bbbc.firebaseio.com",
+    "project_id": "event-manager-9bbbc",
+    "storage_bucket": "event-manager-9bbbc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:413504642905:android:5e9c45007410ac7219b648",
+        "android_client_info": {
+          "package_name": "com.example.EventManager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "413504642905-q884akb6sbl07ipt9cu8bvcfku7nm2o3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqzzlFfohfYWB9qt_Y-HJgj2A0LwW9oOA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "413504642905-q884akb6sbl07ipt9cu8bvcfku7nm2o3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
