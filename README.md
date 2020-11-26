@@ -19,5 +19,7 @@ All Installions are added in corresponding folders
 # How to run
 
 ```
+$ cd EventManager
+
 $ flutter run
 ```
