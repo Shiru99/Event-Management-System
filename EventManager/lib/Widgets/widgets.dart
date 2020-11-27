@@ -10,7 +10,7 @@ void toastMessage(String message) {
       msg: message,
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.BOTTOM,
-      timeInSecForIosWeb: 3,
+      timeInSecForIosWeb: 5,
       fontSize: 16.0);
 }
 

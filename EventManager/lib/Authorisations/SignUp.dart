@@ -32,6 +32,36 @@ class _SignUpState extends State<SignUp> {
     });
   }
 
+  signingWithGoogle() async {
+
+    setState(() {
+        _isLoading = true;
+      });
+    
+      try {
+        await _authorisationMethods
+            .signInWithGoogle()
+            .then((value) => _user = value);
+
+        if (_user == null) {
+          reset();
+        } else {
+          print(_user.userID);
+          // print(_user.displayName);    // null
+          print(_user.email);
+          // print(_user.photoUrl);       // null
+          // print(_user.phoneNumber);    // null
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => HomePage(_user)));
+          toastMessage("Successfully Signed-in with Google");
+        }
+      } catch (e) {
+        toastMessage(e.toString());
+        reset();
+      }
+    
+  }
+
   signUpTheUserGP() async {
     if (_signUpFormKey.currentState.validate()) {
       setState(() {
@@ -213,7 +243,9 @@ class _SignUpState extends State<SignUp> {
                                 vertical: 10.0, horizontal: 75),
                             child: GestureDetector(
                               // onTap: () => "Button Tapped",
-                              onTap: () {},
+                              onTap: () {
+                                signingWithGoogle();
+                              },
 
                               // onTap: () {},
                               child: Container(

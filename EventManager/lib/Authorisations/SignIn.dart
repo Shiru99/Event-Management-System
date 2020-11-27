@@ -1,3 +1,4 @@
+import 'package:EventManager/Authorisations/ForgotPassword.dart';
 import 'package:EventManager/Authorisations/SaveUser.dart';
 import 'package:EventManager/Authorisations/auth.dart';
 import 'package:EventManager/Welcome/HomePage.dart';
@@ -22,7 +23,7 @@ class _SignInState extends State<SignIn> {
 
   TextEditingController _email = new TextEditingController();
   TextEditingController _password = new TextEditingController();
-  // bool isSignedIn = false;
+
   bool _passwordVisible = false;
   bool _isLoading = false;
 
@@ -30,6 +31,39 @@ class _SignInState extends State<SignIn> {
     setState(() {
       _isLoading = false;
     });
+  }
+
+  resetPassword() {
+    Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => ForgotPassword()));
+        // toastMessage("Reset Password");
+  }
+  signingWithGoogle() async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      await _authorisationMethods
+          .signInWithGoogle()
+          .then((value) => _user = value);
+
+      if (_user == null) {
+        reset();
+      } else {
+        print(_user.userID);
+        // print(_user.displayName);    // null
+        print(_user.email);
+        // print(_user.photoUrl);       // null
+        // print(_user.phoneNumber);    // null
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => HomePage(_user)));
+        toastMessage("Successfully Signed-in with Google");
+      }
+    } catch (e) {
+      toastMessage(e.toString());
+      reset();
+    }
   }
 
   signInTheUserGP() async {
@@ -51,8 +85,8 @@ class _SignInState extends State<SignIn> {
           print(_user.email);
           // print(_user.photoUrl);       // null
           // print(_user.phoneNumber);    // null
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => HomePage(_user)));
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => HomePage(_user)));
           toastMessage("Signed-in successfully");
         }
       } catch (e) {
@@ -84,7 +118,6 @@ class _SignInState extends State<SignIn> {
                             padding: const EdgeInsets.only(top: 150.0),
                             child: logo(90, 280),
                           ),
-
                           Padding(
                             padding:
                                 const EdgeInsets.only(top: 8.0, bottom: 50.0),
@@ -96,7 +129,6 @@ class _SignInState extends State<SignIn> {
                                   fontFamily: "Signatra"),
                             ),
                           ),
-
                           Form(
                             key: _signInFormKey,
                             child: Column(
@@ -181,24 +213,27 @@ class _SignInState extends State<SignIn> {
                               ],
                             ),
                           ),
-
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                top: 8.0, right: 50, bottom: 40),
-                            child: Container(
-                              alignment: Alignment.centerRight,
+                          GestureDetector(
+                            onTap: () {
+                              resetPassword();
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 8.0, right: 50, bottom: 40),
                               child: Container(
-                                child: Text(
-                                  "forgot password ?",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16,
+                                alignment: Alignment.centerRight,
+                                child: Container(
+                                  child: Text(
+                                    "forgot password ?",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
                           ),
-
                           Padding(
                             padding: const EdgeInsets.symmetric(
                                 vertical: 10.0, horizontal: 75),
@@ -235,7 +270,9 @@ class _SignInState extends State<SignIn> {
                                 vertical: 10.0, horizontal: 75),
                             child: GestureDetector(
                               // onTap: () => "Button Tapped",
-                              onTap: () {},
+                              onTap: () {
+                                signingWithGoogle();
+                              },
                               child: Container(
                                 width: 280.0,
                                 height: 45.0,
