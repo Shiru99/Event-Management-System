@@ -17,6 +17,16 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 version: 1.0.0+1
 
+
+
+homepage: https://www.github.com/graphicbeacon/dart_postgres
+
+
+
+
+
+
+
 environment:
   sdk: ">=2.7.0 <3.0.0"
 
@@ -28,10 +38,13 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
+  
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  postgres: ^2.2.0
   
   firebase_auth: ^0.18.3+1
   firebase_core: 
@@ -42,6 +55,7 @@ dev_dependencies:
   email_validator: ^1.0.6
   fluttertoast: ^7.1.4
   loading_animations: ^2.1.0
+  
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

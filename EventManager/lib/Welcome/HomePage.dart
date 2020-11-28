@@ -1,6 +1,8 @@
+import 'package:EventManager/Authorisations/PostgresKonnection.dart';
 import 'package:EventManager/Authorisations/SaveUser.dart';
 import 'package:EventManager/Widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:postgres/postgres.dart';
 
 // ignore: must_be_immutable
 class HomePage extends StatefulWidget {
@@ -12,8 +14,40 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+
+    int port = 5432;
+    String hostURL = "ec2-34-232-24-202.compute-1.amazonaws.com";
+    String databaseName = "djb7v0o318g55";
+    String userName = "oofplrsgbytwdc";
+    String password = "b72bf90efb5e5f52b3c22146e1180e36d03a87f7ef5f76f8025733511e663583";
+
+    PostgresKonnection _postgresKonnection = new PostgresKonnection();
+
+
+
+  Future operation() async {
+
+    await _postgresKonnection.setKonnection( hostURL, port, databaseName, userName, password);
+    
+
+    PostgreSQLConnection _konnection = await _postgresKonnection.getKonnection();
+    
+    print(_konnection);
+
+    var results = await _konnection.query('select * from book');
+    print(results);
+
+    await _postgresKonnection.closeKonnection();
+
+    
+  }
+
   @override
   Widget build(BuildContext context) {
+
+    operation();
+
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       resizeToAvoidBottomInset: true,
@@ -64,14 +98,14 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                       ),
-                      
+
                       Container(
                         alignment: Alignment.centerRight,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 70.0, vertical: 10),
                           child: Text(
-                            widget._user.email, 
+                            widget._user.email,
                             style: TextStyle(
                                 fontSize: 18.0,
                                 color: Colors.white,

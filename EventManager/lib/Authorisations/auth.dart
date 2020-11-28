@@ -235,7 +235,8 @@ class AuthorisationMethods {
               "The email address is already in use by another account.";
           break;
         case "user-not-found":
-          errorMessage = "There is no user record corresponding to this identifier. The user may have been deleted.";
+          errorMessage =
+              "There is no user record corresponding to this identifier. The user may have been deleted.";
           break;
         case "user-disabled":
           errorMessage = "User with this email has been disabled.";

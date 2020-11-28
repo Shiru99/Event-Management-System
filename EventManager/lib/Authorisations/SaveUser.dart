@@ -1,7 +1,10 @@
 class SaveUser {
-  
-  String userID,email,displayName,phoneNumber;
+  String userID, email, displayName, phoneNumber;
 
-  SaveUser({this.userID, this.displayName, this.email, this.phoneNumber });      // constructor
+  SaveUser(
+      {this.userID,
+      this.displayName,
+      this.email,
+      this.phoneNumber}); // constructor
 
 }

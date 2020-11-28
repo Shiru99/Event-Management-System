@@ -1,5 +1,7 @@
 import 'package:EventManager/Authorisations/SaveUser.dart';
 import 'package:EventManager/Authorisations/auth.dart';
+import 'package:EventManager/Pages/EventDetails.dart';
+import 'package:EventManager/Pages/FestDetails.dart';
 import 'package:EventManager/Welcome/HomePage.dart';
 import 'package:EventManager/Widgets/widgets.dart';
 import 'package:email_validator/email_validator.dart';
@@ -33,33 +35,35 @@ class _SignUpState extends State<SignUp> {
   }
 
   signingWithGoogle() async {
-
     setState(() {
-        _isLoading = true;
-      });
-    
-      try {
-        await _authorisationMethods
-            .signInWithGoogle()
-            .then((value) => _user = value);
+      _isLoading = true;
+    });
 
-        if (_user == null) {
-          reset();
-        } else {
-          print(_user.userID);
-          // print(_user.displayName);    // null
-          print(_user.email);
-          // print(_user.photoUrl);       // null
-          // print(_user.phoneNumber);    // null
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => HomePage(_user)));
-          toastMessage("Successfully Signed-in with Google");
-        }
-      } catch (e) {
-        toastMessage(e.toString());
+    try {
+      await _authorisationMethods
+          .signInWithGoogle()
+          .then((value) => _user = value);
+
+      if (_user == null) {
         reset();
+      } else {
+        print(_user.userID);
+        // print(_user.displayName);    // null
+        print(_user.email);
+        // print(_user.photoUrl);       // null
+        // print(_user.phoneNumber);    // null
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => 
+            //  HomePage(_user)
+            FestDetails(_user)
+            // Details()
+            ));
+        toastMessage("Successfully Signed-in with Google");
       }
-    
+    } catch (e) {
+      toastMessage(e.toString());
+      reset();
+    }
   }
 
   signUpTheUserGP() async {
@@ -76,8 +80,12 @@ class _SignUpState extends State<SignUp> {
         if (_user == null) {
           reset();
         } else {
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => HomePage(_user)));
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => 
+              // HomePage(_user)
+              FestDetails(_user)
+              //  Details()
+              ));
           toastMessage("Signed-up successfully");
         }
       } catch (e) {

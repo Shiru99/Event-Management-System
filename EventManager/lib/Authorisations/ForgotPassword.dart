@@ -43,7 +43,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
         print(e.toString());
       }
       Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => authenticate()));
+          context, MaterialPageRoute(builder: (context) => authenticate()));
     }
   }
 

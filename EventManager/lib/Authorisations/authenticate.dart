@@ -10,10 +10,9 @@ class authenticate extends StatefulWidget {
 
 // ignore: camel_case_types
 class _authenticateState extends State<authenticate> {
-
   bool _signedIn = true;
 
-  void toggleSignInUp(){
+  void toggleSignInUp() {
     setState(() {
       _signedIn = !_signedIn;
     });
@@ -21,9 +20,9 @@ class _authenticateState extends State<authenticate> {
 
   @override
   Widget build(BuildContext context) {
-     
-    if(_signedIn){return SignIn(toggleSignInUp);}
-    else{
+    if (_signedIn) {
+      return SignIn(toggleSignInUp);
+    } else {
       return SignUp(toggleSignInUp);
     }
   }

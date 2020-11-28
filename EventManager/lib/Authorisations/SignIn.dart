@@ -1,6 +1,7 @@
 import 'package:EventManager/Authorisations/ForgotPassword.dart';
 import 'package:EventManager/Authorisations/SaveUser.dart';
 import 'package:EventManager/Authorisations/auth.dart';
+import 'package:EventManager/Pages/FestDetails.dart';
 import 'package:EventManager/Welcome/HomePage.dart';
 import 'package:EventManager/Widgets/widgets.dart';
 import 'package:email_validator/email_validator.dart';
@@ -16,6 +17,7 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+  
   final _signInFormKey = GlobalKey<FormState>();
   SaveUser _user;
 
@@ -35,9 +37,10 @@ class _SignInState extends State<SignIn> {
 
   resetPassword() {
     Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => ForgotPassword()));
-        // toastMessage("Reset Password");
+        context, MaterialPageRoute(builder: (context) => ForgotPassword()));
+    // toastMessage("Reset Password");
   }
+
   signingWithGoogle() async {
     setState(() {
       _isLoading = true;
@@ -57,7 +60,11 @@ class _SignInState extends State<SignIn> {
         // print(_user.photoUrl);       // null
         // print(_user.phoneNumber);    // null
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => HomePage(_user)));
+            context, MaterialPageRoute(builder: (context) =>  
+            // HomePage(_user)
+            FestDetails(_user)
+            // Details()
+            ));
         toastMessage("Successfully Signed-in with Google");
       }
     } catch (e) {
@@ -86,7 +93,11 @@ class _SignInState extends State<SignIn> {
           // print(_user.photoUrl);       // null
           // print(_user.phoneNumber);    // null
           Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => HomePage(_user)));
+              MaterialPageRoute(builder: (context) => 
+              //  Details()
+              // HomePage(_user)
+              FestDetails(_user)
+              ));
           toastMessage("Signed-in successfully");
         }
       } catch (e) {

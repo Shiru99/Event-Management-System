@@ -1,7 +1,7 @@
 import 'package:EventManager/Authorisations/authenticate.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-
+import 'package:postgres/postgres.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -11,12 +11,17 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
+
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Event Manager',
       // debugShowCheckedModeBanner: false,
-      
+
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.black, // black
         // textSelectionColor: Colors.white,
@@ -28,26 +33,21 @@ class MyApp extends StatelessWidget {
             color: Colors.white38,
           ),
           labelStyle: TextStyle(
-              color: Colors.white,
+            color: Colors.white,
           ),
-          
           focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-              color:Colors.white,
-            )
-          ),
+              borderSide: BorderSide(
+            color: Colors.white,
+          )),
           enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-              color:Colors.white,
-            )
-
-          ),
+              borderSide: BorderSide(
+            color: Colors.white,
+          )),
         ),
-        
       ),
-      
+
       home: authenticate(),
+      // home: Temp(),
     );
   }
-
 }

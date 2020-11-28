@@ -1,4 +1,3 @@
-
 import 'package:EventManager/Authorisations/auth.dart';
 import 'package:EventManager/Authorisations/authenticate.dart';
 import 'package:flutter/material.dart';
@@ -102,7 +101,6 @@ class DialogBox {
 }
 
 Widget appBarMain(BuildContext context) {
-
   AuthorisationMethods _authorisationMethods = new AuthorisationMethods();
   return AppBar(
       backgroundColor: Colors.black,
@@ -121,12 +119,12 @@ Widget appBarMain(BuildContext context) {
               icon: Icon(Icons.logout),
               onPressed: () {
                 _authorisationMethods.signOut();
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => authenticate()));
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => authenticate()));
                 toastMessage("Signed-out successfully");
               },
               color: Colors.white,
               hoverColor: Colors.blueAccent,
-
             ),
           ])
 
