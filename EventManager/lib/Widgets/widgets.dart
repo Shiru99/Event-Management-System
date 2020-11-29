@@ -100,14 +100,23 @@ class DialogBox {
   }
 }
 
-Widget PostUI(String image, String description, String date) {
+Widget DatailTitle(String title) {
+  return new Text(
+    title,
+    textAlign: TextAlign.center,
+    style:
+        TextStyle(fontSize: 30.0, color: Colors.white, fontFamily: "Signatra"),
+  );
+}
+
+Widget DetailDescription(String data) {
   return SingleChildScrollView(
     child: new Card(
       elevation: 20.0,
       clipBehavior: Clip.antiAlias,
       margin: EdgeInsets.all(15.0),
-      color: Colors.red,
-      
+      color: Colors.black,
+
       // shape: RoundedRectangleBorder(
       //     borderRadius: BorderRadius.only(
       //         bottomRight: Radius.circular(50)),
@@ -116,7 +125,10 @@ Widget PostUI(String image, String description, String date) {
 
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(40.0),
-        side: BorderSide( color: Colors.black, width: 1.0,),
+        side: BorderSide(
+          color: Colors.black,
+          width: 1.0,
+        ),
       ),
       child: new Container(
         color: Colors.white,
@@ -124,58 +136,60 @@ Widget PostUI(String image, String description, String date) {
         child: new Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            new Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                new Text(
-                  date,
-                  // style: Theme.of(context).textTheme.subtitle2,
-                  textAlign: TextAlign.center,
-                  // style: TextStyle(
-                  //   color: Colors.white,
-                  // ),
-                ),
-                new Text(
-                  "time",
-                  // style: Theme.of(context).textTheme.subtitle2,
-                  textAlign: TextAlign.center,
-                  // style: TextStyle(
-                  //   color: Colors.white,
-                  // ),
-                )
-              ],
-            ),
-            SizedBox(
-              height: 10.0,
-            ),
-            GestureDetector(
-              onTap: () {
-                print("clicked on Image");
-              },
-              child: new Image.network(
-                image,
-                fit: BoxFit.cover,
-              ),
-            ),
-            SizedBox(
-              height: 10.0,
-            ),
             new Text(
-              description,
-              // style: Theme.of(context).textTheme.subtitle1,
+              data,
               textAlign: TextAlign.center,
-              // style: TextStyle(
-              //   color: Colors.white,
-              // ),
-            ),
-            SizedBox(
-              height: 10.0,
-              // child:Colors.black,
+              style: TextStyle(
+                fontSize: 20.0,
+                color: Colors.black,
+                fontStyle: FontStyle.italic,
+                fontWeight: FontWeight.w500,
+                // fontFamily: "Signatra"
+              ),
             ),
           ],
         ),
       ),
     ),
+  );
+}
+
+Widget DetailImage(String data) {
+  return SingleChildScrollView(
+    child:new Card(
+            elevation: 20.0,
+            clipBehavior: Clip.antiAlias,
+            margin: EdgeInsets.all(15.0),
+            color: Colors.white,
+
+            // shape: RoundedRectangleBorder(
+            //     borderRadius: BorderRadius.only(
+            //         bottomRight: Radius.circular(50)),
+            //     side: BorderSide(width: 1, color: Colors.black)
+            // ),
+
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(40.0),
+              side: BorderSide(
+                color: Colors.white,
+                width: 1.0,
+              ),
+            ),
+            child: new Container(
+              color: Colors.white,
+              padding: new EdgeInsets.all(15.0),
+              child: new Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  new Image.network(
+                    data,
+                    fit: BoxFit.cover,
+                  ),
+                ],
+              ),
+            ),
+        
+          ),
   );
 }
 

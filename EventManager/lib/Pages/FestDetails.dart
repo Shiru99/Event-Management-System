@@ -1,6 +1,7 @@
 import 'package:EventManager/Authorisations/PostgresKonnection.dart';
 import 'package:EventManager/Authorisations/SaveUser.dart';
 import 'package:EventManager/Classes/EventInfo.dart';
+import 'package:EventManager/Pages/EventDetails.dart';
 import 'package:EventManager/Pages/ParsecDetails.dart';
 import 'package:EventManager/Widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -60,7 +61,7 @@ class _FestDetailsState extends State<FestDetails> {
 
   @override
   Widget build(BuildContext context) {
-    if(_isLoading){
+    if (_isLoading) {
       runQuery();
     }
     // runQuery();
@@ -87,7 +88,6 @@ class _FestDetailsState extends State<FestDetails> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 50.0),
                           child: new Text(
@@ -125,16 +125,15 @@ class _FestDetailsState extends State<FestDetails> {
                             // ],
                           ),
                         ),
-                        
                         Padding(
-                          padding: const EdgeInsets.only(top: 50.0, bottom: 10.0),
+                          padding:
+                              const EdgeInsets.only(top: 50.0, bottom: 10.0),
                           child: new Text(
                             "Differnt Events",
                             style: new TextStyle(
                                 fontSize: 22.0, color: Colors.white),
                           ),
                         ),
-                        
                         Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 24.0, vertical: 10.0),
@@ -148,17 +147,18 @@ class _FestDetailsState extends State<FestDetails> {
                               itemCount: _eventList.length,
                               itemBuilder: (_, index) {
                                 return PostUI(
+                                  context,
+                                  widget._user,
+                                  widget._postgresKonnection,
+                                  _eventList[index].event_id,
                                   _eventList[index].imageURL,
                                   _eventList[index].description,
                                   _eventList[index].event_name,
-                                  
                                 );
                               },
                             ),
                           ),
                         ),
-                        
-                          
                       ],
                     ),
                   ],
@@ -167,4 +167,100 @@ class _FestDetailsState extends State<FestDetails> {
             ),
     );
   }
+}
+
+Widget PostUI(
+    BuildContext context,
+    SaveUser _user,
+    PostgresKonnection _postgresKonnection,
+    String event_ID,
+    String image,
+    String description,
+    String date) {
+
+  Future goToEvent() async {
+    await Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => EventDetails(_user, _postgresKonnection,event_ID)));
+  }
+
+  return new Card(
+    elevation: 20.0,
+    clipBehavior: Clip.antiAlias,
+    margin: EdgeInsets.all(15.0),
+    color: Colors.red,
+
+    // shape: RoundedRectangleBorder(
+    //     borderRadius: BorderRadius.only(
+    //         bottomRight: Radius.circular(50)),
+    //     side: BorderSide(width: 1, color: Colors.black)
+    // ),
+
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(40.0),
+      side: BorderSide(
+        color: Colors.black,
+        width: 1.0,
+      ),
+    ),
+    child: GestureDetector(
+      onTap: () {
+        goToEvent();
+        print("clicked on event $event_ID");
+      },
+      child: new Container(
+        color: Colors.white,
+        padding: new EdgeInsets.all(25.0),
+        child: new Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            new Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                new Text(
+                  date,
+                  // style: Theme.of(context).textTheme.subtitle2,
+                  textAlign: TextAlign.center,
+                  // style: TextStyle(
+                  //   color: Colors.white,
+                  // ),
+                ),
+                new Text(
+                  "time",
+                  // style: Theme.of(context).textTheme.subtitle2,
+                  textAlign: TextAlign.center,
+                  // style: TextStyle(
+                  //   color: Colors.white,
+                  // ),
+                )
+              ],
+            ),
+            SizedBox(
+              height: 10.0,
+            ),
+            new Image.network(
+              image,
+              fit: BoxFit.cover,
+            ),
+            SizedBox(
+              height: 10.0,
+            ),
+            new Text(
+              description,
+              // style: Theme.of(context).textTheme.subtitle1,
+              textAlign: TextAlign.center,
+              // style: TextStyle(
+              //   color: Colors.white,
+              // ),
+            ),
+            SizedBox(
+              height: 10.0,
+              // child:Colors.black,
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
 }

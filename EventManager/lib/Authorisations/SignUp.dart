@@ -69,25 +69,33 @@ class _SignUpState extends State<SignUp> {
         isAdmin = true;
       }
     }
+    _isLoading = false;
+
     if (isAdmin) {
       print("Welcome, Admin");
-      Navigator.pushReplacement(
+      await Navigator.pushReplacement(
           context,
           MaterialPageRoute(
               builder: (context) => AdminDetails(_user, _postgresKonnection)));
     } else if (isGuest) {
       print("Welcome, Guest");
-      Navigator.pushReplacement(
+      await Navigator.pushReplacement(
           context,
           MaterialPageRoute(
               builder: (context) => FestDetails(_user, _postgresKonnection)));
     } else {
       print("Welcome, Participant");
-      Navigator.pushReplacement(
+      await Navigator.pushReplacement(
           context,
           MaterialPageRoute(
               builder: (context) => FestDetails(_user, _postgresKonnection)));
     }
+
+    setState(() {
+      _authorisationMethods.signOut();
+      toastMessage("Signed-out successfully");
+    });
+
   }
 
   signingWithGoogle() async {
@@ -109,12 +117,6 @@ class _SignUpState extends State<SignUp> {
         // print(_user.photoUrl);       // null
         // print(_user.phoneNumber);    // null
         nextPage(_user.email);
-        // Navigator.pushReplacement(
-        //     context, MaterialPageRoute(builder: (context) =>
-        //     //  HomePage(_user)
-        //     FestDetails(_user)
-        //     // Details()
-        //     ));
         toastMessage("Successfully Signed-in with Google");
       }
     } catch (e) {
@@ -138,12 +140,6 @@ class _SignUpState extends State<SignUp> {
           reset();
         } else {
           nextPage(_user.email);
-          // Navigator.pushReplacement(context,
-          //     MaterialPageRoute(builder: (context) =>
-          //     // HomePage(_user)
-          //     FestDetails(_user)
-          //     //  Details()
-          //     ));
           toastMessage("Signed-up successfully");
         }
       } catch (e) {

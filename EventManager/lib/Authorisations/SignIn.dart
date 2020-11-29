@@ -33,12 +33,12 @@ class _SignInState extends State<SignIn> {
 
   reset() {
     setState(() {
-      _isLoading = false;
+      _isLoading = true;
     });
   }
 
   resetPassword() {
-    Navigator.pushReplacement(
+    Navigator.push(
         context, MaterialPageRoute(builder: (context) => ForgotPassword()));
     // toastMessage("Reset Password");
   }
@@ -77,25 +77,39 @@ class _SignInState extends State<SignIn> {
         isAdmin = true;
       }
     }
+
+    _isLoading = false;
+
     if (isAdmin) {
       print("Welcome, Admin");
-      Navigator.pushReplacement(
+      await Navigator.push(
           context,
           MaterialPageRoute(
               builder: (context) => AdminDetails(_user, _postgresKonnection)));
     } else if (isGuest) {
       print("Welcome, Guest");
-      Navigator.pushReplacement(
+      await Navigator.push(
           context,
           MaterialPageRoute(
               builder: (context) => FestDetails(_user, _postgresKonnection)));
     } else {
       print("Welcome, Participant");
-      Navigator.pushReplacement(
+      await Navigator.push(
           context,
           MaterialPageRoute(
               builder: (context) => FestDetails(_user, _postgresKonnection)));
     }
+
+    setState(() {
+      _authorisationMethods.signOut();
+      toastMessage("Signed-out successfully");
+    });
+
+    // print(_isLoading);
+    // _isLoading = false;
+    // print(_isLoading);
+    
+
   }
 
   signingWithGoogle() async {
@@ -117,12 +131,7 @@ class _SignInState extends State<SignIn> {
         // print(_user.photoUrl);       // null
         // print(_user.phoneNumber);    // null
         nextPage(_user.email);
-        // Navigator.pushReplacement(
-        //     context, MaterialPageRoute(builder: (context) =>
-        //     // HomePage(_user)
-        //     FestDetails(_user)
-        //     // Details()
-        //     ));
+
         toastMessage("Successfully Signed-in with Google");
       }
     } catch (e) {
@@ -151,10 +160,7 @@ class _SignInState extends State<SignIn> {
           // print(_user.photoUrl);       // null
           // print(_user.phoneNumber);    // null
           nextPage(_user.email);
-          // Navigator.pushReplacement(context,
-          //     MaterialPageRoute(builder: (context) =>
-          //     FestDetails(_user)
-          //     ));
+
           toastMessage("Signed-in successfully");
         }
       } catch (e) {
