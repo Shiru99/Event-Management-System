@@ -32,94 +32,113 @@ class _HomePageState extends State<HomePage> {
     
 
     PostgreSQLConnection _konnection = await _postgresKonnection.getKonnection();
-    
+
     print(_konnection);
 
     var results = await _konnection.query('select * from book');
     print(results);
 
-    await _postgresKonnection.closeKonnection();
+    // await _postgresKonnection.closeKonnection();
 
     
   }
 
-  @override
-  Widget build(BuildContext context) {
-
-    operation();
-
-    return Scaffold(
-      resizeToAvoidBottomPadding: false,
-      resizeToAvoidBottomInset: true,
-      appBar: appBarMain(context),
-      body: SingleChildScrollView(
-        child: Container(
-          child: Center(
-            child: Column(
-                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                // crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      // Padding(
-                      //   padding: const EdgeInsets.only(top: 150.0, bottom: 10.0),
-                      //   child: logo(90, 280),
-                      // ),
-
-                      Container(
-                        alignment: Alignment.centerRight,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 60.0, vertical: 10),
-                          child: Text(
-                            " A Paradigm  Shift  💫", // 💫🌠
-                            style: TextStyle(
-                                fontSize: 30.0,
-                                color: Colors.white,
-                                fontFamily: "Signatra"),
+  
+  List<Posts> postList = [];
+  
+    
+  
+    @override
+    Widget build(BuildContext context) {
+  
+      operation();
+  
+      return Scaffold(
+        resizeToAvoidBottomPadding: false,
+        resizeToAvoidBottomInset: true,
+        appBar: appBarMain(context),
+        body: SingleChildScrollView(
+          child: Container(
+            child: Center(
+              child: Column(
+                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  // crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        // Padding(
+                        //   padding: const EdgeInsets.only(top: 150.0, bottom: 10.0),
+                        //   child: logo(90, 280),
+                        // ),
+  
+                        new ListView.builder(
+                        itemCount: postList.length,
+                        itemBuilder: (_, index) {
+                          // return PostUI(
+                          //     postList[index].image,
+                          //     postList[index].description,
+                          //     postList[index].date,
+                          //     postList[index].time);
+                        },
+                      ),
+  
+                        Container(
+                          alignment: Alignment.centerRight,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 60.0, vertical: 10),
+                            child: Text(
+                              " A Paradigm  Shift  💫", // 💫🌠
+                              style: TextStyle(
+                                  fontSize: 30.0,
+                                  color: Colors.white,
+                                  fontFamily: "Signatra"),
+                            ),
                           ),
                         ),
-                      ),
-
-                      Container(
-                        alignment: Alignment.centerRight,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 70.0, vertical: 10),
-                          child: Text(
-                            "14th-16th Feb, 2020", // 💫🌠
-                            style: TextStyle(
-                                fontSize: 18.0,
-                                color: Colors.white,
-                                fontStyle: FontStyle.italic // "Signatra"
-                                ),
+  
+                        Container(
+                          alignment: Alignment.centerRight,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 70.0, vertical: 10),
+                            child: Text(
+                              "14th-16th Feb, 2020", // 💫🌠
+                              style: TextStyle(
+                                  fontSize: 18.0,
+                                  color: Colors.white,
+                                  fontStyle: FontStyle.italic // "Signatra"
+                                  ),
+                            ),
                           ),
                         ),
-                      ),
-
-                      Container(
-                        alignment: Alignment.centerRight,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 70.0, vertical: 10),
-                          child: Text(
-                            widget._user.email,
-                            style: TextStyle(
-                                fontSize: 18.0,
-                                color: Colors.white,
-                                fontStyle: FontStyle.italic // "Signatra"
-                                ),
+  
+                        Container(
+                          alignment: Alignment.centerRight,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 70.0, vertical: 10),
+                            child: Text(
+                              widget._user.email,
+                              style: TextStyle(
+                                  fontSize: 18.0,
+                                  color: Colors.white,
+                                  fontStyle: FontStyle.italic // "Signatra"
+                                  ),
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                ]),
+                      ],
+                    ),
+                  ]),
+            ),
           ),
         ),
-      ),
-    );
+      );
+    }
   }
+  
+  class Posts {
 }

@@ -1,7 +1,14 @@
+import 'package:EventManager/Authorisations/PostgresKonnection.dart';
+import 'package:EventManager/Authorisations/SaveUser.dart';
 import 'package:EventManager/Widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class AdminDetails extends StatefulWidget {
+
+  PostgresKonnection _postgresKonnection;
+  SaveUser _user;
+  AdminDetails(this._user, this._postgresKonnection);
+  
   @override
   _AdminDetailsState createState() => _AdminDetailsState();
 }

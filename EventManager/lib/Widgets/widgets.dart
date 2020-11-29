@@ -100,6 +100,85 @@ class DialogBox {
   }
 }
 
+Widget PostUI(String image, String description, String date) {
+  return SingleChildScrollView(
+    child: new Card(
+      elevation: 20.0,
+      clipBehavior: Clip.antiAlias,
+      margin: EdgeInsets.all(15.0),
+      color: Colors.red,
+      
+      // shape: RoundedRectangleBorder(
+      //     borderRadius: BorderRadius.only(
+      //         bottomRight: Radius.circular(50)),
+      //     side: BorderSide(width: 1, color: Colors.black)
+      // ),
+
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(40.0),
+        side: BorderSide( color: Colors.black, width: 1.0,),
+      ),
+      child: new Container(
+        color: Colors.white,
+        padding: new EdgeInsets.all(25.0),
+        child: new Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            new Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                new Text(
+                  date,
+                  // style: Theme.of(context).textTheme.subtitle2,
+                  textAlign: TextAlign.center,
+                  // style: TextStyle(
+                  //   color: Colors.white,
+                  // ),
+                ),
+                new Text(
+                  "time",
+                  // style: Theme.of(context).textTheme.subtitle2,
+                  textAlign: TextAlign.center,
+                  // style: TextStyle(
+                  //   color: Colors.white,
+                  // ),
+                )
+              ],
+            ),
+            SizedBox(
+              height: 10.0,
+            ),
+            GestureDetector(
+              onTap: () {
+                print("clicked on Image");
+              },
+              child: new Image.network(
+                image,
+                fit: BoxFit.cover,
+              ),
+            ),
+            SizedBox(
+              height: 10.0,
+            ),
+            new Text(
+              description,
+              // style: Theme.of(context).textTheme.subtitle1,
+              textAlign: TextAlign.center,
+              // style: TextStyle(
+              //   color: Colors.white,
+              // ),
+            ),
+            SizedBox(
+              height: 10.0,
+              // child:Colors.black,
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+}
+
 Widget appBarMain(BuildContext context) {
   AuthorisationMethods _authorisationMethods = new AuthorisationMethods();
   return AppBar(

@@ -1,5 +1,7 @@
+import 'package:EventManager/Authorisations/PostgresKonnection.dart';
 import 'package:EventManager/Authorisations/SaveUser.dart';
 import 'package:EventManager/Authorisations/auth.dart';
+import 'package:EventManager/Pages/Admins/AdminDetails.dart';
 import 'package:EventManager/Pages/EventDetails.dart';
 import 'package:EventManager/Pages/FestDetails.dart';
 import 'package:EventManager/Welcome/HomePage.dart';
@@ -7,6 +9,7 @@ import 'package:EventManager/Widgets/widgets.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:postgres/postgres.dart';
 
 class SignUp extends StatefulWidget {
   final Function toggle;
@@ -34,6 +37,59 @@ class _SignUpState extends State<SignUp> {
     });
   }
 
+  int port = 5432;
+  String hostURL = "ec2-34-232-24-202.compute-1.amazonaws.com";
+  String databaseName = "djb7v0o318g55";
+  String userName = "oofplrsgbytwdc";
+  String password =
+      "b72bf90efb5e5f52b3c22146e1180e36d03a87f7ef5f76f8025733511e663583";
+
+  PostgresKonnection _postgresKonnection = new PostgresKonnection();
+
+  Future createKonnection() async {
+    await _postgresKonnection.setKonnection(
+        hostURL, port, databaseName, userName, password);
+  }
+
+  nextPage(String email) async {
+    await createKonnection();
+
+    PostgreSQLConnection _konnection =
+        await _postgresKonnection.getKonnection();
+
+    print(_konnection);
+
+    var results = await _konnection.query('select admin_email from admino');
+
+    bool isAdmin = false;
+    bool isGuest = false;
+
+    for (var result in results) {
+      if (result[0] == _user.email) {
+        isAdmin = true;
+      }
+    }
+    if (isAdmin) {
+      print("Welcome, Admin");
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (context) => AdminDetails(_user, _postgresKonnection)));
+    } else if (isGuest) {
+      print("Welcome, Guest");
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (context) => FestDetails(_user, _postgresKonnection)));
+    } else {
+      print("Welcome, Participant");
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (context) => FestDetails(_user, _postgresKonnection)));
+    }
+  }
+
   signingWithGoogle() async {
     setState(() {
       _isLoading = true;
@@ -52,12 +108,13 @@ class _SignUpState extends State<SignUp> {
         print(_user.email);
         // print(_user.photoUrl);       // null
         // print(_user.phoneNumber);    // null
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => 
-            //  HomePage(_user)
-            FestDetails(_user)
-            // Details()
-            ));
+        nextPage(_user.email);
+        // Navigator.pushReplacement(
+        //     context, MaterialPageRoute(builder: (context) =>
+        //     //  HomePage(_user)
+        //     FestDetails(_user)
+        //     // Details()
+        //     ));
         toastMessage("Successfully Signed-in with Google");
       }
     } catch (e) {
@@ -80,12 +137,13 @@ class _SignUpState extends State<SignUp> {
         if (_user == null) {
           reset();
         } else {
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => 
-              // HomePage(_user)
-              FestDetails(_user)
-              //  Details()
-              ));
+          nextPage(_user.email);
+          // Navigator.pushReplacement(context,
+          //     MaterialPageRoute(builder: (context) =>
+          //     // HomePage(_user)
+          //     FestDetails(_user)
+          //     //  Details()
+          //     ));
           toastMessage("Signed-up successfully");
         }
       } catch (e) {
