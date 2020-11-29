@@ -177,12 +177,12 @@ Widget PostUI(
     String image,
     String description,
     String date) {
-
   Future goToEvent() async {
     await Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => EventDetails(_user, _postgresKonnection,event_ID)));
+            builder: (context) =>
+                EventDetails(_user, _postgresKonnection, event_ID)));
   }
 
   return new Card(
