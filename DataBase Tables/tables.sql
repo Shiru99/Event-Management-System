@@ -86,6 +86,7 @@ create table sponsor
 		sponsor_cno		numeric(10),
 		sponsor_category varchar(60),
 		sponsor_link	varchar(100),
+	 	logo_link	varchar,
 		primary key (sponsor_id)
 	);
 
