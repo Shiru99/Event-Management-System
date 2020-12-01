@@ -90,7 +90,7 @@ class _ScoreCardState extends State<ScoreCard> {
                           child: new Text(
                             "Scorecard",
                             style: new TextStyle(
-                                fontSize: 22.0, color: Colors.white),
+                                fontSize: 26.0, color: Colors.yellowAccent),
                           ),
                         ),
                         // Padding(
@@ -124,11 +124,11 @@ class _ScoreCardState extends State<ScoreCard> {
                         // ),
                         Padding(
                           padding:
-                              const EdgeInsets.only(top: 50.0, bottom: 10.0),
+                              const EdgeInsets.only(top: 20.0, bottom: 10.0),
                           child: new Text(
                             "Differnt Events",
                             style: new TextStyle(
-                                fontSize: 22.0, color: Colors.white),
+                                fontSize: 20.0, color: Colors.lightBlueAccent),
                           ),
                         ),
                         Padding(
@@ -215,23 +215,24 @@ Widget PostUI(
             new Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                new Text(
-                  date,
-                  // style: Theme.of(context).textTheme.subtitle2,
-                  textAlign: TextAlign.center,
-                  // style: TextStyle(
-                  //   color: Colors.white,
-                  // ),
-                ),
-                new Text(
-                  "time",
-                  // style: Theme.of(context).textTheme.subtitle2,
-                  textAlign: TextAlign.center,
-                  // style: TextStyle(
-                  //   color: Colors.white,
-                  // ),
-                )
+                // new Text(
+                //   date,
+                //   // style: Theme.of(context).textTheme.subtitle2,
+                //   textAlign: TextAlign.center,
+                //   // style: TextStyle(
+                //   //   color: Colors.white,
+                //   // ),
+                // ),
               ],
+            ),
+            new Text(
+              date,
+              style: new TextStyle(fontSize: 18.0, color: Colors.brown),
+              // style: Theme.of(context).textTheme.subtitle1,
+              textAlign: TextAlign.center,
+              // style: TextStyle(
+              //   color: Colors.white,
+              // ),
             ),
             SizedBox(
               height: 10.0,
@@ -245,15 +246,12 @@ Widget PostUI(
             ),
             new Text(
               description,
+              style: new TextStyle(fontSize: 18.0, color: Colors.brown),
               // style: Theme.of(context).textTheme.subtitle1,
               textAlign: TextAlign.center,
               // style: TextStyle(
               //   color: Colors.white,
               // ),
-            ),
-            SizedBox(
-              height: 10.0,
-              // child:Colors.black,
             ),
           ],
         ),

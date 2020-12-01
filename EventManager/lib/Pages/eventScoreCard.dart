@@ -47,7 +47,7 @@ class _eventScoreCardState extends State<eventScoreCard> {
 
       _eventInfo.participant_id = results[i][0];
       _eventInfo.participant_name = results[i][5];
-      _eventInfo.score = results[i][2];
+      _eventInfo.score = results[i][2].toString();
       _eventInfo.review = results[i][3];
       _eventList.add(_eventInfo);
     }
@@ -56,7 +56,7 @@ class _eventScoreCardState extends State<eventScoreCard> {
       EventInfo _groupinfo = new EventInfo();
       _groupinfo.group_id = groupresults[i][0];
       _groupinfo.group_name = groupresults[i][1];
-      _groupinfo.score = groupresults[i][2];
+      _groupinfo.score = groupresults[i][2].toString();
       _groupinfo.review = groupresults[i][3];
       _groupList.add(_groupinfo);
     }
@@ -93,7 +93,7 @@ class _eventScoreCardState extends State<eventScoreCard> {
                           child: new Text(
                             "Scorecard",
                             style: new TextStyle(
-                                fontSize: 22.0, color: Colors.white),
+                                fontSize: 22.0, color: Colors.yellowAccent),
                           ),
                         ),
                         // Padding(
@@ -131,7 +131,7 @@ class _eventScoreCardState extends State<eventScoreCard> {
                           child: new Text(
                             "Individual participant scorecard",
                             style: new TextStyle(
-                                fontSize: 22.0, color: Colors.white),
+                                fontSize: 22.0, color: Colors.lightBlueAccent),
                           ),
                         ),
                         Padding(
@@ -165,7 +165,7 @@ class _eventScoreCardState extends State<eventScoreCard> {
                           child: new Text(
                             "Group participant scorecard",
                             style: new TextStyle(
-                                fontSize: 22.0, color: Colors.white),
+                                fontSize: 22.0, color: Colors.lightBlueAccent),
                           ),
                         ),
                         Padding(
@@ -252,14 +252,14 @@ Widget PostUI(
             new Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                new Text(
-                  participant_name,
-                  // style: Theme.of(context).textTheme.subtitle2,
-                  textAlign: TextAlign.center,
-                  // style: TextStyle(
-                  //   color: Colors.white,
-                  // ),
-                ),
+                // new Text(
+                //   participant_name,
+                //   // style: Theme.of(context).textTheme.subtitle2,
+                //   textAlign: TextAlign.center,
+                //   // style: TextStyle(
+                //   //   color: Colors.white,
+                //   // ),
+                // ),
                 // new Text(
                 //   "time",
                 //   // style: Theme.of(context).textTheme.subtitle2,
@@ -277,6 +277,15 @@ Widget PostUI(
             //   image,
             //   fit: BoxFit.cover,
             // ),
+            new Text(
+              participant_name,
+              // style: Theme.of(context).textTheme.subtitle1,
+              textAlign: TextAlign.center,
+              style: new TextStyle(fontSize: 18.0, color: Colors.pink),
+              // style: TextStyle(
+              //   color: Colors.white,
+              // ),
+            ),
             SizedBox(
               height: 10.0,
             ),
@@ -284,7 +293,7 @@ Widget PostUI(
               score,
               // style: Theme.of(context).textTheme.subtitle1,
               textAlign: TextAlign.center,
-
+              style: new TextStyle(fontSize: 18.0, color: Colors.pink),
               // style: TextStyle(
               //   color: Colors.white,
               // ),
@@ -296,6 +305,7 @@ Widget PostUI(
               review,
               // style: Theme.of(context).textTheme.subtitle1,
               textAlign: TextAlign.center,
+              style: new TextStyle(fontSize: 18.0, color: Colors.pink),
               // style: TextStyle(
               //   color: Colors.white,
               // ),
@@ -360,14 +370,14 @@ Widget PostUIgroup(
             new Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                new Text(
-                  group_name,
-                  // style: Theme.of(context).textTheme.subtitle2,
-                  textAlign: TextAlign.center,
-                  // style: TextStyle(
-                  //   color: Colors.white,
-                  // ),
-                ),
+                // new Text(
+                //   group_name,
+                //   // style: Theme.of(context).textTheme.subtitle2,
+                //   textAlign: TextAlign.center,
+                //   // style: TextStyle(
+                //   //   color: Colors.white,
+                //   // ),
+                // ),
                 // new Text(
                 //   "time",
                 //   // style: Theme.of(context).textTheme.subtitle2,
@@ -385,17 +395,18 @@ Widget PostUIgroup(
             //   image,
             //   fit: BoxFit.cover,
             // ),
+            new Text(
+              group_name,
+              textAlign: TextAlign.center,
+              style: new TextStyle(fontSize: 18.0, color: Colors.pink),
+            ),
             SizedBox(
               height: 10.0,
             ),
             new Text(
               score,
-              // style: Theme.of(context).textTheme.subtitle1,
               textAlign: TextAlign.center,
-
-              // style: TextStyle(
-              //   color: Colors.white,
-              // ),
+              style: new TextStyle(fontSize: 18.0, color: Colors.pink),
             ),
             SizedBox(
               height: 10.0,
@@ -404,6 +415,7 @@ Widget PostUIgroup(
               review,
               // style: Theme.of(context).textTheme.subtitle1,
               textAlign: TextAlign.center,
+              style: new TextStyle(fontSize: 18.0, color: Colors.pink),
               // style: TextStyle(
               //   color: Colors.white,
               // ),
