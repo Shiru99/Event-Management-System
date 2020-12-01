@@ -73,79 +73,96 @@ class _Register_groupState extends State<Register_group> {
 
   Future sum() async {
     int flag = 0, flag_end = 0, flag_en = 0;
-    var flag_p = new List(team_size);
-    var id_p = new List(team_size);
-    var rtt = await widget._konnection.query(
-        "select * from group_participant where group_name=@a",
-        substitutionValues: {"a": c1.text});
-    if (rtt.length != 0) {
-      flag_end = 1;
+    int flag_nd = 0;
+    for (int i = 0; i < team_size; i++) {
+      if (con2[i].text == "" || con3[i].text == "" || con4[i].text == "") {
+        flag_nd = 1;
+      }
     }
-    if (flag_end == 0) {
-      var rt = await widget._konnection.query(
-          "select participant_id from participant order by participant_id limit 1");
-      int r = int.parse(rt[0][0]);
-      for (int i = 0; i < team_size; i++) {
-        flag_p[i] = '0';
-        id_p[i] = r.toString();
-        var r1 = await widget._konnection.query(
-            "select participant_id from participant where participant_name=@a and participant_cno=@b and participant_email=@c",
-            substitutionValues: {
-              "a": con2[i].text,
-              "b": con3[i].text,
-              "c": con4[i].text
-            });
-        if (r1.length == 1) {
-          flag_p[i] = '1';
-          id_p[i] = r1[0][0];
-          var r2 = await widget._konnection.query(
-              "select * from group_participant where participant_id=@a and event_id=@b",
-              substitutionValues: {"a": id_p[i], "b": widget.event_id});
-          if (r2.length != 0) {
-            flag_en = 1;
-          }
-        } else {
-          r = r - 1;
+    if (flag_nd == 0) {
+      var flag_p = new List(team_size);
+      var id_p = new List(team_size);
+      var rtt = await widget._konnection.query(
+          "select * from group_participant where group_name=@a",
+          substitutionValues: {"a": c1.text});
+      if (rtt.length != 0) {
+        flag_end = 1;
+      }
+
+      if (flag_end == 0) {
+        var rt = await widget._konnection.query(
+            "select participant_id from participant order by participant_id limit 1");
+        int r = int.parse(rt[0][0]);
+        for (int i = 0; i < team_size; i++) {
+          flag_p[i] = '0';
           id_p[i] = r.toString();
-        }
-      }
-    } else {
-      toastMessage("Group Name already exists");
-    }
-    print(flag_p);
-    print(id_p);
-    print(flag_end);
-    if (flag_en == 0) {
-      var r3 = await widget._konnection.query(
-          "select group_id from group_participant order by group_id limit 1");
-      int g_id = int.parse(r3[0][0]) - 1;
-      group_id = g_id.toString();
-      print(group_id);
-      for (int i = 0; i < team_size; i++) {
-        if (flag_p[i] == '0') {
-          var r4 = await widget._konnection.query(
-              "INSERT INTO participant VALUES (@a,@b,@c,@d)",
+          var r1 = await widget._konnection.query(
+              "select participant_id from participant where participant_name=@a and participant_cno=@b and participant_email=@c",
               substitutionValues: {
-                "a": id_p[i],
-                "b": con2[i].text,
-                "c": con3[i].text,
-                "d": con4[i].text
+                "a": con2[i].text,
+                "b": con3[i].text,
+                "c": con4[i].text
               });
+          if (r1.length == 1) {
+            flag_p[i] = '1';
+            id_p[i] = r1[0][0];
+            var r2 = await widget._konnection.query(
+                "select * from group_participant where participant_id=@a and event_id=@b",
+                substitutionValues: {"a": id_p[i], "b": widget.event_id});
+            if (r2.length != 0) {
+              flag_en = 1;
+            }
+          } else {
+            r = r - 1;
+            id_p[i] = r.toString();
+          }
         }
-        var r5 = await widget._konnection.query(
-            "INSERT INTO group_participant VALUES (@a,@b,@c,@d,@e,@f)",
-            substitutionValues: {
-              "a": id_p[i],
-              "b": widget.event_id,
-              "c": 0,
-              "d": group_id,
-              "e": c1.text,
-              "f": "NA"
-            });
+      } else {
+        toastMessage("Group Name already exists");
       }
-      toastMessage("Registerd Succesfully");
+      if (flag_en == 0) {
+        var r3 = await widget._konnection.query(
+            "select group_id from group_participant order by group_id limit 1");
+        int g_id = int.parse(r3[0][0]) - 1;
+        group_id = g_id.toString();
+        for (int i = 0; i < team_size; i++) {
+          if (con2[i].text == "" && con3[i].text == "" && con4[i].text == "") {
+          } else {
+            if (con2[i].text == "" ||
+                con3[i].text == "" ||
+                con4[i].text == "") {
+              toastMessage("Incomplete Fields");
+            } else {
+              if (flag_p[i] == '0') {
+                var r4 = await widget._konnection.query(
+                    "INSERT INTO participant VALUES (@a,@b,@c,@d)",
+                    substitutionValues: {
+                      "a": id_p[i],
+                      "b": con2[i].text,
+                      "c": con3[i].text,
+                      "d": con4[i].text
+                    });
+              }
+              var r5 = await widget._konnection.query(
+                  "INSERT INTO group_participant VALUES (@a,@b,@c,@d,@e,@f)",
+                  substitutionValues: {
+                    "a": id_p[i],
+                    "b": widget.event_id,
+                    "c": 0,
+                    "d": group_id,
+                    "e": c1.text,
+                    "f": "NA"
+                  });
+            }
+          }
+        }
+        toastMessage("Registerd Succesfully");
+      } else {
+        toastMessage(
+            "Someone in your group is already registered in this event");
+      }
     } else {
-      toastMessage("Someone in your group is already registered in this event");
+      toastMessage("Some fields are empty");
     }
   }
 
@@ -181,8 +198,8 @@ class _Register_groupState extends State<Register_group> {
                         style: TextStyle(
                           color: Colors.white,
                         ),
-                        decoration: textInputDecoration(
-                            "Group Name", " john.doe@gmail.com"),
+                        decoration:
+                            textInputDecoration("Group Name", "Group Name"),
                         textInputAction: TextInputAction.next,
                         onFieldSubmitted: (_) =>
                             FocusScope.of(context).nextFocus(),
@@ -308,7 +325,7 @@ Widget PostUI(BuildContext context, List<TextEditingController> ck, int index) {
                 color: Colors.green,
               ),
               decoration: textInputDecoration(
-                  "Name - " + (index + 1).toString(), " john.doe@gmail.com"),
+                  "Name - " + (index + 1).toString(), "Name"),
               textInputAction: TextInputAction.next,
               onFieldSubmitted: (_) => FocusScope.of(context).nextFocus(),
             ),
@@ -337,8 +354,8 @@ Widget PostUI2(BuildContext context, TextEditingController cc, int index) {
                 color: Colors.green,
               ),
               decoration: textInputDecoration(
-                  "Phone number - " + (index + 1).toString(),
-                  " john.doe@gmail.com"),
+                  "Phone number - " + (index + 1).toString(), " Number"),
+              keyboardType: TextInputType.number,
               textInputAction: TextInputAction.next,
               onFieldSubmitted: (_) => FocusScope.of(context).nextFocus(),
             ),
@@ -367,7 +384,7 @@ Widget PostUI3(BuildContext context, TextEditingController cc, int index) {
                 color: Colors.green,
               ),
               decoration: textInputDecoration(
-                  "Mail Id - " + (index + 1).toString(), " john.doe@gmail.com"),
+                  "Mail Id - " + (index + 1).toString(), " Mail ID"),
               textInputAction: TextInputAction.next,
               onFieldSubmitted: (_) => FocusScope.of(context).nextFocus(),
             ),
