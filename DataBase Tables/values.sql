@@ -35,11 +35,42 @@ INSERT INTO participant VALUES ('2020230008','Avico','8765678187','avico@gmail.c
 INSERT INTO participant VALUES ('2020230009','Zindao','7689841235','zindao@gmail.com');
 INSERT INTO participant VALUES ('2020230010','Franko','6799874322','franko@gmail.com');
 
+INSERT INTO participant VALUES ('2020230011','Joshq','9992441234','joshq@gmail.com');
+INSERT INTO participant VALUES ('2020230012','Kaneq','8892484727','kaneq@gmail.com');
+INSERT INTO participant VALUES ('2020230013','Avicq','8765478186','avicq@gmail.com');
+INSERT INTO participant VALUES ('2020230014','Zindaq','7684841234','zindaq@gmail.com');
+
+INSERT INTO participant VALUES ('2020230021','Jasson','9992341999','jasson@gmail.com');
+INSERT INTO participant VALUES ('2020230022','KaneWill','8892384888','kanewill@gmail.com');
+INSERT INTO participant VALUES ('2020230023','AvicDinda','8765678777','avicdinda@gmail.com');
+INSERT INTO participant VALUES ('2020230024','ZindaKet','7689841666','zindaket@gmail.com');
+INSERT INTO participant VALUES ('2020230025','FrankKon','6799874555','frankkon@gmail.com');
+INSERT INTO participant VALUES ('2020230026','JoshoBrad','9992341444','joshobrad@gmail.com');
+INSERT INTO participant VALUES ('2020230027','Kaneosin','8892384333','kaneosin@gmail.com');
+INSERT INTO participant VALUES ('2020230028','Avicobit','8765678222','avicobit@gmail.com');
+INSERT INTO participant VALUES ('2020230029','Zindaobyte','768984111','zindaobyte@gmail.com');
+INSERT INTO participant VALUES ('2020230030','Franko','6799874000','franko@gmail.com');
+
+INSERT INTO participant VALUES ('2020230041','Joshqson','9992441234','joshqson@gmail.com');
+INSERT INTO participant VALUES ('2020230042','Kaneqpit','8892484727','kaneqpit@gmail.com');
+INSERT INTO participant VALUES ('2020230043','Avicqlr','8765478186','avicqlr@gmail.com');
+INSERT INTO participant VALUES ('2020230044','Zindaqkk','7684841234','zindaqkk@gmail.com');
+
+INSERT INTO participant VALUES ('2020230091','Mahi','9992888234','mahis@gmail.com');
+INSERT INTO participant VALUES ('2020230092','kapil','8897774727','kapil@gmail.com');
+INSERT INTO participant VALUES ('2020230093','zac','8765666186','zac3@gmail.com');
+INSERT INTO participant VALUES ('2020230094','fanny','7684831334','fanny@gmail.com');
+
 /*      For individual_participant */
 INSERT INTO individual_participant VALUES ('2020230001','20202303',0,'NA');
 INSERT INTO individual_participant VALUES ('2020230002','20202303',0,'NA');
 INSERT INTO individual_participant VALUES ('2020230003','20202303',0,'NA');
 INSERT INTO individual_participant VALUES ('2020230006','20202303',0,'NA');
+
+INSERT INTO individual_participant VALUES ('2020230021','20202303',10,'NA');
+INSERT INTO individual_participant VALUES ('2020230022','20202303',20,'NA');
+INSERT INTO individual_participant VALUES ('2020230023','20202303',30,'NA');
+INSERT INTO individual_participant VALUES ('2020230026','20202303',10,'NA');
 
 
 /*      For group_participant   */
@@ -48,17 +79,50 @@ INSERT INTO group_participant VALUES ('2020230002','20202301',0,'2020230101','Th
 INSERT INTO group_participant VALUES ('2020230003','20202301',0,'2020230101','The Gang','NA');
 INSERT INTO group_participant VALUES ('2020230004','20202301',0,'2020230101','The Gang','NA');
 
-INSERT INTO group_participant VALUES ('2020230005','20202302',0,'2020230201','The Mechky','NA');
-INSERT INTO group_participant VALUES ('2020230006','20202302',0,'2020230201','The Mechky','NA');
-INSERT INTO group_participant VALUES ('2020230007','20202302',0,'2020230201','The Mechky','NA');
-INSERT INTO group_participant VALUES ('2020230008','20202302',0,'2020230201','The Mechky','NA');
+INSERT INTO group_participant VALUES ('2020230021','20202301',30,'2020230102','The Set','NA');
+INSERT INTO group_participant VALUES ('2020230022','20202301',30,'2020230102','The Set','NA');
+INSERT INTO group_participant VALUES ('2020230023','20202301',30,'2020230102','The Set','NA');
+INSERT INTO group_participant VALUES ('2020230024','20202301',30,'2020230102','The Set','NA');
 
-INSERT INTO group_participant VALUES ('2020230004','20202304',0,'2020230401','Black Torch','NA');
-INSERT INTO group_participant VALUES ('2020230002','20202304',0,'2020230401','Black Torch','NA');
-INSERT INTO group_participant VALUES ('2020230008','20202304',0,'2020230401','Black Torch','NA');
+INSERT INTO group_participant VALUES ('2020230011','20202301',0,'2020230103','The Red','NA');
+INSERT INTO group_participant VALUES ('2020230012','20202301',0,'2020230103','The Red','NA');
+INSERT INTO group_participant VALUES ('2020230013','20202301',0,'2020230103','The Red','NA');
+INSERT INTO group_participant VALUES ('2020230014','20202301',0,'2020230103','The Red','NA');
 
-INSERT INTO group_participant VALUES ('2020230009','20202305',0,'2020230501','Metal Warriors','NA');
-INSERT INTO group_participant VALUES ('2020230010','20202305',0,'2020230501','Metal Warriors','NA');
+INSERT INTO group_participant VALUES ('2020230041','20202302',10,'2020230107','The Violet','NA');
+INSERT INTO group_participant VALUES ('2020230042','20202302',10,'2020230107','The violet','NA');
+INSERT INTO group_participant VALUES ('2020230043','20202302',10,'2020230107','The violet','NA');
+INSERT INTO group_participant VALUES ('2020230044','20202302',10,'2020230107','The violet','NA');
+
+INSERT INTO group_participant VALUES ('2020230005','20202302',0,'2020230208','The Mechky','NA');
+INSERT INTO group_participant VALUES ('2020230006','20202302',0,'2020230208','The Mechky','NA');
+INSERT INTO group_participant VALUES ('2020230007','20202302',0,'2020230208','The Mechky','NA');
+INSERT INTO group_participant VALUES ('2020230008','20202302',0,'2020230208','The Mechky','NA');
+
+INSERT INTO group_participant VALUES ('2020230025','20202302',70,'2020230209','The Mechky','NA');
+INSERT INTO group_participant VALUES ('2020230026','20202302',70,'2020230209','The Mechky','NA');
+INSERT INTO group_participant VALUES ('2020230027','20202302',70,'2020230209','The Mechky','NA');
+INSERT INTO group_participant VALUES ('2020230028','20202302',70,'2020230209','The Mechky','NA');
+
+
+INSERT INTO group_participant VALUES ('2020230004','20202304',45,'2020230411','Black Torch','NA');
+INSERT INTO group_participant VALUES ('2020230002','20202304',45,'2020230411','Black Torch','NA');
+INSERT INTO group_participant VALUES ('2020230008','20202304',45,'2020230411','Black Torch','NA');
+
+INSERT INTO group_participant VALUES ('2020230014','20202304',50,'2020230433','White Shadow','NA');
+INSERT INTO group_participant VALUES ('2020230012','20202304',50,'2020230433','White Shadow','NA');
+INSERT INTO group_participant VALUES ('2020230028','20202304',50,'2020230433','White Shadow','NA');
+
+INSERT INTO group_participant VALUES ('2020230009','20202305',50,'2020230501','Metal Warriors','NA');
+INSERT INTO group_participant VALUES ('2020230010','20202305',50,'2020230501','Metal Warriors','NA');
+INSERT INTO group_participant VALUES ('2020230029','20202305',50,'2020230501','Metal Warriors','NA');
+INSERT INTO group_participant VALUES ('2020230030','20202305',50,'2020230501','Metal Warriors','NA');
+
+INSERT INTO group_participant VALUES ('2020230091','20202305',90,'2020230509','Short Circuit','NA');
+INSERT INTO group_participant VALUES ('2020230092','20202305',90,'2020230509','Short Circuit','NA');
+INSERT INTO group_participant VALUES ('2020230093','20202305',90,'2020230509','Short Circuit','NA');
+INSERT INTO group_participant VALUES ('2020230094','20202305',90,'2020230509','Short Circuit','NA');
+
 
 /*      Admin   */
 INSERT INTO admino VALUES ('20202301','Shriram','8889991234','shriram.ghadge1999@gmail.com');
@@ -108,11 +172,13 @@ INSERT INTO invite VALUES ('20202304','20202305');
 
 /*      For invigilator  */
 
+INSERT INTO invigilator VALUES ('20202314','Mahi','IIT Hyadrabad professor','9177882600','shriram.ghadge27@gmail.com');
+
 INSERT INTO invigilator VALUES ('20202311','Sidhu','IIT Dharwad professor','9177882635','sidhu@gmail.com');
 INSERT INTO invigilator VALUES ('20202312','Glenn','IIT Madras professor','9124562635','glenn@gmail.com');
 INSERT INTO invigilator VALUES ('20202313','Gauti','IIT Bombey professor','9124599635','gauti@gmail.com');
 
-INSERT INTO invigilator VALUES ('20202314','K.S.P.','IIT Hyadrabad professor','9177882600','skp@gmail.com');
+
 INSERT INTO invigilator VALUES ('20202315','Gill','IIT Roorkee professor','9124562600','gill@gmail.com');
 INSERT INTO invigilator VALUES ('20202316','Raavi','IIT Kharagpur professor','9124599600','raavi@gmail.com');
 
@@ -121,17 +187,19 @@ INSERT INTO invigilator VALUES ('20202316','Raavi','IIT Kharagpur professor','91
 
 INSERT INTO appoint VALUES ('20202311','20202301');
 INSERT INTO appoint VALUES ('20202313','20202301');
-INSERT INTO appoint VALUES ('20202315','20202301');
+INSERT INTO appoint VALUES ('20202314','20202301');
 
 INSERT INTO appoint VALUES ('20202312','20202302');
-INSERT INTO appoint VALUES ('20202314','20202302');
+INSERT INTO appoint VALUES ('20202315','20202302');
 INSERT INTO appoint VALUES ('20202316','20202302');
 
 INSERT INTO appoint VALUES ('20202311','20202303');
 INSERT INTO appoint VALUES ('20202313','20202303');
+INSERT INTO appoint VALUES ('20202314','20202303');
 
-INSERT INTO appoint VALUES ('20202315','20202304');
+
+INSERT INTO appoint VALUES ('20202314','20202304');
 INSERT INTO appoint VALUES ('20202316','20202304');
 
-INSERT INTO appoint VALUES ('20202314','20202305');
+INSERT INTO appoint VALUES ('20202315','20202305');
 INSERT INTO appoint VALUES ('20202312','20202305');

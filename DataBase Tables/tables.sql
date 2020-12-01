@@ -62,6 +62,9 @@ create table individual_participant
 		foreign key (event_id) references evento on delete cascade
 	);
 
+-- SELECT * from group_participant,participant
+-- WHERE event_id = '20202301' AND group_participant.participant_id = participant.participant_id
+
 create table group_participant
 	(	participant_id		varchar(20),
 		event_id			varchar(20),
@@ -133,3 +136,10 @@ create table appoint
 		foreign key (invigilator_id) references invigilator on delete cascade,
 		foreign key (event_id) references evento on delete cascade
 	);
+
+
+-- select * 
+-- 	from participant,individual_participant,group_participant
+-- where 
+-- 	participant.participant_id = individual_participant.participant_id OR
+-- 	 participant.participant_id = group_participant.participant_id;

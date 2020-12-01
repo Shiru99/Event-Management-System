@@ -2,6 +2,9 @@ import 'package:EventManager/Authorisations/PostgresKonnection.dart';
 import 'package:EventManager/Authorisations/SaveUser.dart';
 import 'package:EventManager/Classes/EventInfo.dart';
 import 'package:EventManager/Classes/SponsorInfo.dart';
+import 'package:EventManager/Pages/Invigilator/InvigilatorEachEvent.dart';
+import 'package:EventManager/Pages/Invigilator/InvigilatorScoring.dart';
+import 'package:EventManager/Pages/Participant/ParticipantEachEvents.dart';
 import 'package:EventManager/Pages/CommonPages/EventDetails.dart';
 import 'package:EventManager/Pages/CommonPages/ParsecDetails.dart';
 import 'package:EventManager/Widgets/widgets.dart';
@@ -23,11 +26,11 @@ class _FestDetailsState extends State<FestDetails> {
   List<EventInfo> _eventList = [];
   List results;
 
-   List<SponsorInfo> _sponsorList = [];
-    String festImageURL =
+  List<SponsorInfo> _sponsorList = [];
+  String festImageURL =
       "https://parsec.iitdh.ac.in/images/logos/logo-about.jpg";
-  
-    List res;
+
+  List res;
 
   Future runQuery() async {
     PostgreSQLConnection _konnection =
@@ -51,19 +54,17 @@ class _FestDetailsState extends State<FestDetails> {
       _eventInfo.end_date_time = results[i][3];
       _eventInfo.register_start_date_time = results[i][4];
       _eventInfo.register_end_date_time = results[i][5];
-    _eventInfo.place = results[i][6];
-    _eventInfo.short_description = results[i][7];
-    _eventInfo.description = results[i][8];
-    _eventInfo.price = results[i][10];
-    // _eventInfo.imageURL = results[i][11];
+      _eventInfo.place = results[i][6];
+      _eventInfo.short_description = results[i][7];
+      _eventInfo.description = results[i][8];
+      _eventInfo.price = results[i][10];
+      // _eventInfo.imageURL = results[i][11];
 
       _eventList.add(_eventInfo);
     }
 
     print(_eventList);
     print(_eventList.length);
-
-   
 
     res = await _konnection.query('select * from sponsor');
     print(res);
@@ -81,7 +82,7 @@ class _FestDetailsState extends State<FestDetails> {
       _sponsorInfo.sponsor_category = res[i][3];
       _sponsorInfo.sponsor_link = res[i][4];
       // _sponsorInfo.amount = res[i][5];
-    // _eventInfo.imageURL = res[i][11];
+      // _eventInfo.imageURL = res[i][11];
 
       _sponsorList.add(_sponsorInfo);
     }
@@ -146,14 +147,36 @@ class _FestDetailsState extends State<FestDetails> {
                               child: new Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 8.0),
+                                        child: new Text(
+                                          "Know  More  about",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            fontSize: 20.0,
+                                            color: Colors.white,
+                                            // fontStyle: FontStyle.italic,
+                                            fontWeight: FontWeight.w500,
+                                            // fontFamily: "Signatra"
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: new Text(
-                                      "Know More about\nP A R S E C",
+                                      "P A R S E C",
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
-                                          fontSize: 50.0,
-                                          color: Colors.white,
+                                          fontSize: 48.0,
+                                          color: Colors.yellow,
                                           // fontStyle: FontStyle.italic,
                                           fontWeight: FontWeight.w500,
                                           fontFamily: "Signatra"),
@@ -182,12 +205,14 @@ class _FestDetailsState extends State<FestDetails> {
                           padding:
                               const EdgeInsets.only(top: 50.0, bottom: 10.0),
                           child: new Text(
-                            "Differnt Events",
+                            "Differnt  Events",
                             style: new TextStyle(
-                                fontSize: 22.0, color: Colors.white),
+                                fontSize: 48.0,
+                                color: Colors.yellow,
+                                fontFamily: "Signatra"),
                           ),
                         ),
-                        
+
                         Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 24.0, vertical: 10.0),
@@ -246,9 +271,6 @@ class _FestDetailsState extends State<FestDetails> {
                         //     ),
                         //   ),
                         // ),
-
-                        
-
                       ],
                     ),
                   ],
@@ -269,12 +291,41 @@ Widget PostUI(
   String description,
   String short_description,
 ) {
+  bool isInvigilator;
+
+  
+
   Future goToEvent() async {
-    await Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) =>
-                EventDetails(_user, _postgresKonnection, event_ID)));
+
+
+        PostgreSQLConnection _konnection =
+        await _postgresKonnection.getKonnection();
+
+    print(_konnection);
+
+    isInvigilator = false;
+
+    var result = await _konnection.query('select invigilator_email from invigilator');
+    for (var resu in result) {
+      if (resu[0] == _user.email) {
+        isInvigilator = true;
+      }
+    }
+
+
+    if (isInvigilator) {
+      await Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  InvigilatorEachEvent(_user, _postgresKonnection, event_ID)));
+    } else {
+      await Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  ParticipantEachEvents(_user, _postgresKonnection, event_ID)));
+    }
   }
 
   return new Card(
@@ -339,4 +390,3 @@ Widget PostUI(
     ),
   );
 }
-

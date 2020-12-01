@@ -21,12 +21,16 @@ class SignIn extends StatefulWidget {
 
 class _SignInState extends State<SignIn> {
   final _signInFormKey = GlobalKey<FormState>();
+
+  TextEditingController _email = new TextEditingController();
+  TextEditingController _password = new TextEditingController();
+
   SaveUser _user;
 
   AuthorisationMethods _authorisationMethods = new AuthorisationMethods();
 
-  TextEditingController _email = new TextEditingController();
-  TextEditingController _password = new TextEditingController();
+
+
 
   bool _passwordVisible = false;
   bool _isLoading = false;
@@ -67,19 +71,30 @@ class _SignInState extends State<SignIn> {
 
     print(_konnection);
 
+    bool isGuest = false;
+
+    var result = await _konnection.query('select invigilator_email from invigilator');
+    for (var resu in result) {
+      if (resu[0] == _user.email) {
+        isGuest = true;
+      }
+    }
+
     var re = await _konnection.query('select * from participant');
     // print(re[0][2]);
 
     var results = await _konnection.query('select admin_email from admino');
 
     bool isAdmin = false;
-    bool isGuest = false;
+    
 
     for (var result in results) {
       if (result[0] == _user.email) {
         isAdmin = true;
       }
     }
+
+  
 
     _isLoading = false;
 
@@ -91,8 +106,8 @@ class _SignInState extends State<SignIn> {
           MaterialPageRoute(
               builder: (context) => AdminFestDetails(_user, _postgresKonnection)));
     } else if (isGuest) {
-      print("Welcome, Guest");
-      toastMessage("Welcome, Guest");
+      print("Welcome, Invigilator");
+      toastMessage("Welcome, Invigilator");
       await Navigator.push(
           context,
           MaterialPageRoute(
@@ -178,6 +193,10 @@ class _SignInState extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
+
+      _email.text = 'john.doe@gmail.com';
+      _password.text = 'abcABC123@';
+
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       resizeToAvoidBottomInset: true,
@@ -226,6 +245,7 @@ class _SignInState extends State<SignIn> {
                                       // autofocus: true,
                                       textInputAction: TextInputAction.next,
                                       // onFieldSubmitted: (_) => FocusScope.of(context).nextFocus(),
+                                      keyboardType: TextInputType.emailAddress,
                                       controller: _email,
                                       validator: (email) {
                                         if (email.isEmpty) {

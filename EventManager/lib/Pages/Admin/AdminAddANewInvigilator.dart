@@ -312,7 +312,7 @@ class _AdminAddANewInviligatorState extends State<AdminAddANewInviligator> {
                                   padding: const EdgeInsets.symmetric(
                                       vertical: 10.0),
                                   child: new Text(
-                                    "Update",
+                                    "Add",
                                     style: new TextStyle(
                                       fontSize: 20.0,
                                     ),

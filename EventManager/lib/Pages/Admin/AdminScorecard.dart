@@ -99,9 +99,9 @@ else
 
       WHERE   event_id = \'$event_id\' 
             AND group_participant.participant_id = participant.participant_id
-            ORDER BY score,group_id DESC
+            ORDER BY score DESC,group_id ASC
     ''';
-
+// DESC
       print("1");
       resOfGuests = await _konnection.query(query);
 
@@ -128,7 +128,7 @@ else
         _teamInfo.review = resOfGuests[i][5];
 
         for(int j=0;j<group_size[0][0];j++){
-          _teamInfo.participant_id.add(resOfGuests[i+j][6]) ;
+        _teamInfo.participant_id.add(resOfGuests[i+j][6]) ;
         _teamInfo.participant_name.add(resOfGuests[i+j][7]) ;
         _teamInfo.participant_cno.add(resOfGuests[i+j][8]) ;
         _teamInfo.participant_email.add(resOfGuests[i+j][9]) ;

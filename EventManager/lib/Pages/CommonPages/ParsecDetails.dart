@@ -19,15 +19,13 @@ class _ParsecDetailsState extends State<ParsecDetails> {
   var results;
   bool _isLoading = true;
 
-  
   String festImageURL =
       "https://parsec.iitdh.ac.in/images/logos/logo-about.jpg";
 
   List res;
   List resOfGuests;
-  List<SponsorInfo> _sponsorList = [];  
+  List<SponsorInfo> _sponsorList = [];
   List<GuestInfo> _guestList = [];
-
 
   Future fun() async {
     PostgreSQLConnection _konnection =
@@ -209,7 +207,7 @@ class _ParsecDetailsState extends State<ParsecDetails> {
                               ],
                             ),
                           ),
-SizedBox(height:20),
+                          SizedBox(height: 20),
 
                           Padding(
                             padding:
@@ -217,11 +215,12 @@ SizedBox(height:20),
                             child: new Text(
                               "Sponsors",
                               style: new TextStyle(
-                                  fontSize: 48.0, color: Colors.yellow,
+                                  fontSize: 48.0,
+                                  color: Colors.yellow,
                                   fontFamily: "Signatra"),
                             ),
                           ),
-SizedBox(height:20),
+                          SizedBox(height: 20),
                           Padding(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 24.0, vertical: 10.0),
@@ -244,17 +243,19 @@ SizedBox(height:20),
                               ),
                             ),
                           ),
-SizedBox(height:20),
+                          SizedBox(height: 20),
                           Padding(
                             padding:
                                 const EdgeInsets.only(top: 50.0, bottom: 10.0),
                             child: new Text(
                               "Guests",
                               style: new TextStyle(
-                                  fontSize: 48.0, color: Colors.yellow,fontFamily: "Signatra"),
+                                  fontSize: 48.0,
+                                  color: Colors.yellow,
+                                  fontFamily: "Signatra"),
                             ),
                           ),
-SizedBox(height:20),
+                          SizedBox(height: 20),
                           Padding(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 24.0, vertical: 10.0),
@@ -277,7 +278,6 @@ SizedBox(height:20),
                               ),
                             ),
                           ),
-
                         ],
                       ),
                     ],

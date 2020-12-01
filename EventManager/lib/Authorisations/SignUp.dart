@@ -62,7 +62,14 @@ class _SignUpState extends State<SignUp> {
     var results = await _konnection.query('select admin_email from admino');
 
     bool isAdmin = false;
-    bool isGuest = false;
+     bool isGuest = false;
+
+    var result = await _konnection.query('select invigilator_email from invigilator');
+    for (var resu in result) {
+      if (resu[0] == _user.email) {
+        isGuest = true;
+      }
+    }
 
     for (var result in results) {
       if (result[0] == _user.email) {
@@ -78,7 +85,7 @@ class _SignUpState extends State<SignUp> {
           MaterialPageRoute(
               builder: (context) => AdminFestDetails(_user, _postgresKonnection)));
     } else if (isGuest) {
-      print("Welcome, Guest");
+      print("Welcome, Invigilator");
       await Navigator.pushReplacement(
           context,
           MaterialPageRoute(

@@ -210,7 +210,8 @@ class _AdminTeamDetailsState extends State<AdminTeamDetails> {
                         ),
                       ),
                     ),
-                  ));
+                  ),
+                  );
   }
 }
 

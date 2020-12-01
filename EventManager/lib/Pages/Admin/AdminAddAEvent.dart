@@ -354,7 +354,7 @@ class _AdminAddAEventState extends State<AdminAddAEvent> {
                                       decoration: textInputDecoration(
                                           "Description",
                                           "Add description of event"),
-                                      textInputAction: TextInputAction.done,
+                                      textInputAction: TextInputAction.next,
                                       controller: _description,
                                       validator: (_description) {
                                         if (_description.isEmpty) {
@@ -376,7 +376,7 @@ class _AdminAddAEventState extends State<AdminAddAEvent> {
                                       decoration: textInputDecoration(
                                           "Winning Price",
                                           "₹ 2,50,000"),
-                                      textInputAction: TextInputAction.done,
+                                      textInputAction: TextInputAction.next,
                                       controller: _price,
                                       validator: (_price) {
                                         if (_price.isEmpty) {

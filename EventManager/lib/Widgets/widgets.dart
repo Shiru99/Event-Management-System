@@ -105,7 +105,7 @@ Widget DatailTitle(String title) {
     title,
     textAlign: TextAlign.center,
     style:
-        TextStyle(fontSize: 30.0, color: Colors.white, fontFamily: "Signatra"),
+        TextStyle(fontSize: 30.0, color: Colors.yellow, fontFamily: "Signatra"),
   );
 }
 
@@ -132,7 +132,7 @@ Widget DetailDescription(String data) {
       ),
       child: new Container(
         color: Colors.white,
-        padding: new EdgeInsets.all(25.0),
+        padding: new EdgeInsets.all(15.0),
         child: new Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[

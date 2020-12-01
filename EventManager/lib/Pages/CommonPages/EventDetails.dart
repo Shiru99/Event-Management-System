@@ -21,6 +21,7 @@ class _EventDetailsState extends State<EventDetails> {
   EventInfo _eventInfo = new EventInfo();
   bool _isLoading = true;
   var results;
+  String eventName;
 
   Future runQuery() async {
     PostgreSQLConnection _konnection =
@@ -35,6 +36,7 @@ class _EventDetailsState extends State<EventDetails> {
 
     _eventInfo.event_id = results[0][0];
     _eventInfo.event_name = results[0][1];
+    eventName = results[0][1];
     _eventInfo.start_date_time = results[0][2];
     _eventInfo.end_date_time = results[0][3];
     _eventInfo.register_start_date_time = results[0][4];
@@ -58,10 +60,12 @@ class _EventDetailsState extends State<EventDetails> {
       runQuery();
     }
     return Scaffold(
-      appBar: appBarMain(context),
+      appBar: _isLoading ? null : appBarMain(context),
       resizeToAvoidBottomPadding: false,
       resizeToAvoidBottomInset: true,
-      body: SingleChildScrollView(
+      body: _isLoading
+          ? loading()
+          : SingleChildScrollView(
         child: Container(
           child: Center(
             child: Column(
@@ -71,12 +75,28 @@ class _EventDetailsState extends State<EventDetails> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Padding(
+                            padding: const EdgeInsets.only(top: 150.0),
+                            child: logo(90, 280),
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 8.0, bottom: 50.0),
+                            child: Text(
+                              " A Paradigm  Shift  💫", // 💫🌠
+                              style: TextStyle(
+                                  fontSize: 30.0,
+                                  color: Colors.white,
+                                  fontFamily: "Signatra"),
+                            ),
+                          ),
+                    Padding(
                       padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+                      
                       child: new Text(
-                        "Event  Details",
+                        eventName,
                         style: new TextStyle(
                             fontSize: 48.0,
-                            color: Colors.yellow,
+                            color: Colors.white,
                             fontFamily: "Signatra"),
                       ),
                     ),
@@ -92,8 +112,8 @@ class _EventDetailsState extends State<EventDetails> {
                           shrinkWrap: true,
                           children: [
                             SizedBox(height: 20.0),
-                            DatailTitle("Event  Name"),
-                            DetailDescription(_eventInfo.event_name.toString()),
+                            // DatailTitle("Event  Name"),
+                            // DetailDescription(_eventInfo.event_name.toString()),
                             DetailImage(_eventInfo.imageURL.toString()),
                             SizedBox(height: 20.0),
                             DatailTitle("Event  Description"),
@@ -113,7 +133,7 @@ class _EventDetailsState extends State<EventDetails> {
                                 _eventInfo.start_date_time
                                     .toString()
                                     .split(' ')[0] +
-                                "\nTo\n" +
+                                "\n\nTo\n" +
                                 _eventInfo.end_date_time
                                     .toString()
                                     .split(' ')[0]),
@@ -123,7 +143,7 @@ class _EventDetailsState extends State<EventDetails> {
                                 _eventInfo.register_start_date_time
                                     .toString()
                                     .split(' ')[0] +
-                                "\nTo\n" +
+                                "\n\nTo\n" +
                                 _eventInfo.register_end_date_time
                                     .toString()
                                     .split(' ')[0]),

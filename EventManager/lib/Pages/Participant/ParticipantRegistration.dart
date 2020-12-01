@@ -1,32 +1,35 @@
 import 'package:EventManager/Authorisations/PostgresKonnection.dart';
 import 'package:EventManager/Authorisations/SaveUser.dart';
-import 'package:EventManager/Classes/GuestInfo.dart';
-import 'package:EventManager/Classes/SponsorInfo.dart';
-import 'package:EventManager/Pages/Admin/AdminFestDetails.dart';
-import 'package:EventManager/Pages/Admin/AdminGuestDetails.dart';
-import 'package:EventManager/Pages/Admin/AdminSponsorDetails.dart';
+import 'package:EventManager/Classes/EventInfo.dart';
+import 'package:EventManager/Pages/Admin/AdminEventDetailsUpdate.dart';
+import 'package:EventManager/Pages/Admin/AdminInvigilatorsForEvent.dart';
+import 'package:EventManager/Pages/Admin/AdminRegisteredStudents.dart';
+import 'package:EventManager/Pages/Admin/AdminScorecard.dart';
+import 'package:EventManager/Pages/CommonPages/EventDetails.dart';
+import 'package:EventManager/Pages/Participant/ParticipantEachEvents.dart';
 import 'package:EventManager/Widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:postgres/postgres.dart';
+
 import 'package:email_validator/email_validator.dart';
 
-class AdminAddAGuest extends StatefulWidget {
+class ParticipantRegistration extends StatefulWidget {
   PostgresKonnection _postgresKonnection;
   SaveUser _user;
-  AdminAddAGuest(this._user, this._postgresKonnection);
+  String event_ID;
+  ParticipantRegistration(this._user, this._postgresKonnection, this.event_ID);
 
   @override
-  _AdminAddAGuestState createState() =>
-      _AdminAddAGuestState();
+  _ParticipantRegistrationState createState() => _ParticipantRegistrationState();
 }
 
-class _AdminAddAGuestState extends State<AdminAddAGuest> {
+class _ParticipantRegistrationState extends State<ParticipantRegistration> {
   final _guestDetailsFormKey = GlobalKey<FormState>();
 
   TextEditingController _guestName = new TextEditingController();
-  TextEditingController _guestDescription = new TextEditingController();
   TextEditingController _guestPhoneNum = new TextEditingController();
   TextEditingController _guestEmail = new TextEditingController();
+  
 
   var results;
   bool _isLoading = true;
@@ -34,7 +37,8 @@ class _AdminAddAGuestState extends State<AdminAddAGuest> {
   var guest_ID;
 
   Future fun() async {
-    // print(1);
+    
+    _guestEmail.text = widget._user.email;
 
 
     PostgreSQLConnection _konnection =
@@ -42,7 +46,7 @@ class _AdminAddAGuestState extends State<AdminAddAGuest> {
     
 
     results = await _konnection
-        .query('select Max(guest_id) from guest');
+        .query('select Max(participant_id) from participant');
 
     guest_ID = (int.parse(results[0][0]) + 1).toString();
 
@@ -82,11 +86,11 @@ class _AdminAddAGuestState extends State<AdminAddAGuest> {
           print(guest_ID);
 
           await ctx.query('''
-              INSERT INTO guest(guest_id,guest_name,descriptiono,guest_cno,guest_email) VALUES(@a,@b,@c,@d,@e)
+              INSERT INTO participant(participant_id,participant_name,participant_cno,participant_email) VALUES(@a,@b,@d,@e)
             ''', substitutionValues: {
             "a": guest_ID,
             "b": _guestName.text,
-            "c": _guestDescription.text,
+            // "c": _guestDescription.text,
             "d": _guestPhoneNum.text,
             "e": _guestEmail.text,
           });
@@ -103,7 +107,7 @@ class _AdminAddAGuestState extends State<AdminAddAGuest> {
           context,
           MaterialPageRoute(
               builder: (context) =>
-                  AdminGuestDetails(widget._user, widget._postgresKonnection)));
+                  ParticipantEachEvents(widget._user, widget._postgresKonnection,widget.event_ID)));
     }
   }
 
@@ -156,7 +160,7 @@ class _AdminAddAGuestState extends State<AdminAddAGuest> {
                                         color: Colors.white,
                                       ),
                                       decoration: textInputDecoration(
-                                          "Guest Name", "Enter the guest name"),
+                                          "Name", "Enter the name"),
                                       textInputAction: TextInputAction.next,
                                       controller: _guestName,
                                       validator: (_guestName) {
@@ -169,28 +173,7 @@ class _AdminAddAGuestState extends State<AdminAddAGuest> {
                                         return _guestName.text = value;
                                       }),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 30.0, vertical: 5.0),
-                                  child: new TextFormField(
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                      ),
-                                      decoration: textInputDecoration(
-                                          "Guest Description",
-                                          "Enter the guest description"),
-                                      textInputAction: TextInputAction.next,
-                                      controller: _guestDescription,
-                                      validator: (_guestDescription) {
-                                        if (_guestDescription.isEmpty) {
-                                          return 'Please enter some text';
-                                        }
-                                        return null;
-                                      },
-                                      onSaved: (value) {
-                                        return _guestDescription.text = value;
-                                      }),
-                                ),
+                               
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 30.0, vertical: 5.0),
@@ -267,7 +250,7 @@ class _AdminAddAGuestState extends State<AdminAddAGuest> {
                                   padding: const EdgeInsets.symmetric(
                                       vertical: 10.0),
                                   child: new Text(
-                                    "Add A Guest",
+                                    "Register",
                                     style: new TextStyle(
                                       fontSize: 20.0,
                                     ),
