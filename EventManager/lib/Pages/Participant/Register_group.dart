@@ -3,6 +3,10 @@ import 'package:EventManager/Widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:postgres/postgres.dart';
 
+import '../../Widgets/widgets.dart';
+import '../../Widgets/widgets.dart';
+import '../../Widgets/widgets.dart';
+
 class Register_group extends StatefulWidget {
   PostgreSQLConnection _konnection;
   String event_id, event_name;
@@ -35,12 +39,30 @@ class _Register_groupState extends State<Register_group> {
     con2.add(TextEditingController());
     con2.add(TextEditingController());
     con2.add(TextEditingController());
+    con2.add(TextEditingController());
+    con2.add(TextEditingController());
+    con2.add(TextEditingController());
+    con2.add(TextEditingController());
+    con2.add(TextEditingController());
+    con2.add(TextEditingController());
     con3.add(TextEditingController());
     con3.add(TextEditingController());
     con3.add(TextEditingController());
     con3.add(TextEditingController());
     con3.add(TextEditingController());
     con3.add(TextEditingController());
+    con3.add(TextEditingController());
+    con3.add(TextEditingController());
+    con3.add(TextEditingController());
+    con3.add(TextEditingController());
+    con3.add(TextEditingController());
+    con3.add(TextEditingController());
+    con4.add(TextEditingController());
+    con4.add(TextEditingController());
+    con4.add(TextEditingController());
+    con4.add(TextEditingController());
+    con4.add(TextEditingController());
+    con4.add(TextEditingController());
     con4.add(TextEditingController());
     con4.add(TextEditingController());
     con4.add(TextEditingController());
@@ -50,7 +72,7 @@ class _Register_groupState extends State<Register_group> {
   }
 
   Future sum() async {
-    int flag = 0, flag_end = 0;
+    int flag = 0, flag_end = 0, flag_en = 0;
     var flag_p = new List(team_size);
     var id_p = new List(team_size);
     var rtt = await widget._konnection.query(
@@ -80,18 +102,20 @@ class _Register_groupState extends State<Register_group> {
               "select * from group_participant where participant_id=@a and event_id=@b",
               substitutionValues: {"a": id_p[i], "b": widget.event_id});
           if (r2.length != 0) {
-            flag_end = 1;
+            flag_en = 1;
           }
         } else {
           r = r - 1;
           id_p[i] = r.toString();
         }
       }
+    } else {
+      toastMessage("Group Name already exists");
     }
     print(flag_p);
     print(id_p);
     print(flag_end);
-    if (flag_end == 0) {
+    if (flag_en == 0) {
       var r3 = await widget._konnection.query(
           "select group_id from group_participant order by group_id limit 1");
       int g_id = int.parse(r3[0][0]) - 1;
@@ -119,6 +143,9 @@ class _Register_groupState extends State<Register_group> {
               "f": "NA"
             });
       }
+      toastMessage("Registerd Succesfully");
+    } else {
+      toastMessage("Someone in your group is already registered in this event");
     }
   }
 

@@ -4,6 +4,9 @@ import 'package:EventManager/Widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:postgres/postgres.dart';
 
+import '../../Widgets/widgets.dart';
+import '../../Widgets/widgets.dart';
+
 class Scoregroup extends StatefulWidget {
   PostgreSQLConnection _konnection;
   int tea_size;
@@ -121,8 +124,9 @@ Widget PostUI(BuildContext context, int size, String id, String g_name,
             "c": id,
             "d": event_i
           });
+      toastMessage("Updated succesfully");
     } catch (e) {
-      print("sfbs");
+      toastMessage("not updated");
     }
   }
 

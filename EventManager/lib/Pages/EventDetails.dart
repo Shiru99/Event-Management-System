@@ -10,6 +10,7 @@ import 'package:EventManager/Widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:postgres/postgres.dart';
 
+import '../Widgets/widgets.dart';
 import 'Participant/Register.dart';
 
 class EventDetails extends StatefulWidget {

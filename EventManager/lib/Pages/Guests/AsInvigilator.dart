@@ -4,6 +4,9 @@ import 'package:EventManager/Widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:postgres/postgres.dart';
 
+import '../../Widgets/widgets.dart';
+import '../../Widgets/widgets.dart';
+
 class AsInvigilator extends StatefulWidget {
   PostgreSQLConnection _konnection;
   String event_id, event_name;
@@ -124,8 +127,9 @@ Widget PostUI(BuildContext context, int index, String id, String nam,
             "c": id,
             "d": event_i
           });
+      toastMessage("Updated Succesfully");
     } catch (e) {
-      print("sss");
+      toastMessage("Not updated");
     }
   }
 

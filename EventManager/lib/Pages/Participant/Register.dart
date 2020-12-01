@@ -5,6 +5,8 @@ import 'package:EventManager/Widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:postgres/postgres.dart';
 
+import '../../Widgets/widgets.dart';
+
 class Register extends StatefulWidget {
   PostgreSQLConnection _konnection;
   String event_id, event_name;
@@ -61,6 +63,7 @@ class _RegisterState extends State<Register> {
             "c": 0,
             "d": "NA"
           });
+      toastMessage("Registered Succesfully");
     } else {
       var ree = await widget._konnection
           .query("select * from individual_participant");
@@ -80,6 +83,9 @@ class _RegisterState extends State<Register> {
               "c": 0,
               "d": "NA"
             });
+        toastMessage("Registered Succesfully");
+      } else {
+        toastMessage("Already Registered");
       }
     }
   }

@@ -9,6 +9,8 @@ import 'package:EventManager/Widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:postgres/postgres.dart';
 
+import '../Widgets/widgets.dart';
+
 class FestDetails extends StatefulWidget {
   PostgresKonnection _postgresKonnection;
   SaveUser _user;
