@@ -37,7 +37,7 @@ Container loading() {
 
 Widget logo(double h, double w) {
   return new Hero(
-    tag: 'hero',
+    tag: (h*w+h).toString(),
     child: Container(
       // alignment: Alignment.center,
       width: w,
@@ -225,3 +225,73 @@ Widget appBarMain(BuildContext context) {
 
       );
 }
+
+
+Widget SponsorPostUI(
+  String sponsor_link,
+  String sponsor_name,
+  String sponsor_category,
+  String logo,
+) {
+  
+
+  return new Card(
+    elevation: 20.0,
+    clipBehavior: Clip.antiAlias,
+    margin: EdgeInsets.all(15.0),
+    color: Colors.red,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(40.0),
+      side: BorderSide(
+        color: Colors.black,
+        width: 1.0,
+      ),
+    ),
+    child: new Container(
+      color: Colors.white,
+      padding: new EdgeInsets.all(25.0),
+      child: new Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          new Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              new Text(
+                sponsor_category,
+                textAlign: TextAlign.center,
+                style: new TextStyle(fontSize: 20.0, color: Colors.indigo),
+              ),
+              
+            ],
+          ),
+          SizedBox(
+            height: 10.0,
+          ),
+          new Text(
+                sponsor_name,
+                textAlign: TextAlign.center,
+                style: new TextStyle(fontSize: 36.0, color: Colors.black,fontFamily: "Signatra"),
+              ),
+          
+          new Image.network(
+            logo,
+            fit: BoxFit.cover,
+          ),
+          SizedBox(
+            height: 10.0,
+          ),
+          new Text(
+            sponsor_link,
+            textAlign: TextAlign.center,
+            style: new TextStyle(fontSize: 16.0, color: Colors.black),
+          ),
+          SizedBox(
+            height: 10.0,
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+

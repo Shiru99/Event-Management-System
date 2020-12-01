@@ -2,8 +2,8 @@ import 'package:EventManager/Authorisations/ForgotPassword.dart';
 import 'package:EventManager/Authorisations/PostgresKonnection.dart';
 import 'package:EventManager/Authorisations/SaveUser.dart';
 import 'package:EventManager/Authorisations/auth.dart';
-import 'package:EventManager/Pages/Admins/AdminDetails.dart';
-import 'package:EventManager/Pages/FestDetails.dart';
+import 'package:EventManager/Pages/Admin/AdminFestDetails.dart';
+import 'package:EventManager/Pages/CommonPages/FestDetails.dart';
 import 'package:EventManager/Welcome/HomePage.dart';
 import 'package:EventManager/Widgets/widgets.dart';
 import 'package:email_validator/email_validator.dart';
@@ -67,6 +67,9 @@ class _SignInState extends State<SignIn> {
 
     print(_konnection);
 
+    var re = await _konnection.query('select * from participant');
+    // print(re[0][2]);
+
     var results = await _konnection.query('select admin_email from admino');
 
     bool isAdmin = false;
@@ -82,18 +85,21 @@ class _SignInState extends State<SignIn> {
 
     if (isAdmin) {
       print("Welcome, Admin");
+      toastMessage("Welcome, Admin");
       await Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => AdminDetails(_user, _postgresKonnection)));
+              builder: (context) => AdminFestDetails(_user, _postgresKonnection)));
     } else if (isGuest) {
       print("Welcome, Guest");
+      toastMessage("Welcome, Guest");
       await Navigator.push(
           context,
           MaterialPageRoute(
               builder: (context) => FestDetails(_user, _postgresKonnection)));
     } else {
       print("Welcome, Participant");
+      toastMessage("Welcome, Participant");
       await Navigator.push(
           context,
           MaterialPageRoute(

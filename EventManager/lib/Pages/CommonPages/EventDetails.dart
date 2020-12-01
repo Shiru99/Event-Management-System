@@ -40,9 +40,10 @@ class _EventDetailsState extends State<EventDetails> {
     _eventInfo.register_start_date_time = results[0][4];
     _eventInfo.register_end_date_time = results[0][5];
     _eventInfo.place = results[0][6];
-    _eventInfo.description = results[0][7];
-    _eventInfo.price = results[0][8];
-    // _eventInfo.imageURL = results[0][9];
+    _eventInfo.short_description = results[0][7];
+    _eventInfo.description = results[0][8];
+    _eventInfo.price = results[0][10];
+    // _eventInfo.imageURL = results[0][11];
 
     print(results.length);
 
@@ -70,6 +71,16 @@ class _EventDetailsState extends State<EventDetails> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Padding(
+                      padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+                      child: new Text(
+                        "Event  Details",
+                        style: new TextStyle(
+                            fontSize: 48.0,
+                            color: Colors.yellow,
+                            fontFamily: "Signatra"),
+                      ),
+                    ),
+                    Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 24.0, vertical: 10.0),
                       child: Container(
@@ -85,27 +96,37 @@ class _EventDetailsState extends State<EventDetails> {
                             DetailDescription(_eventInfo.event_name.toString()),
                             DetailImage(_eventInfo.imageURL.toString()),
                             SizedBox(height: 20.0),
-                            DatailTitle("Event  Time"),
-                            DetailDescription("From\n" +
-                                _eventInfo.start_date_time.toString() +
-                                "\n\nTo\n" +
-                                _eventInfo.end_date_time.toString()),
+                            DatailTitle("Event  Description"),
+                            DetailDescription(
+                                _eventInfo.short_description.toString() +
+                                    "\n\n" +
+                                    _eventInfo.description.toString()),
                             SizedBox(height: 20.0),
-                            DatailTitle("Registration  Date"),
-                            DetailDescription("From\n" +
-                                _eventInfo.register_start_date_time.toString() +
-                                "\n\nTo\n" +
-                                _eventInfo.register_end_date_time.toString()),
+                            DatailTitle("Price"),
+                            DetailDescription(_eventInfo.price.toString()),
                             SizedBox(height: 20.0),
                             DatailTitle("Location"),
                             DetailDescription(_eventInfo.place.toString()),
                             SizedBox(height: 20.0),
-                            DatailTitle("Event  Description"),
-                            DetailDescription(
-                                _eventInfo.description.toString()),
+                            DatailTitle("Event  Time"),
+                            DetailDescription("From\n" +
+                                _eventInfo.start_date_time
+                                    .toString()
+                                    .split(' ')[0] +
+                                "\nTo\n" +
+                                _eventInfo.end_date_time
+                                    .toString()
+                                    .split(' ')[0]),
                             SizedBox(height: 20.0),
-                            DatailTitle("Price"),
-                            DetailDescription(_eventInfo.price.toString()),
+                            DatailTitle("Registration  Date"),
+                            DetailDescription("From\n" +
+                                _eventInfo.register_start_date_time
+                                    .toString()
+                                    .split(' ')[0] +
+                                "\nTo\n" +
+                                _eventInfo.register_end_date_time
+                                    .toString()
+                                    .split(' ')[0]),
                             SizedBox(height: 20.0),
                           ],
                         ),

@@ -1,0 +1,78 @@
+SingleChildScrollView(
+                    child: Container(
+                      child: Center(
+                        child: Column(
+                          children: <Widget>[
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 150.0),
+                                  child: logo(90, 280),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 8.0, bottom: 50.0),
+                                  child: Text(
+                                    " A Paradigm  Shift  💫", // 💫🌠
+                                    style: TextStyle(
+                                        fontSize: 30.0,
+                                        color: Colors.white,
+                                        fontFamily: "Signatra"),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 8.0, horizontal: 50),
+                                  child: new Text(
+                                    "Registered  Teams",
+                                    style: new TextStyle(
+                                        fontSize: 40.0,
+                                        color: Colors.yellow,
+                                        fontFamily: "Signatra"),
+                                  ),
+                                ),
+                                new Text(
+                                  "Registered  Teams $total_registered",
+                                  textAlign: TextAlign.center,
+                                  style: new TextStyle(
+                                      fontSize: 16, color: Colors.white),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 24.0, vertical: 10.0),
+                                  child: Container(
+                                    color: Colors.black,
+                                    child: new ListView.builder(
+                                      padding: EdgeInsets.all(8.0),
+                                      physics: const ClampingScrollPhysics(),
+                                      scrollDirection: Axis.vertical,
+                                      shrinkWrap: true,
+                                      itemCount: _teamList.length,
+                                      itemBuilder: (_, index) {
+                                        return AdminRegisteredTeamPostUI(
+                                          context,
+                                          widget._user,
+                                          widget._postgresKonnection,
+                                          _teamList[index].group_id,
+                                          _teamList[index].group_name,
+                                          _teamList[index].score,
+                                          _teamList[index].review,
+                                          _teamList[index].participant_id,
+                                          _teamList[index].participant_name,
+                                          _teamList[index].participant_cno,
+                                          _teamList[index].participant_email,
+                                          festImageURL
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),

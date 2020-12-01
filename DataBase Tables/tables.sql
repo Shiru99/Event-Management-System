@@ -29,7 +29,9 @@ create table evento
 		register_start_date_time	TIMESTAMP,
 		register_end_date_time		TIMESTAMP,
 		place						varchar(60),
+		short_description			varchar(60),
 		description					varchar(900),
+		participant_limit			int,
 		price 						VARCHAR(60),
 		primary key (event_id)
 	);
@@ -45,7 +47,7 @@ create table has
 create table participant
 	(	participant_id		varchar(20),
 		participant_name	varchar(60),
-		participant_cno		numeric(10),
+		participant_cno		VARCHAR(10),
 		participant_email	varchar(50),
 		primary key (participant_id)
 	);
@@ -53,7 +55,7 @@ create table participant
 create table individual_participant
 	(	participant_id		varchar(20),
 		event_id			varchar(20),
-		score				numeric(10,3),
+		score				int,
 		review 				varchar(30),
 		primary key (participant_id,event_id),
 		foreign key (participant_id) references participant on delete cascade,
@@ -63,7 +65,7 @@ create table individual_participant
 create table group_participant
 	(	participant_id		varchar(20),
 		event_id			varchar(20),
-		score				numeric(10,3),
+		score				int,
 		group_id			varchar(20),
 		group_name			varchar(60),
 		review				varchar(30),
@@ -75,7 +77,7 @@ create table group_participant
 create table admino
 	(	admin_id		varchar(20),
 		admin_name		varchar(60),
-		admin_cno		numeric(10),
+		admin_cno		VARCHAR(10),
 		admin_email		varchar(50),
 		primary key (admin_id)
 	);
@@ -83,7 +85,7 @@ create table admino
 create table sponsor
 	(	sponsor_id		varchar(20),
 		sponsor_name	varchar(60),
-		sponsor_cno		numeric(10),
+		sponsor_cno		VARCHAR(10),
 		sponsor_category varchar(60),
 		sponsor_link	varchar(100),
 		primary key (sponsor_id)
@@ -92,7 +94,7 @@ create table sponsor
 create table gives
 	(	sponsor_id		varchar(20),
 		event_id		varchar(20),
-		amount			numeric(10,2),
+		amount			VARCHAR(10),
 		primary key (sponsor_id,event_id),
 		foreign key (sponsor_id) references sponsor on delete cascade,
 		foreign key (event_id) references evento on delete cascade
@@ -102,7 +104,7 @@ create table guest
 	(	guest_id		varchar(20),
 		guest_name		varchar(60),
 		descriptiono		varchar(600),
-		guest_cno		numeric(10),
+		guest_cno		VARCHAR(10),
 		guest_email		varchar(50),
 		primary key (guest_id)
 	);
@@ -119,7 +121,7 @@ create table invigilator
 	(	invigilator_id			varchar(20),
 		invigilator_name		varchar(60),
 		descriptiono			varchar(600),
-		invigilator_cno			numeric(10),
+		invigilator_cno			VARCHAR(10),
 		invigilator_email		varchar(50),
 		primary key (invigilator_id)
 	);

@@ -1,9 +1,9 @@
 import 'package:EventManager/Authorisations/PostgresKonnection.dart';
 import 'package:EventManager/Authorisations/SaveUser.dart';
 import 'package:EventManager/Authorisations/auth.dart';
-import 'package:EventManager/Pages/Admins/AdminDetails.dart';
-import 'package:EventManager/Pages/EventDetails.dart';
-import 'package:EventManager/Pages/FestDetails.dart';
+import 'package:EventManager/Pages/Admin/AdminFestDetails.dart';
+import 'package:EventManager/Pages/CommonPages/FestDetails.dart';
+import 'package:EventManager/Pages/CommonPages/EventDetails.dart';
 import 'package:EventManager/Welcome/HomePage.dart';
 import 'package:EventManager/Widgets/widgets.dart';
 import 'package:email_validator/email_validator.dart';
@@ -76,7 +76,7 @@ class _SignUpState extends State<SignUp> {
       await Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-              builder: (context) => AdminDetails(_user, _postgresKonnection)));
+              builder: (context) => AdminFestDetails(_user, _postgresKonnection)));
     } else if (isGuest) {
       print("Welcome, Guest");
       await Navigator.pushReplacement(
