@@ -155,7 +155,7 @@ class _FestDetailsState extends State<FestDetails> {
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 10.0),
                                 child: new Text(
-                                  "Score Details",
+                                  " Score Details",
                                   style: new TextStyle(
                                     fontSize: 22.0,
                                   ),

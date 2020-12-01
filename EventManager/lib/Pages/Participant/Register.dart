@@ -29,52 +29,35 @@ class _RegisterState extends State<Register> {
   }
 
   Future sum() async {
-    var resul = await widget._konnection.query("select * from participant");
-    int flag = 0;
-
-    for (int i = 0; i < resul.length; i++) {
-      if (c1.text == resul[i][1] &&
-          c2.text == resul[i][2] &&
-          c3.text == resul[i][3]) {
-        pat_id = resul[i][0];
-        flag = 1;
-        break;
-      }
-    }
-    if (flag == 0) {
-      results = await widget._konnection.query(
-          "select participant_id from participant order by participant_id limit 1");
-
-      id = int.parse(results[0][0]) - 1;
-      pat_id = id.toString();
-      var re = await widget._konnection.query(
-          "INSERT INTO participant VALUES (@a,@b,@c,@d)",
-          substitutionValues: {
-            "a": pat_id,
-            "b": c1.text,
-            "c": c2.text,
-            "d": c3.text
-          });
-      var re1 = await widget._konnection.query(
-          "INSERT INTO individual_participant VALUES (@a,@b,@c,@d)",
-          substitutionValues: {
-            "a": pat_id,
-            "b": widget.event_id,
-            "c": 0,
-            "d": "NA"
-          });
-      toastMessage("Registered Succesfully");
+    if (c1.text == "" || c2.text == "" || c3.text == "") {
+      toastMessage("Enter properly");
     } else {
-      var ree = await widget._konnection
-          .query("select * from individual_participant");
-      int flag1 = 0;
-      for (int i = 0; i < ree.length; i++) {
-        if (pat_id == ree[i][0] && widget.event_id == ree[i][1]) {
-          flag1 = 1;
+      var resul = await widget._konnection.query("select * from participant");
+      int flag = 0;
+
+      for (int i = 0; i < resul.length; i++) {
+        if (c1.text == resul[i][1] &&
+            c2.text == resul[i][2] &&
+            c3.text == resul[i][3]) {
+          pat_id = resul[i][0];
+          flag = 1;
           break;
         }
       }
-      if (flag1 == 0) {
+      if (flag == 0) {
+        results = await widget._konnection.query(
+            "select participant_id from participant order by participant_id limit 1");
+
+        id = int.parse(results[0][0]) - 1;
+        pat_id = id.toString();
+        var re = await widget._konnection.query(
+            "INSERT INTO participant VALUES (@a,@b,@c,@d)",
+            substitutionValues: {
+              "a": pat_id,
+              "b": c1.text,
+              "c": c2.text,
+              "d": c3.text
+            });
         var re1 = await widget._konnection.query(
             "INSERT INTO individual_participant VALUES (@a,@b,@c,@d)",
             substitutionValues: {
@@ -85,14 +68,34 @@ class _RegisterState extends State<Register> {
             });
         toastMessage("Registered Succesfully");
       } else {
-        toastMessage("Already Registered");
+        var ree = await widget._konnection
+            .query("select * from individual_participant");
+        int flag1 = 0;
+        for (int i = 0; i < ree.length; i++) {
+          if (pat_id == ree[i][0] && widget.event_id == ree[i][1]) {
+            flag1 = 1;
+            break;
+          }
+        }
+        if (flag1 == 0) {
+          var re1 = await widget._konnection.query(
+              "INSERT INTO individual_participant VALUES (@a,@b,@c,@d)",
+              substitutionValues: {
+                "a": pat_id,
+                "b": widget.event_id,
+                "c": 0,
+                "d": "NA"
+              });
+          toastMessage("Registered Succesfully");
+        } else {
+          toastMessage("Already Registered");
+        }
       }
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    operation();
     return Scaffold(
       appBar: appBarMain(context),
       resizeToAvoidBottomPadding: false,
@@ -137,9 +140,12 @@ class _RegisterState extends State<Register> {
                         style: TextStyle(
                           color: Colors.white,
                         ),
-                        decoration:
-                            textInputDecoration("Phone Number", " 9992874"),
+                        decoration: InputDecoration(
+                          labelText: "Phone Number",
+                          hintText: " 9992874",
+                        ),
                         textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.number,
                         onFieldSubmitted: (_) =>
                             FocusScope.of(context).nextFocus(),
                       ),
@@ -154,7 +160,8 @@ class _RegisterState extends State<Register> {
                         ),
                         decoration: textInputDecoration(
                             "Mail Id", " john.doe@gmail.com"),
-                        textInputAction: TextInputAction.next,
+                        textInputAction: TextInputAction.done,
+                        keyboardType: TextInputType.emailAddress,
                         onFieldSubmitted: (_) =>
                             FocusScope.of(context).nextFocus(),
                       ),
