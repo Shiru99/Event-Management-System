@@ -4,20 +4,22 @@ import 'package:EventManager/Widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:postgres/postgres.dart';
 
-class AsInvigilator extends StatefulWidget {
+class Scoregroup extends StatefulWidget {
   PostgreSQLConnection _konnection;
-  String event_id, event_name;
+  int tea_size;
   SaveUser _user;
-  AsInvigilator(this._konnection, this.event_id, this.event_name, this._user);
+  String event_id, event_name;
+  Scoregroup(this._konnection, this.event_id, this.event_name, this.tea_size,
+      this._user);
   @override
-  _AsInvigilatorState createState() => _AsInvigilatorState();
+  _Scoregroup createState() => _Scoregroup();
 }
 
-class _AsInvigilatorState extends State<AsInvigilator> {
-  int not = 0;
+class _Scoregroup extends State<Scoregroup> {
   bool _isLoading = true;
+  int not = 0;
   var id_p;
-  var name_p;
+  var g_name;
   Future operation() async {
     var r5 = await widget._konnection.query(
         "select * from invigilator natural join appoint where invigilator_email=@a and event_id=@b",
@@ -26,20 +28,16 @@ class _AsInvigilatorState extends State<AsInvigilator> {
       not = 0;
     } else {
       var resul = await widget._konnection.query(
-          "select * from individual_participant where event_id=@a",
+          "select distinct group_id, group_name from group_participant where event_id=@a",
           substitutionValues: {"a": widget.event_id});
       not = resul.length;
       id_p = new List(not);
-      name_p = new List(not);
+      g_name = new List(not);
       for (int i = 0; i < not; i++) {
         id_p[i] = resul[i][0];
-        var r3 = await widget._konnection.query(
-            "select participant_name from participant where participant_id=@a",
-            substitutionValues: {"a": id_p[i]});
-        name_p[i] = r3[0][0];
+        g_name[i] = resul[i][1];
       }
     }
-
     setState(() {
       _isLoading = false;
     });
@@ -50,7 +48,6 @@ class _AsInvigilatorState extends State<AsInvigilator> {
     if (_isLoading) {
       operation();
     }
-
     return Scaffold(
       appBar: _isLoading ? null : appBarMain(context),
       resizeToAvoidBottomPadding: false,
@@ -90,7 +87,7 @@ class _AsInvigilatorState extends State<AsInvigilator> {
                                     context,
                                     index,
                                     id_p[index],
-                                    name_p[index],
+                                    g_name[index],
                                     widget.event_id,
                                     widget._konnection,
                                   );
@@ -109,7 +106,7 @@ class _AsInvigilatorState extends State<AsInvigilator> {
   }
 }
 
-Widget PostUI(BuildContext context, int index, String id, String nam,
+Widget PostUI(BuildContext context, int size, String id, String g_name,
     String event_i, PostgreSQLConnection _konnection) {
   TextEditingController c1 = new TextEditingController();
   TextEditingController c2 = new TextEditingController();
@@ -117,7 +114,7 @@ Widget PostUI(BuildContext context, int index, String id, String nam,
   Future goth() async {
     try {
       var r2 = await _konnection.query(
-          "update individual_participant set score=@a, review=@b where participant_id=@c and event_id=@d",
+          "update group_participant set score=@a, review=@b where group_id=@c and event_id=@d",
           substitutionValues: {
             "a": c1.text,
             "b": c2.text,
@@ -125,7 +122,7 @@ Widget PostUI(BuildContext context, int index, String id, String nam,
             "d": event_i
           });
     } catch (e) {
-      print("sss");
+      print("sfbs");
     }
   }
 
@@ -141,7 +138,7 @@ Widget PostUI(BuildContext context, int index, String id, String nam,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             new Text(
-              " Name : " + nam,
+              "Group - Name : " + g_name,
               style: new TextStyle(fontSize: 18.0, color: Colors.white),
             ),
             new TextFormField(

@@ -2,7 +2,9 @@ import 'package:EventManager/Authorisations/PostgresKonnection.dart';
 import 'package:EventManager/Authorisations/SaveUser.dart';
 import 'package:EventManager/Classes/EventInfo.dart';
 import 'package:EventManager/Pages/EventDetails.dart';
+import 'package:EventManager/Pages/Event_details_invi.dart';
 import 'package:EventManager/Pages/ParsecDetails.dart';
+import 'package:EventManager/Pages/ScoreCard.dart';
 import 'package:EventManager/Widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:postgres/postgres.dart';
@@ -21,10 +23,9 @@ class _FestDetailsState extends State<FestDetails> {
   List<EventInfo> _eventList = [];
 
   List results;
-
+  PostgreSQLConnection _konnection;
   Future runQuery() async {
-    PostgreSQLConnection _konnection =
-        await widget._postgresKonnection.getKonnection();
+    _konnection = await widget._postgresKonnection.getKonnection();
 
     print(_konnection);
 
@@ -72,6 +73,14 @@ class _FestDetailsState extends State<FestDetails> {
           MaterialPageRoute(
               builder: (context) =>
                   ParsecDetails(widget._user, widget._postgresKonnection)));
+    }
+
+    Future score_details() async {
+      await Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  ScoreCard(widget._user, widget._postgresKonnection)));
     }
 
     return Scaffold(
@@ -126,6 +135,35 @@ class _FestDetailsState extends State<FestDetails> {
                           ),
                         ),
                         Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 20.0, horizontal: 75),
+                          child: new SizedBox(
+                            width: MediaQuery.of(context).size.width,
+                            child: RaisedButton(
+                              onPressed: () {
+                                score_details();
+                              },
+                              textColor: Colors.blue,
+                              color: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(50.0))),
+                              elevation: 15,
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 10.0),
+                                child: new Text(
+                                  "Score Details",
+                                  style: new TextStyle(
+                                    fontSize: 22.0,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            // ],
+                          ),
+                        ),
+                        Padding(
                           padding:
                               const EdgeInsets.only(top: 50.0, bottom: 10.0),
                           child: new Text(
@@ -154,6 +192,7 @@ class _FestDetailsState extends State<FestDetails> {
                                   _eventList[index].imageURL,
                                   _eventList[index].description,
                                   _eventList[index].event_name,
+                                  _konnection,
                                 );
                               },
                             ),
@@ -176,13 +215,26 @@ Widget PostUI(
     String event_ID,
     String image,
     String description,
-    String date) {
-
+    String date,
+    PostgreSQLConnection _konnection) {
   Future goToEvent() async {
-    await Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => EventDetails(_user, _postgresKonnection,event_ID)));
+    var rt = await _konnection.query(
+        "select * from invigilator where invigilator_email=@a",
+        substitutionValues: {"a": _user.email});
+    if (rt.length == 0) {
+      await Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  EventDetails(_user, _postgresKonnection, event_ID)));
+    } else {
+      await Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  Event_details_invi(_user, _postgresKonnection, event_ID)));
+    }
+    print(_user.email);
   }
 
   return new Card(

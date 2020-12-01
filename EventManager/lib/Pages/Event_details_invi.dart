@@ -4,25 +4,23 @@ import 'package:EventManager/Classes/EventInfo.dart';
 import 'package:EventManager/Pages/Guests/AsInvigilator.dart';
 import 'package:EventManager/Pages/Guests/Scoregroup.dart';
 import 'package:EventManager/Pages/Participant/Register_group.dart';
-import 'package:EventManager/Pages/ScoreCard.dart';
-import 'package:EventManager/Pages/eventScoreCard.dart';
 import 'package:EventManager/Widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:postgres/postgres.dart';
 
 import 'Participant/Register.dart';
 
-class EventDetails extends StatefulWidget {
+class Event_details_invi extends StatefulWidget {
   PostgresKonnection _postgresKonnection;
   SaveUser _user;
   String event_ID;
-  EventDetails(this._user, this._postgresKonnection, this.event_ID);
+  Event_details_invi(this._user, this._postgresKonnection, this.event_ID);
 
   @override
-  _EventDetailsState createState() => _EventDetailsState();
+  _Event_invi createState() => _Event_invi();
 }
 
-class _EventDetailsState extends State<EventDetails> {
+class _Event_invi extends State<Event_details_invi> {
   String event_id;
 
   EventInfo _eventInfo = new EventInfo();
@@ -73,8 +71,8 @@ class _EventDetailsState extends State<EventDetails> {
                 builder: (context) =>
                     //  Details()
                     // HomePage(_user)
-                    Register(_konnection, _eventInfo.event_id,
-                        _eventInfo.event_name)));
+                    AsInvigilator(_konnection, _eventInfo.event_id,
+                        _eventInfo.event_name, widget._user)));
         print("1");
       } else {
         Navigator.pushReplacement(
@@ -83,8 +81,12 @@ class _EventDetailsState extends State<EventDetails> {
                 builder: (context) =>
                     //  Details()
                     // HomePage(_user)
-                    Register_group(_konnection, _eventInfo.event_id,
-                        _eventInfo.event_name, _eventInfo.tea_size)));
+                    Scoregroup(
+                        _konnection,
+                        _eventInfo.event_id,
+                        _eventInfo.event_name,
+                        _eventInfo.tea_size,
+                        widget._user)));
         print(results[0][9]);
       }
     }
@@ -120,7 +122,7 @@ class _EventDetailsState extends State<EventDetails> {
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 10.0),
                             child: new Text(
-                              "Register",
+                              "UpdateScore",
                               style: new TextStyle(
                                 fontSize: 22.0,
                               ),

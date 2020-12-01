@@ -4,6 +4,7 @@ import 'package:EventManager/Authorisations/SaveUser.dart';
 import 'package:EventManager/Authorisations/auth.dart';
 import 'package:EventManager/Pages/Admins/AdminDetails.dart';
 import 'package:EventManager/Pages/FestDetails.dart';
+import 'package:EventManager/Pages/ScoreCard.dart';
 import 'package:EventManager/Welcome/HomePage.dart';
 import 'package:EventManager/Widgets/widgets.dart';
 import 'package:email_validator/email_validator.dart';
@@ -68,6 +69,8 @@ class _SignInState extends State<SignIn> {
     print(_konnection);
 
     var results = await _konnection.query('select admin_email from admino');
+    var results1 =
+        await _konnection.query('select invigilator_email from invigilator');
 
     bool isAdmin = false;
     bool isGuest = false;
@@ -75,6 +78,12 @@ class _SignInState extends State<SignIn> {
     for (var result in results) {
       if (result[0] == _user.email) {
         isAdmin = true;
+      }
+    }
+
+    for (var result in results1) {
+      if (result[0] == _user.email) {
+        isGuest = true;
       }
     }
 
@@ -108,8 +117,6 @@ class _SignInState extends State<SignIn> {
     // print(_isLoading);
     // _isLoading = false;
     // print(_isLoading);
-    
-
   }
 
   signingWithGoogle() async {
