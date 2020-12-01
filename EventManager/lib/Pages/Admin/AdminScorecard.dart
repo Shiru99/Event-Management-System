@@ -34,7 +34,7 @@ class _AdminScorecardState extends State<AdminScorecard> {
 
   String event_id;
   int total_registered = 0;
-  int size =0;
+  int size = 0;
 
   Future fun() async {
     PostgreSQLConnection _konnection =
@@ -85,12 +85,7 @@ class _AdminScorecardState extends State<AdminScorecard> {
 
       print(_guestList);
       print(_guestList.length);
-    } 
-    
-    
-
-else
-    {
+    } else {
       print("Many");
       String query = '''
 
@@ -113,13 +108,11 @@ else
 
       _guestList.clear();
 
-      for(var member in resOfGuests  ){
+      for (var member in resOfGuests) {
         print(member);
       }
 
-
-
-      for (int i = 0; i < resOfGuests.length; i+=group_size[0][0]) {
+      for (int i = 0; i < resOfGuests.length; i += group_size[0][0]) {
         Teams _teamInfo = new Teams();
 
         _teamInfo.group_id = resOfGuests[i][3];
@@ -127,13 +120,13 @@ else
         _teamInfo.score = resOfGuests[i][2].toString();
         _teamInfo.review = resOfGuests[i][5];
 
-        for(int j=0;j<group_size[0][0];j++){
-        _teamInfo.participant_id.add(resOfGuests[i+j][6]) ;
-        _teamInfo.participant_name.add(resOfGuests[i+j][7]) ;
-        _teamInfo.participant_cno.add(resOfGuests[i+j][8]) ;
-        _teamInfo.participant_email.add(resOfGuests[i+j][9]) ;
+        for (int j = 0; j < group_size[0][0]; j++) {
+          _teamInfo.participant_id.add(resOfGuests[i + j][6]);
+          _teamInfo.participant_name.add(resOfGuests[i + j][7]);
+          _teamInfo.participant_cno.add(resOfGuests[i + j][8]);
+          _teamInfo.participant_email.add(resOfGuests[i + j][9]);
         }
-        
+
         _teamList.add(_teamInfo);
       }
 
@@ -144,14 +137,12 @@ else
       size = _teamList.length;
     }
 
-
     setState(() {
       _isLoading = false;
     });
 
     print("Working here");
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -295,19 +286,18 @@ else
                                       itemCount: _teamList.length,
                                       itemBuilder: (_, index) {
                                         return AdminRegisteredTeamPostUI(
-                                          context,
-                                          widget._user,
-                                          widget._postgresKonnection,
-                                          _teamList[index].group_id,
-                                          _teamList[index].group_name,
-                                          _teamList[index].score,
-                                          _teamList[index].review,
-                                          _teamList[index].participant_id,
-                                          _teamList[index].participant_name,
-                                          _teamList[index].participant_cno,
-                                          _teamList[index].participant_email,
-                                          festImageURL
-                                        );
+                                            context,
+                                            widget._user,
+                                            widget._postgresKonnection,
+                                            _teamList[index].group_id,
+                                            _teamList[index].group_name,
+                                            _teamList[index].score,
+                                            _teamList[index].review,
+                                            _teamList[index].participant_id,
+                                            _teamList[index].participant_name,
+                                            _teamList[index].participant_cno,
+                                            _teamList[index].participant_email,
+                                            festImageURL);
                                       },
                                     ),
                                   ),
@@ -425,7 +415,6 @@ Widget AdminRegisteredStudentPostUI(
   );
 }
 
-
 Widget AdminRegisteredTeamPostUI(
   BuildContext context,
   SaveUser _user,
@@ -434,16 +423,15 @@ Widget AdminRegisteredTeamPostUI(
   String group_name,
   String score,
   String review,
-  List <String>participant_id,
-  List <String>participant_name,
-  List <String>participant_cno,
-  List <String>participant_email,
+  List<String> participant_id,
+  List<String> participant_name,
+  List<String> participant_cno,
+  List<String> participant_email,
   String logo,
-) 
-{
+) {
   String team = "";
-  for(int i=0;i<participant_id.length;i++ ){
-    team = team+participant_id[i]+"\t\t"+participant_name[i]+"\n";
+  for (int i = 0; i < participant_id.length; i++) {
+    team = team + participant_id[i] + "\t\t" + participant_name[i] + "\n";
   }
 
   print(team);
@@ -466,7 +454,6 @@ Widget AdminRegisteredTeamPostUI(
       child: new Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -479,35 +466,28 @@ Widget AdminRegisteredTeamPostUI(
               new Text(
                 group_id,
                 textAlign: TextAlign.center,
-                style: new TextStyle(fontSize: 16 , color: Colors.black),
+                style: new TextStyle(fontSize: 16, color: Colors.black),
               ),
             ],
           ),
-         SizedBox(height: 10),
-         new Text(
+          SizedBox(height: 10),
+          new Text(
             group_name,
             textAlign: TextAlign.center,
             style: new TextStyle(
                 fontSize: 36.0, color: Colors.black, fontFamily: "Signatra"),
           ),
-
-        SizedBox(height: 10),
+          SizedBox(height: 10),
           Icon(
             Icons.emoji_events_rounded,
             color: Colors.yellow,
             size: 100.0,
           ),
-
-         new Text(
+          new Text(
             team,
             textAlign: TextAlign.center,
-            style: new TextStyle(
-                fontSize: 18.0, color: Colors.black),
+            style: new TextStyle(fontSize: 18.0, color: Colors.black),
           ),
-
-
-
-          
           SizedBox(height: 10),
           new Text(
             "Team Score",

@@ -4,7 +4,6 @@ import 'package:EventManager/Authorisations/SaveUser.dart';
 import 'package:EventManager/Authorisations/auth.dart';
 import 'package:EventManager/Pages/Admin/AdminFestDetails.dart';
 import 'package:EventManager/Pages/CommonPages/FestDetails.dart';
-import 'package:EventManager/Welcome/HomePage.dart';
 import 'package:EventManager/Widgets/widgets.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/cupertino.dart';

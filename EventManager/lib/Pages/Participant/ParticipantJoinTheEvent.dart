@@ -23,94 +23,96 @@ class ParticipantJoinTheEvent extends StatefulWidget {
   ParticipantJoinTheEvent(this._user, this._postgresKonnection, this.event_ID);
 
   @override
-  _ParticipantJoinTheEventState createState() => _ParticipantJoinTheEventState();
+  _ParticipantJoinTheEventState createState() =>
+      _ParticipantJoinTheEventState();
 }
 
 class _ParticipantJoinTheEventState extends State<ParticipantJoinTheEvent> {
-   final _guestDetailsFormKey = GlobalKey<FormState>();
+  final _guestDetailsFormKey = GlobalKey<FormState>();
 
-  TextEditingController _guestName = new TextEditingController();
-  TextEditingController _guestPhoneNum = new TextEditingController();
-  TextEditingController _guestEmail = new TextEditingController();
-  
+  TextEditingController _mail1 = new TextEditingController();
+  TextEditingController _mail2 = new TextEditingController();
+
+  TextEditingController _mail3 = new TextEditingController();
+  TextEditingController _mail4 = new TextEditingController();
+  TextEditingController _password = new TextEditingController();
+
+  List<TextEditingController> _mailsID = [];
 
   var results;
   bool _isLoading = true;
-
-  var guest_ID;
+  int members = 0;
 
   Future fun() async {
-    
-    _guestEmail.text = widget._user.email;
+    _mailsID.add(_mail1);
+    _mailsID.add(_mail2);
+    _mailsID.add(_mail3);
+    _mailsID.add(_mail4);
 
+    var event_ID = widget.event_ID;
 
     PostgreSQLConnection _konnection =
         await widget._postgresKonnection.getKonnection();
-    
 
-    results = await _konnection
-        .query('select Max(participant_id) from participant');
+    results = await _konnection.query(
+        'select participant_limit from evento where event_id = \'$event_ID\'');
 
-    guest_ID = (int.parse(results[0][0]) + 1).toString();
+    members = results[0][0];
 
-    print(guest_ID);
-    
+    for (int i = 0; i < members; i++) {
+      print(i);
+      print(_mailsID[0]);
+    }
+
     setState(() {
       _isLoading = false;
     });
   }
 
-  bool phoneNumValidator() {
-    try {
-      int phoneNum = int.parse(_guestPhoneNum.text);
+  joinEvent() async {
 
-      if (phoneNum >= 1000000000 && phoneNum <= 9999999999) {
-        return false;
-      }
-    } catch (e) {
-      print(e.toString());
-    }
-    return true;
-  }
-
-  addAGuest() async {
     if (_guestDetailsFormKey.currentState.validate()) {
       print("validated");
 
-      setState(() {
-        _isLoading = true;
-      });
+      for (int i = 0; i < members; i++) {
+      print(i);
+      print(_mailsID[0].text);
+    }
 
-      PostgreSQLConnection _konnection =
-          await widget._postgresKonnection.getKonnection();
+      // setState(() {
+      //   _isLoading = true;
+      // });
 
-      try {
-        await _konnection.transaction((ctx) async {
-          print(guest_ID);
+      // PostgreSQLConnection _konnection =
+      //     await widget._postgresKonnection.getKonnection();
 
-          await ctx.query('''
-              INSERT INTO participant(participant_id,participant_name,participant_cno,participant_email) VALUES(@a,@b,@d,@e)
-            ''', substitutionValues: {
-            "a": guest_ID,
-            "b": _guestName.text,
-            // "c": _guestDescription.text,
-            "d": _guestPhoneNum.text,
-            "e": _guestEmail.text,
-          });
+      // try {
+      //   await _konnection.transaction((ctx) async {
+          // print(guest_ID);
 
-          
-        });
-      } catch (e) {
-        print(e.toString());
-        toastMessage(e.toString());
-      }
+          // INSERT INTO group_participant VALUES ('2020230004','20202301',0,'2020230101','The Gang','NA');
 
-      toastMessage("Updated successfully");
-      await Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (context) =>
-                  ParticipantEachEvents(widget._user, widget._postgresKonnection,widget.event_ID)));
+          // await ctx.query('''
+          // INSERT INTO group_participant VALUES (@a,@b',0,@c,@d,'NA')
+          //   ''', substitutionValues: {
+            // "a": guest_ID,
+            // "b": _guestName.text,
+            // // "c": _guestDescription.text,
+            // "d": _guestPhoneNum.text,
+            // "e": _guestEmail.text,
+      //     });
+      //   });
+      // } catch (e) {
+      //   print(e.toString());
+      //   toastMessage(e.toString());
+      // }
+
+      // toastMessage("Updated successfully");
+      // await Navigator.pushReplacement(
+      //     context,
+      //     MaterialPageRoute(
+      //         builder: (context) => ParticipantEachEvents(
+      //             widget._user, widget._postgresKonnection, widget.event_ID)));
     }
   }
 
@@ -120,6 +122,7 @@ class _ParticipantJoinTheEventState extends State<ParticipantJoinTheEvent> {
       fun();
     }
 
+    var _teamList;
     return Scaffold(
       appBar: _isLoading ? null : appBarMain(context),
       resizeToAvoidBottomPadding: false,
@@ -157,73 +160,52 @@ class _ParticipantJoinTheEventState extends State<ParticipantJoinTheEvent> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 30.0, vertical: 5.0),
+                                      horizontal: 70.0, vertical: 5.0),
                                   child: new TextFormField(
                                       style: TextStyle(
                                         color: Colors.white,
                                       ),
-                                      decoration: textInputDecoration(
-                                          "Name", "Enter the name"),
-                                      textInputAction: TextInputAction.next,
-                                      controller: _guestName,
-                                      validator: (_guestName) {
-                                        if (_guestName.isEmpty) {
-                                          return 'Please enter some text';
-                                        }
-                                        return null;
-                                      },
-                                      onSaved: (value) {
-                                        return _guestName.text = value;
-                                      }),
-                                ),
-                               
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 30.0, vertical: 5.0),
-                                  child: new TextFormField(
-                                      style: TextStyle(
-                                        color: Colors.white,
+                                      decoration: new InputDecoration(
+                                        labelText: "Group Name",
+                                        hintText: "Group Name",
                                       ),
-                                      decoration: textInputDecoration(
-                                          "Contact No.",
-                                          "10 digit mobile number"),
-                                      textInputAction: TextInputAction.next,
-                                      controller: _guestPhoneNum,
-                                      validator: (_guestPhoneNum) {
-                                        if (_guestPhoneNum.isEmpty) {
-                                          return 'Please enter some text';
-                                        } else if (phoneNumValidator()) {
-                                          return "please enter valid mobile number ";
-                                        }
-                                        return null;
-                                      },
-                                      onSaved: (value) {
-                                        return _guestPhoneNum.text = value;
-                                      }),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 30.0, vertical: 5.0),
-                                  child: new TextFormField(
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                      ),
-                                      decoration: textInputDecoration(
-                                          "Email", "john.doe@fun.kt"),
                                       textInputAction: TextInputAction.done,
-                                      controller: _guestEmail,
-                                      validator: (_guestEmail) {
-                                        if (_guestEmail.isEmpty) {
+                                      controller: _password,
+                                      onFieldSubmitted: (_) =>
+                                          FocusScope.of(context).unfocus(),
+                                      validator: (password) {
+                                        
+                                        if (password.isEmpty) {
                                           return 'Please enter some text';
-                                        }
-                                        return EmailValidator.validate(
-                                                _guestEmail)
-                                            ? null
-                                            : "Invalid email address";
+                                        } else
+                                          return null;
                                       },
                                       onSaved: (value) {
-                                        return _guestEmail.text = value;
+                                        return _password.text = value;
                                       }),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 24.0, vertical: 10.0),
+                                  child: Container(
+                                    color: Colors.black,
+                                    child: new ListView.builder(
+                                      padding: EdgeInsets.all(8.0),
+                                      physics: const ClampingScrollPhysics(),
+                                      scrollDirection: Axis.vertical,
+                                      shrinkWrap: true,
+                                      itemCount: members,
+                                      itemBuilder: (_, index) {
+                                        return AdminRegisteredTeamPostUI(
+                                          context,
+                                          widget._user,
+                                          widget._postgresKonnection,
+                                          _mailsID,
+                                          index
+                                        );
+                                      },
+                                    ),
+                                  ),
                                 ),
                               ],
                             ),
@@ -241,7 +223,7 @@ class _ParticipantJoinTheEventState extends State<ParticipantJoinTheEvent> {
                               height: 45.0,
                               child: RaisedButton(
                                 onPressed: () {
-                                  addAGuest();
+                                  joinEvent();
                                 },
                                 textColor: Colors.white,
                                 color: Colors.blueAccent,
@@ -253,7 +235,7 @@ class _ParticipantJoinTheEventState extends State<ParticipantJoinTheEvent> {
                                   padding: const EdgeInsets.symmetric(
                                       vertical: 10.0),
                                   child: new Text(
-                                    "Register",
+                                    "Join",
                                     style: new TextStyle(
                                       fontSize: 20.0,
                                     ),
@@ -280,4 +262,90 @@ class _ParticipantJoinTheEventState extends State<ParticipantJoinTheEvent> {
             ),
     );
   }
+}
+
+Widget AdminRegisteredTeamPostUI(BuildContext context, SaveUser _user,
+    PostgresKonnection _postgresKonnection, List<TextEditingController> _guestEmail,int index) {
+  final _signInFormKey = GlobalKey<FormState>();
+
+  // TextEditingController _guestEmail = new TextEditingController();
+  Future<bool> noRegistration(_guestEmail) async {
+    PostgreSQLConnection _konnection =
+        await _postgresKonnection.getKonnection();
+
+    var result =
+        await _konnection.query('select participant_email from participant');
+
+    for (var resu in result) {
+      if (resu[0] == _guestEmail) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  return new Card(
+    elevation: 20.0,
+    clipBehavior: Clip.antiAlias,
+    margin: EdgeInsets.all(15.0),
+    color: Colors.red,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(40.0),
+      side: BorderSide(
+        color: Colors.black,
+        width: 1.0,
+      ),
+    ),
+    child: new Container(
+      color: Colors.white,
+      padding: new EdgeInsets.all(25.0),
+      child: new Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 30.0, vertical: 5.0),
+            child: new TextFormField(
+                // cursorColor: ,
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+                decoration: new InputDecoration(
+                  labelText: "Email",
+                  labelStyle: TextStyle(
+                    color: Colors.black,
+                  ),
+                  hintText: "john.doe@gmail.com",
+                  hintStyle: TextStyle(),
+                  fillColor: Colors.black,
+
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black),
+                  ),
+                  border: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black),
+                  ),
+                  //
+                ),
+                textInputAction: TextInputAction.done,
+                controller: _guestEmail[index],
+                validator: (_guestEmail) {
+                  if (_guestEmail.isEmpty) {
+                    return 'Please enter some text';
+                  }
+                  return EmailValidator.validate(_guestEmail)
+                      ? null
+                      : "Invalid email address";
+                },
+                onSaved: (value) {
+                  return _guestEmail[index].text = value;
+                }),
+          ),
+        ],
+      ),
+    ),
+  );
 }
