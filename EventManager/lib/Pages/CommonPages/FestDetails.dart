@@ -3,14 +3,13 @@ import 'package:EventManager/Authorisations/SaveUser.dart';
 import 'package:EventManager/Classes/EventInfo.dart';
 import 'package:EventManager/Classes/SponsorInfo.dart';
 import 'package:EventManager/Pages/Invigilator/InvigilatorEachEvent.dart';
-import 'package:EventManager/Pages/Invigilator/InvigilatorScoring.dart';
 import 'package:EventManager/Pages/Participant/ParticipantEachEvents.dart';
-import 'package:EventManager/Pages/CommonPages/EventDetails.dart';
 import 'package:EventManager/Pages/CommonPages/ParsecDetails.dart';
 import 'package:EventManager/Widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:postgres/postgres.dart';
 
+// ignore: must_be_immutable
 class FestDetails extends StatefulWidget {
   PostgresKonnection _postgresKonnection;
   SaveUser _user;
@@ -281,14 +280,18 @@ class _FestDetailsState extends State<FestDetails> {
   }
 }
 
+// ignore: non_constant_identifier_names
 Widget PostUI(
   BuildContext context,
   SaveUser _user,
   PostgresKonnection _postgresKonnection,
+  // ignore: non_constant_identifier_names
   String event_ID,
   String image,
+  // ignore: non_constant_identifier_names
   String event_name,
   String description,
+  // ignore: non_constant_identifier_names
   String short_description,
 ) {
   bool isInvigilator;

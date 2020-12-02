@@ -1,21 +1,17 @@
 import 'package:EventManager/Authorisations/PostgresKonnection.dart';
 import 'package:EventManager/Authorisations/SaveUser.dart';
-import 'package:EventManager/Classes/EventInfo.dart';
 import 'package:EventManager/Classes/GuestInfo.dart';
 import 'package:EventManager/Classes/Teams.dart';
-import 'package:EventManager/Pages/Admin/AdminEventDetailsUpdate.dart';
-import 'package:EventManager/Pages/Admin/AdminInvigilatorsForEvent.dart';
-import 'package:EventManager/Pages/Admin/AdminRegisteredStudents.dart';
-import 'package:EventManager/Pages/Admin/AdminScorecard.dart';
-import 'package:EventManager/Pages/CommonPages/EventDetails.dart';
 import 'package:EventManager/Pages/Invigilator/InvigilatorEachEvent.dart';
 import 'package:EventManager/Widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:postgres/postgres.dart';
 
+// ignore: must_be_immutable
 class InvigilatorScoring extends StatefulWidget {
   PostgresKonnection _postgresKonnection;
   SaveUser _user;
+  // ignore: non_constant_identifier_names
   String event_ID;
   InvigilatorScoring(this._user, this._postgresKonnection, this.event_ID);
 
@@ -36,7 +32,9 @@ class _InvigilatorScoringState extends State<InvigilatorScoring> {
   List<GuestInfo> _guestList = [];
   List<Teams> _teamList = [];
 
+  // ignore: non_constant_identifier_names
   String event_id;
+  // ignore: non_constant_identifier_names
   int total_registered = 0;
   int size = 0;
 
@@ -46,6 +44,7 @@ class _InvigilatorScoringState extends State<InvigilatorScoring> {
 
     event_id = widget.event_ID;
 
+    // ignore: non_constant_identifier_names
     var group_size = await _konnection.query(
         'select participant_limit from evento where event_id = \'$event_id\'');
 
@@ -320,16 +319,22 @@ class _InvigilatorScoringState extends State<InvigilatorScoring> {
   }
 }
 
+// ignore: non_constant_identifier_names
 Widget AdminRegisteredStudentPostUI(
   BuildContext context,
   SaveUser _user,
   PostgresKonnection _postgresKonnection,
+  // ignore: non_constant_identifier_names
   String guest_id,
+  // ignore: non_constant_identifier_names
   String guest_name,
   String description,
+  // ignore: non_constant_identifier_names
   String guest_phone_number,
+  // ignore: non_constant_identifier_names
   String guest_mail_ID,
   String logo,
+  // ignore: non_constant_identifier_names
   String event_ID
 ) {
 
@@ -582,19 +587,27 @@ Widget AdminRegisteredStudentPostUI(
   );
 }
 
+// ignore: non_constant_identifier_names
 Widget AdminRegisteredTeamPostUI(
   BuildContext context,
   SaveUser _user,
   PostgresKonnection _postgresKonnection,
+  // ignore: non_constant_identifier_names
   String group_id,
+  // ignore: non_constant_identifier_names
   String group_name,
   String score,
   String review,
+  // ignore: non_constant_identifier_names
   List<String> participant_id,
+  // ignore: non_constant_identifier_names
   List<String> participant_name,
+  // ignore: non_constant_identifier_names
   List<String> participant_cno,
+  // ignore: non_constant_identifier_names
   List<String> participant_email,
   String logo,
+  // ignore: non_constant_identifier_names
   String event_ID
 ) {
   String team = "";

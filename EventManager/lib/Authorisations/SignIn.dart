@@ -79,7 +79,7 @@ class _SignInState extends State<SignIn> {
       }
     }
 
-    var re = await _konnection.query('select * from participant');
+    // var re = await _konnection.query('select * from participant');
     // print(re[0][2]);
 
     var results = await _konnection.query('select admin_email from admino');
@@ -244,8 +244,8 @@ class _SignInState extends State<SignIn> {
                                       // autofocus: true,
                                       textInputAction: TextInputAction.next,
                                       // onFieldSubmitted: (_) => FocusScope.of(context).nextFocus(),
-                                      keyboardType: TextInputType.emailAddress,
                                       controller: _email,
+                                      keyboardType: TextInputType.emailAddress,
                                       validator: (email) {
                                         if (email.isEmpty) {
                                           return 'Please enter some text';
@@ -256,7 +256,8 @@ class _SignInState extends State<SignIn> {
                                       },
                                       onSaved: (value) {
                                         return _email.text = value;
-                                      }),
+                                      },
+                                      ),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.symmetric(

@@ -1,20 +1,18 @@
 import 'package:EventManager/Authorisations/PostgresKonnection.dart';
 import 'package:EventManager/Authorisations/SaveUser.dart';
 import 'package:EventManager/Classes/EventInfo.dart';
-import 'package:EventManager/Pages/Admin/AdminEventDetailsUpdate.dart';
-import 'package:EventManager/Pages/Admin/AdminInvigilatorsForEvent.dart';
-import 'package:EventManager/Pages/Admin/AdminRegisteredStudents.dart';
 import 'package:EventManager/Pages/Admin/AdminScorecard.dart';
 import 'package:EventManager/Pages/CommonPages/EventDetails.dart';
 import 'package:EventManager/Pages/Invigilator/InvigilatorScoring.dart';
-import 'package:EventManager/Pages/Participant/ParticipantRegistration.dart';
 import 'package:EventManager/Widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:postgres/postgres.dart';
 
+// ignore: must_be_immutable
 class InvigilatorEachEvent extends StatefulWidget {
   PostgresKonnection _postgresKonnection;
   SaveUser _user;
+  // ignore: non_constant_identifier_names
   String event_ID;
   InvigilatorEachEvent(this._user, this._postgresKonnection, this.event_ID);
 
@@ -23,6 +21,7 @@ class InvigilatorEachEvent extends StatefulWidget {
 }
 
 class _InvigilatorEachEventState extends State<InvigilatorEachEvent> {
+  // ignore: non_constant_identifier_names
   String event_id;
 
   EventInfo _eventInfo = new EventInfo();

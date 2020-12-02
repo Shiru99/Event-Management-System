@@ -1,14 +1,11 @@
 import 'package:EventManager/Authorisations/PostgresKonnection.dart';
 import 'package:EventManager/Authorisations/SaveUser.dart';
-import 'package:EventManager/Classes/GuestInfo.dart';
-import 'package:EventManager/Classes/SponsorInfo.dart';
-import 'package:EventManager/Pages/Admin/AdminFestDetails.dart';
-import 'package:EventManager/Pages/Admin/AdminParsecDetails.dart';
 import 'package:EventManager/Pages/Admin/AdminSponsorDetails.dart';
 import 'package:EventManager/Widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:postgres/postgres.dart';
 
+// ignore: must_be_immutable
 class AdminAddASponsor extends StatefulWidget {
   PostgresKonnection _postgresKonnection;
   SaveUser _user;
@@ -25,13 +22,16 @@ class _AdminAddASponsorState extends State<AdminAddASponsor> {
 
   TextEditingController _sponsorName = new TextEditingController();
   TextEditingController _sponsorPhone = new TextEditingController();
+  // ignore: unused_field
   TextEditingController _sponsorCategory = new TextEditingController();
   TextEditingController _sponsorLink = new TextEditingController();
 
   var results;
+  // ignore: non_constant_identifier_names
   List<String> sponsor_category = [];
   bool _isLoading = true;
 
+  // ignore: non_constant_identifier_names
   var sponsor_id;
   Future fun() async {
     // sponsor_id = widget.sponsor_id;

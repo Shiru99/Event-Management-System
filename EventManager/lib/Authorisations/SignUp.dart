@@ -205,6 +205,7 @@ class _SignUpState extends State<SignUp> {
                                       textInputAction: TextInputAction.next,
                                       // onFieldSubmitted: (_) => FocusScope.of(context).nextFocus(),
                                       controller: _email,
+                                      keyboardType: TextInputType.emailAddress,
                                       validator: (email) {
                                         if (email.isEmpty) {
                                           return 'Please enter some text';

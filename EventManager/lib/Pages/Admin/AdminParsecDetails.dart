@@ -1,13 +1,11 @@
 import 'package:EventManager/Authorisations/PostgresKonnection.dart';
 import 'package:EventManager/Authorisations/SaveUser.dart';
-import 'package:EventManager/Classes/GuestInfo.dart';
-import 'package:EventManager/Classes/SponsorInfo.dart';
-import 'package:EventManager/Pages/Admin/AdminFestDetails.dart';
 import 'package:EventManager/Pages/Admin/AdminParsecDetailsUpdate.dart';
 import 'package:EventManager/Widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:postgres/postgres.dart';
 
+// ignore: must_be_immutable
 class AdminParsecDetails extends StatefulWidget {
   PostgresKonnection _postgresKonnection;
   SaveUser _user;

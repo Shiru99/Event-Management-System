@@ -1,11 +1,5 @@
 import 'package:EventManager/Authorisations/PostgresKonnection.dart';
 import 'package:EventManager/Authorisations/SaveUser.dart';
-import 'package:EventManager/Classes/EventInfo.dart';
-import 'package:EventManager/Pages/Admin/AdminEventDetailsUpdate.dart';
-import 'package:EventManager/Pages/Admin/AdminInvigilatorsForEvent.dart';
-import 'package:EventManager/Pages/Admin/AdminRegisteredStudents.dart';
-import 'package:EventManager/Pages/Admin/AdminScorecard.dart';
-import 'package:EventManager/Pages/CommonPages/EventDetails.dart';
 import 'package:EventManager/Pages/Participant/ParticipantEachEvents.dart';
 import 'package:EventManager/Widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -13,9 +7,11 @@ import 'package:postgres/postgres.dart';
 
 import 'package:email_validator/email_validator.dart';
 
+// ignore: must_be_immutable
 class ParticipantRegistration extends StatefulWidget {
   PostgresKonnection _postgresKonnection;
   SaveUser _user;
+  // ignore: non_constant_identifier_names
   String event_ID;
   ParticipantRegistration(this._user, this._postgresKonnection, this.event_ID);
 
@@ -33,7 +29,8 @@ class _ParticipantRegistrationState extends State<ParticipantRegistration> {
 
   var results;
   bool _isLoading = true;
-
+  int temp = 99;
+  // ignore: non_constant_identifier_names
   var guest_ID;
 
   Future fun() async {
@@ -73,6 +70,7 @@ class _ParticipantRegistrationState extends State<ParticipantRegistration> {
   addAGuest() async {
     if (_guestDetailsFormKey.currentState.validate()) {
       print("validated");
+      temp = 100;
 
       setState(() {
         _isLoading = true;
@@ -85,6 +83,9 @@ class _ParticipantRegistrationState extends State<ParticipantRegistration> {
         await _konnection.transaction((ctx) async {
           print(guest_ID);
 
+
+
+
           await ctx.query('''
               INSERT INTO participant(participant_id,participant_name,participant_cno,participant_email) VALUES(@a,@b,@d,@e)
             ''', substitutionValues: {
@@ -95,6 +96,13 @@ class _ParticipantRegistrationState extends State<ParticipantRegistration> {
             "e": _guestEmail.text,
           });
 
+
+          widget._user.userID = guest_ID;
+          widget._user.displayName = _guestName.text;
+          widget._user.phoneNumber = _guestPhoneNum.text;
+
+          widget._user.email = _guestEmail.text;
+
           
         });
       } catch (e) {
@@ -102,7 +110,27 @@ class _ParticipantRegistrationState extends State<ParticipantRegistration> {
         toastMessage(e.toString());
       }
 
-      toastMessage("Updated successfully");
+    // try {
+
+    //   var par_ID = guest_ID;
+    //   var event_id = widget.event_ID;
+    //   print(par_ID);
+    //   print(event_id);
+
+    //   print('INSERT INTO individual_participant VALUES (\'$par_ID\',\'$event_id\',0,\'NA\')');
+
+    //   results = await _konnection.query(
+    //     'INSERT INTO individual_participant VALUES (\'$par_ID\',\'$event_id\',0,\'NA\')');
+      
+    //   toastMessage("Added Successfully");
+
+    // } catch (e) {
+    //   print(e.toString());
+    // }
+    
+
+
+
       await Navigator.pushReplacement(
           context,
           MaterialPageRoute(
@@ -113,7 +141,7 @@ class _ParticipantRegistrationState extends State<ParticipantRegistration> {
 
   @override
   Widget build(BuildContext context) {
-    if (_isLoading) {
+    if (_isLoading && temp ==99) {
       fun();
     }
 

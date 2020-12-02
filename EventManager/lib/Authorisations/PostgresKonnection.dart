@@ -36,7 +36,7 @@ class PostgresKonnection {
   }
 
   Future<PostgreSQLConnection> getKonnection() async {
-    return await this.konnection;
+    return this.konnection;
   }
 
   closeKonnection() async {

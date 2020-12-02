@@ -6,8 +6,10 @@ import 'package:EventManager/Widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:postgres/postgres.dart';
 
+// ignore: must_be_immutable
 class ParsecDetails extends StatefulWidget {
   PostgresKonnection _postgresKonnection;
+  // ignore: unused_field
   SaveUser _user;
   ParsecDetails(this._user, this._postgresKonnection);
 

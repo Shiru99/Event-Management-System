@@ -1,13 +1,11 @@
 import 'package:EventManager/Authorisations/PostgresKonnection.dart';
 import 'package:EventManager/Authorisations/SaveUser.dart';
-import 'package:EventManager/Classes/GuestInfo.dart';
-import 'package:EventManager/Classes/SponsorInfo.dart';
-import 'package:EventManager/Pages/Admin/AdminFestDetails.dart';
 import 'package:EventManager/Pages/Admin/AdminParsecDetails.dart';
 import 'package:EventManager/Widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:postgres/postgres.dart';
 
+// ignore: must_be_immutable
 class AdminParsecDetailsUpdate extends StatefulWidget {
   PostgresKonnection _postgresKonnection;
   SaveUser _user;
@@ -49,6 +47,7 @@ class _AdminParsecDetailsUpdateState extends State<AdminParsecDetailsUpdate> {
   bool validationDuration() {
     // print(_duration.);
     try {
+      // ignore: unused_local_variable
       int days = int.parse(_duration.text);
       return false;
     } catch (e) {
@@ -98,6 +97,7 @@ class _AdminParsecDetailsUpdateState extends State<AdminParsecDetailsUpdate> {
 
       try {
         await _konnection.transaction((ctx) async {
+          // ignore: non_constant_identifier_names
           var fest_id = '202023';
           print(fest_id);
 

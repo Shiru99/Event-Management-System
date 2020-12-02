@@ -1,44 +1,48 @@
 import 'package:EventManager/Authorisations/PostgresKonnection.dart';
 import 'package:EventManager/Authorisations/SaveUser.dart';
-import 'package:EventManager/Classes/GuestInfo.dart';
-import 'package:EventManager/Classes/SponsorInfo.dart';
 import 'package:EventManager/Pages/Admin/AdminEachEventDetails.dart';
-import 'package:EventManager/Pages/Admin/AdminEventDetails.dart';
-import 'package:EventManager/Pages/Admin/AdminFestDetails.dart';
-import 'package:EventManager/Pages/Admin/AdminGuestDetails.dart';
-import 'package:EventManager/Pages/Admin/AdminSponsorDetails.dart';
 import 'package:EventManager/Widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:postgres/postgres.dart';
-import 'package:email_validator/email_validator.dart';
 
+// ignore: must_be_immutable
 class AdminEventDetailsUpdate extends StatefulWidget {
   PostgresKonnection _postgresKonnection;
   SaveUser _user;
+  // ignore: non_constant_identifier_names
   String event_ID;
   AdminEventDetailsUpdate(this._user, this._postgresKonnection, this.event_ID);
 
   @override
-  _AdminEventDetailsUpdateState createState() => _AdminEventDetailsUpdateState();
+  _AdminEventDetailsUpdateState createState() =>
+      _AdminEventDetailsUpdateState();
 }
 
 class _AdminEventDetailsUpdateState extends State<AdminEventDetailsUpdate> {
   final _addEventFormKey = GlobalKey<FormState>();
 
+  // ignore: non_constant_identifier_names
   TextEditingController _event_name = new TextEditingController();
+  // ignore: non_constant_identifier_names
   TextEditingController _start_date_time = new TextEditingController();
+  // ignore: non_constant_identifier_names
   TextEditingController _end_date_time = new TextEditingController();
+  // ignore: non_constant_identifier_names
   TextEditingController _register_start_date_time = new TextEditingController();
+  // ignore: non_constant_identifier_names
   TextEditingController _register_end_date_time = new TextEditingController();
   TextEditingController _place = new TextEditingController();
+  // ignore: non_constant_identifier_names
   TextEditingController _short_description = new TextEditingController();
   TextEditingController _description = new TextEditingController();
+  // ignore: non_constant_identifier_names
   TextEditingController _participant_limit = new TextEditingController();
   TextEditingController _price = new TextEditingController();
 
   var results;
   bool _isLoading = true;
 
+  // ignore: non_constant_identifier_names
   var event_id;
 
   Future fun() async {
@@ -46,21 +50,22 @@ class _AdminEventDetailsUpdateState extends State<AdminEventDetailsUpdate> {
         await widget._postgresKonnection.getKonnection();
 
     event_id = widget.event_ID;
-    
+
     print(event_id);
 
-    results = await _konnection.query('select * from evento where event_id = \'$event_id\'');
+    results = await _konnection
+        .query('select * from evento where event_id = \'$event_id\'');
 
-     _event_name.text = results[0][1].toString()  ;
-     _start_date_time.text = results[0][2].toString().split(' ')[0] ;
-     _end_date_time.text = results[0][3].toString().split(' ')[0] ;
-     _register_start_date_time.text = results[0][4].toString().split(' ')[0] ;
-     _register_end_date_time.text = results[0][5].toString().split(' ')[0] ;
-     _place.text = results[0][6].toString() ;
-     _short_description.text = results[0][7].toString() ;
-     _description.text = results[0][8].toString() ;
-     _participant_limit.text = results[0][9].toString() ;
-     _price.text = results[0][10].toString();
+    _event_name.text = results[0][1].toString();
+    _start_date_time.text = results[0][2].toString().split(' ')[0];
+    _end_date_time.text = results[0][3].toString().split(' ')[0];
+    _register_start_date_time.text = results[0][4].toString().split(' ')[0];
+    _register_end_date_time.text = results[0][5].toString().split(' ')[0];
+    _place.text = results[0][6].toString();
+    _short_description.text = results[0][7].toString();
+    _description.text = results[0][8].toString();
+    _participant_limit.text = results[0][9].toString();
+    _price.text = results[0][10].toString();
 
     // print(event_id);
 
@@ -69,11 +74,11 @@ class _AdminEventDetailsUpdateState extends State<AdminEventDetailsUpdate> {
     });
   }
 
-  bool isValidNumber(var number){
+  // ignore: missing_return
+  bool isValidNumber(var number) {
     try {
       int a = int.parse(number);
-      if(a>0)
-      return false;
+      if (a > 0) return false;
     } catch (e) {
       return true;
     }
@@ -81,7 +86,6 @@ class _AdminEventDetailsUpdateState extends State<AdminEventDetailsUpdate> {
 
   bool dateValidator(var date) {
     try {
-
       print(date);
       int yyyy, mm, dd;
 
@@ -122,7 +126,6 @@ class _AdminEventDetailsUpdateState extends State<AdminEventDetailsUpdate> {
         await _konnection.transaction((ctx) async {
           print(event_id);
 
-
           await ctx.query('''
               UPDATE evento 
               SET 
@@ -151,10 +154,8 @@ class _AdminEventDetailsUpdateState extends State<AdminEventDetailsUpdate> {
             "j": int.parse(_participant_limit.text),
             "k": _price.text,
           });
-
         });
-      toastMessage("Updated successfully");
-
+        toastMessage("Updated successfully");
       } catch (e) {
         print(e.toString());
         toastMessage(e.toString());
@@ -163,8 +164,8 @@ class _AdminEventDetailsUpdateState extends State<AdminEventDetailsUpdate> {
       await Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-              builder: (context) =>
-                  AdminEachEventDetails(widget._user, widget._postgresKonnection,event_id)));
+              builder: (context) => AdminEachEventDetails(
+                  widget._user, widget._postgresKonnection, event_id)));
     }
   }
 
@@ -220,6 +221,7 @@ class _AdminEventDetailsUpdateState extends State<AdminEventDetailsUpdate> {
                                           "Event Name", "Enter the event name"),
                                       textInputAction: TextInputAction.next,
                                       controller: _event_name,
+                                      // ignore: non_constant_identifier_names
                                       validator: (_event_name) {
                                         if (_event_name.isEmpty) {
                                           return 'Please enter some text';
@@ -242,6 +244,7 @@ class _AdminEventDetailsUpdateState extends State<AdminEventDetailsUpdate> {
                                           "format YYYY-MM-DD"),
                                       textInputAction: TextInputAction.next,
                                       controller: _start_date_time,
+                                      // ignore: non_constant_identifier_names
                                       validator: (_start_date_time) {
                                         if (_start_date_time.isEmpty) {
                                           return 'Please enter date';
@@ -266,6 +269,7 @@ class _AdminEventDetailsUpdateState extends State<AdminEventDetailsUpdate> {
                                           "Event Ends on", "format YYYY-MM-DD"),
                                       textInputAction: TextInputAction.next,
                                       controller: _end_date_time,
+                                      // ignore: non_constant_identifier_names
                                       validator: (_end_date_time) {
                                         if (_end_date_time.isEmpty) {
                                           return 'Please enter date';
@@ -291,6 +295,7 @@ class _AdminEventDetailsUpdateState extends State<AdminEventDetailsUpdate> {
                                           "format YYYY-MM-DD"),
                                       textInputAction: TextInputAction.next,
                                       controller: _register_start_date_time,
+                                      // ignore: non_constant_identifier_names
                                       validator: (_register_start_date_time) {
                                         if (_register_start_date_time.isEmpty) {
                                           return 'Please enter date';
@@ -313,9 +318,11 @@ class _AdminEventDetailsUpdateState extends State<AdminEventDetailsUpdate> {
                                         color: Colors.white,
                                       ),
                                       decoration: textInputDecoration(
-                                          "Fest Registraion ends on", "format YYYY-MM-DD"),
+                                          "Fest Registraion ends on",
+                                          "format YYYY-MM-DD"),
                                       textInputAction: TextInputAction.next,
                                       controller: _register_end_date_time,
+                                      // ignore: non_constant_identifier_names
                                       validator: (_register_end_date_time) {
                                         if (_register_end_date_time.isEmpty) {
                                           return 'Please enter date';
@@ -363,6 +370,7 @@ class _AdminEventDetailsUpdateState extends State<AdminEventDetailsUpdate> {
                                           "Enter the short description of event"),
                                       textInputAction: TextInputAction.next,
                                       controller: _short_description,
+                                      // ignore: non_constant_identifier_names
                                       validator: (_short_description) {
                                         if (_short_description.isEmpty) {
                                           return 'Please enter some text';
@@ -403,8 +411,7 @@ class _AdminEventDetailsUpdateState extends State<AdminEventDetailsUpdate> {
                                         color: Colors.white,
                                       ),
                                       decoration: textInputDecoration(
-                                          "Winning Price",
-                                          "₹ 2,50,000"),
+                                          "Winning Price", "₹ 2,50,000"),
                                       textInputAction: TextInputAction.next,
                                       controller: _price,
                                       validator: (_price) {
@@ -425,14 +432,15 @@ class _AdminEventDetailsUpdateState extends State<AdminEventDetailsUpdate> {
                                         color: Colors.white,
                                       ),
                                       decoration: textInputDecoration(
-                                          "Team size limit",
-                                          "4"),
+                                          "Team size limit", "4"),
                                       textInputAction: TextInputAction.done,
                                       controller: _participant_limit,
+                                      // ignore: non_constant_identifier_names
                                       validator: (_participant_limit) {
                                         if (_participant_limit.isEmpty) {
                                           return 'Please enter some text';
-                                        } else if(isValidNumber(_participant_limit)){
+                                        } else if (isValidNumber(
+                                            _participant_limit)) {
                                           return 'please add valid number';
                                         }
                                         return null;
@@ -447,7 +455,6 @@ class _AdminEventDetailsUpdateState extends State<AdminEventDetailsUpdate> {
                           SizedBox(
                             height: 14.0,
                           ),
-
                           Padding(
                             padding: const EdgeInsets.symmetric(
                                 vertical: 10.0, horizontal: 75),
@@ -479,12 +486,9 @@ class _AdminEventDetailsUpdateState extends State<AdminEventDetailsUpdate> {
                               // ],
                             ),
                           ),
-
                           SizedBox(
                             height: 64.0,
                           ),
-
-                          
                         ],
                       ),
                     ],

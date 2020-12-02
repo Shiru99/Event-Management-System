@@ -1,16 +1,15 @@
 import 'package:EventManager/Authorisations/PostgresKonnection.dart';
 import 'package:EventManager/Authorisations/SaveUser.dart';
-import 'package:EventManager/Classes/GuestInfo.dart';
-import 'package:EventManager/Classes/SponsorInfo.dart';
-import 'package:EventManager/Pages/Admin/AdminFestDetails.dart';
 import 'package:EventManager/Pages/Admin/AdminGuestDetails.dart';
 import 'package:EventManager/Widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:postgres/postgres.dart';
 import 'package:email_validator/email_validator.dart';
 
+// ignore: must_be_immutable
 class AdminGuestDetailsUpadate extends StatefulWidget {
   PostgresKonnection _postgresKonnection;
+  // ignore: non_constant_identifier_names
   String guest_id;
   SaveUser _user;
   AdminGuestDetailsUpadate(this._user, this._postgresKonnection, this.guest_id);
@@ -31,6 +30,7 @@ class _AdminGuestDetailsUpadateState extends State<AdminGuestDetailsUpadate> {
   var results;
   bool _isLoading = true;
 
+  // ignore: non_constant_identifier_names
   var guest_ID;
 
   Future fun() async {

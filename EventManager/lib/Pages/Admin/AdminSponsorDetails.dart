@@ -1,16 +1,13 @@
 import 'package:EventManager/Authorisations/PostgresKonnection.dart';
 import 'package:EventManager/Authorisations/SaveUser.dart';
-import 'package:EventManager/Pages/Admin/AdminAddAGuest.dart';
 import 'package:EventManager/Pages/Admin/AdminAddASponsor.dart';
 import 'package:EventManager/Pages/Admin/AdminSponsorDetailsUpdate.dart';
-import '';
-import 'package:EventManager/Classes/GuestInfo.dart';
 import 'package:EventManager/Classes/SponsorInfo.dart';
-import 'package:EventManager/Pages/Admin/AdminFestDetails.dart';
 import 'package:EventManager/Widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:postgres/postgres.dart';
 
+// ignore: must_be_immutable
 class AdminSponsorDetails extends StatefulWidget {
   PostgresKonnection _postgresKonnection;
   SaveUser _user;
@@ -186,14 +183,20 @@ class _AdminSponsorDetailsState extends State<AdminSponsorDetails> {
   }
 }
 
+// ignore: non_constant_identifier_names
 Widget AdminSponsorPostUI(
   BuildContext context,
   SaveUser _user,
   PostgresKonnection _postgresKonnection,
+  // ignore: non_constant_identifier_names
   String sponsor_link,
+  // ignore: non_constant_identifier_names
   String sponsor_name,
+  // ignore: non_constant_identifier_names
   String sponsor_category,
+  // ignore: non_constant_identifier_names
   String sponsor_id,
+  // ignore: non_constant_identifier_names
   String sponsor_phone,
   String logo,
 ) {

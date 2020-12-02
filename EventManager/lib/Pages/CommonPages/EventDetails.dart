@@ -5,9 +5,12 @@ import 'package:EventManager/Widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:postgres/postgres.dart';
 
+// ignore: must_be_immutable
 class EventDetails extends StatefulWidget {
   PostgresKonnection _postgresKonnection;
+  // ignore: unused_field
   SaveUser _user;
+  // ignore: non_constant_identifier_names
   String event_ID;
   EventDetails(this._user, this._postgresKonnection, this.event_ID);
 
@@ -16,6 +19,7 @@ class EventDetails extends StatefulWidget {
 }
 
 class _EventDetailsState extends State<EventDetails> {
+  // ignore: non_constant_identifier_names
   String event_id;
 
   EventInfo _eventInfo = new EventInfo();

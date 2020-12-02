@@ -100,6 +100,7 @@ class DialogBox {
   }
 }
 
+// ignore: non_constant_identifier_names
 Widget DatailTitle(String title) {
   return new Text(
     title,
@@ -109,6 +110,7 @@ Widget DatailTitle(String title) {
   );
 }
 
+// ignore: non_constant_identifier_names
 Widget DetailDescription(String data) {
   return SingleChildScrollView(
     child: new Card(
@@ -154,6 +156,7 @@ Widget DetailDescription(String data) {
   );
 }
 
+// ignore: non_constant_identifier_names
 Widget DetailImage(String data) {
   return SingleChildScrollView(
     child:new Card(
@@ -227,9 +230,13 @@ Widget appBarMain(BuildContext context) {
 }
 
 
+// ignore: non_constant_identifier_names
 Widget SponsorPostUI(
+  // ignore: non_constant_identifier_names
   String sponsor_link,
+  // ignore: non_constant_identifier_names
   String sponsor_name,
+  // ignore: non_constant_identifier_names
   String sponsor_category,
   String logo,
 ) {

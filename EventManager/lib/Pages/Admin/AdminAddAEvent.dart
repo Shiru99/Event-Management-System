@@ -1,16 +1,11 @@
 import 'package:EventManager/Authorisations/PostgresKonnection.dart';
 import 'package:EventManager/Authorisations/SaveUser.dart';
-import 'package:EventManager/Classes/GuestInfo.dart';
-import 'package:EventManager/Classes/SponsorInfo.dart';
 import 'package:EventManager/Pages/Admin/AdminEventDetails.dart';
-import 'package:EventManager/Pages/Admin/AdminFestDetails.dart';
-import 'package:EventManager/Pages/Admin/AdminGuestDetails.dart';
-import 'package:EventManager/Pages/Admin/AdminSponsorDetails.dart';
 import 'package:EventManager/Widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:postgres/postgres.dart';
-import 'package:email_validator/email_validator.dart';
 
+// ignore: must_be_immutable
 class AdminAddAEvent extends StatefulWidget {
   PostgresKonnection _postgresKonnection;
   SaveUser _user;
@@ -23,20 +18,28 @@ class AdminAddAEvent extends StatefulWidget {
 class _AdminAddAEventState extends State<AdminAddAEvent> {
   final _addEventFormKey = GlobalKey<FormState>();
 
+  // ignore: non_constant_identifier_names
   TextEditingController _event_name = new TextEditingController();
+  // ignore: non_constant_identifier_names
   TextEditingController _start_date_time = new TextEditingController();
+  // ignore: non_constant_identifier_names
   TextEditingController _end_date_time = new TextEditingController();
+  // ignore: non_constant_identifier_names
   TextEditingController _register_start_date_time = new TextEditingController();
+  // ignore: non_constant_identifier_names
   TextEditingController _register_end_date_time = new TextEditingController();
   TextEditingController _place = new TextEditingController();
+  // ignore: non_constant_identifier_names
   TextEditingController _short_description = new TextEditingController();
   TextEditingController _description = new TextEditingController();
+  // ignore: non_constant_identifier_names
   TextEditingController _participant_limit = new TextEditingController();
   TextEditingController _price = new TextEditingController();
 
   var results;
   bool _isLoading = true;
 
+  // ignore: non_constant_identifier_names
   var event_id;
 
   Future fun() async {
@@ -54,6 +57,7 @@ class _AdminAddAEventState extends State<AdminAddAEvent> {
     });
   }
 
+  // ignore: missing_return
   bool isValidNumber(var number){
     try {
       int a = int.parse(number);
@@ -191,6 +195,7 @@ class _AdminAddAEventState extends State<AdminAddAEvent> {
                                           "Event Name", "Enter the event name"),
                                       textInputAction: TextInputAction.next,
                                       controller: _event_name,
+                                      // ignore: non_constant_identifier_names
                                       validator: (_event_name) {
                                         if (_event_name.isEmpty) {
                                           return 'Please enter some text';
@@ -213,6 +218,7 @@ class _AdminAddAEventState extends State<AdminAddAEvent> {
                                           "format YYYY-MM-DD"),
                                       textInputAction: TextInputAction.next,
                                       controller: _start_date_time,
+                                      // ignore: non_constant_identifier_names
                                       validator: (_start_date_time) {
                                         if (_start_date_time.isEmpty) {
                                           return 'Please enter date';
@@ -237,6 +243,7 @@ class _AdminAddAEventState extends State<AdminAddAEvent> {
                                           "Event Ends on", "format YYYY-MM-DD"),
                                       textInputAction: TextInputAction.next,
                                       controller: _end_date_time,
+                                      // ignore: non_constant_identifier_names
                                       validator: (_end_date_time) {
                                         if (_end_date_time.isEmpty) {
                                           return 'Please enter date';
@@ -262,6 +269,7 @@ class _AdminAddAEventState extends State<AdminAddAEvent> {
                                           "format YYYY-MM-DD"),
                                       textInputAction: TextInputAction.next,
                                       controller: _register_start_date_time,
+                                      // ignore: non_constant_identifier_names
                                       validator: (_register_start_date_time) {
                                         if (_register_start_date_time.isEmpty) {
                                           return 'Please enter date';
@@ -287,6 +295,7 @@ class _AdminAddAEventState extends State<AdminAddAEvent> {
                                           "Fest Registraion ends on", "format YYYY-MM-DD"),
                                       textInputAction: TextInputAction.next,
                                       controller: _register_end_date_time,
+                                      // ignore: non_constant_identifier_names
                                       validator: (_register_end_date_time) {
                                         if (_register_end_date_time.isEmpty) {
                                           return 'Please enter date';
@@ -334,6 +343,7 @@ class _AdminAddAEventState extends State<AdminAddAEvent> {
                                           "Enter the short description of event"),
                                       textInputAction: TextInputAction.next,
                                       controller: _short_description,
+                                      // ignore: non_constant_identifier_names
                                       validator: (_short_description) {
                                         if (_short_description.isEmpty) {
                                           return 'Please enter some text';
@@ -400,6 +410,7 @@ class _AdminAddAEventState extends State<AdminAddAEvent> {
                                           "4"),
                                       textInputAction: TextInputAction.done,
                                       controller: _participant_limit,
+                                      // ignore: non_constant_identifier_names
                                       validator: (_participant_limit) {
                                         if (_participant_limit.isEmpty) {
                                           return 'Please enter some text';

@@ -1,4 +1,3 @@
-import 'package:EventManager/Authorisations/SignIn.dart';
 import 'package:EventManager/Authorisations/auth.dart';
 import 'package:EventManager/Authorisations/authenticate.dart';
 import 'package:EventManager/Widgets/widgets.dart';

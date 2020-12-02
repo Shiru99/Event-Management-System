@@ -1,18 +1,13 @@
 import 'package:EventManager/Authorisations/PostgresKonnection.dart';
 import 'package:EventManager/Authorisations/SaveUser.dart';
 import 'package:EventManager/Classes/EventInfo.dart';
-import 'package:EventManager/Classes/GuestInfo.dart';
-import 'package:EventManager/Classes/SponsorInfo.dart';
 import 'package:EventManager/Pages/Admin/AdminAddAEvent.dart';
-import 'package:EventManager/Pages/Admin/AdminAddAGuest.dart';
-import 'package:EventManager/Pages/Admin/AdminAddASponsor.dart';
 import 'package:EventManager/Pages/Admin/AdminEachEventDetails.dart';
-import 'package:EventManager/Pages/Admin/AdminFestDetails.dart';
-import 'package:EventManager/Pages/Admin/AdminEventDetailsUpdate.dart';
 import 'package:EventManager/Widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:postgres/postgres.dart';
 
+// ignore: must_be_immutable
 class AdminEventDetails extends StatefulWidget {
   PostgresKonnection _postgresKonnection;
   SaveUser _user;
@@ -211,14 +206,18 @@ class _AdminEventDetailsState extends State<AdminEventDetails> {
   }
 }
 
+// ignore: non_constant_identifier_names
 Widget AdminPostUI(
   BuildContext context,
   SaveUser _user,
   PostgresKonnection _postgresKonnection,
+  // ignore: non_constant_identifier_names
   String event_ID,
   String image,
+  // ignore: non_constant_identifier_names
   String event_name,
   String description,
+  // ignore: non_constant_identifier_names
   String short_description,
 ) {
   Future goToEvent() async {

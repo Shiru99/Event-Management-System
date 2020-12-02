@@ -11,6 +11,7 @@ import 'package:EventManager/Widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:postgres/postgres.dart';
 
+// ignore: must_be_immutable
 class AdminFestDetails extends StatefulWidget {
   PostgresKonnection _postgresKonnection;
   SaveUser _user;
@@ -609,14 +610,18 @@ class _AdminFestDetailsState extends State<AdminFestDetails> {
   }
 }
 
+// ignore: non_constant_identifier_names
 Widget PostUI(
   BuildContext context,
   SaveUser _user,
   PostgresKonnection _postgresKonnection,
+  // ignore: non_constant_identifier_names
   String event_ID,
   String image,
+  // ignore: non_constant_identifier_names
   String event_name,
   String description,
+  // ignore: non_constant_identifier_names
   String short_description,
 ) {
   Future goToEvent() async {
