@@ -124,8 +124,6 @@ INSERT INTO group_participant VALUES ('2020230094','20202305',90,'2020230509','S
 
 /*      Admin   */
 INSERT INTO admino VALUES ('20202301','Shriram','8889991234','shriram.ghadge1999@gmail.com');
-INSERT INTO admino VALUES ('20202302','Manjeet','9837593752','manjeet@gmail.com');
-INSERT INTO admino VALUES ('20202303','Yashwant','9837593752','yashwantyash225@gmail.com');
 
 
 /*      For Sponsor */
@@ -152,11 +150,12 @@ INSERT INTO gives VALUES ('20202307','20202305',50000);
 
 
 /*      For guests */
-INSERT INTO guest VALUES ('20202301','Kamalnath Swami Kamalnath Swami','Director of the Indian Institute of Information Technology, Dharwad','9583452734','dank@gmail.com');
+
 INSERT INTO guest VALUES ('20202302','Wrick','Consumer Chief Technologist, McAfee Sr. Principal Engineer, Sr. Director of Technology Pathfinding and Research','9128889935','wrik@gmail.com');
 INSERT INTO guest VALUES ('20202303','Danky','Director of the Indian Institute of Science','9583999734','danky@gmail.com');
 INSERT INTO guest VALUES ('20202304','Mr. chakradhar','Consumer Chief Technologist, Micromax Sr. Principal Engineer, Sr. Director of Technology Pathfinding and Research','9120009935','siri@gmail.com');
 INSERT INTO guest VALUES ('20202305','Anonymous','Anonymous is a decentralized international activist/hacktivist collective/movement that is widely known for its various cyber attacks against several governments, government institutions and government agencies, corporations, and the Church of Scientology.','9876543210','anonymous@gmail.com');
+INSERT INTO guest VALUES ('20202301','Kamalnath Swami nath Swami','Director of the Indian Institute of Information Technology, Dharwad','9583452734','dank@gmail.com');
 
 INSERT INTO invite VALUES ('20202301','20202301');
 INSERT INTO invite VALUES ('20202302','20202301');

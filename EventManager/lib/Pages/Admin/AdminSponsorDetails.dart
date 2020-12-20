@@ -59,7 +59,6 @@ class _AdminSponsorDetailsState extends State<AdminSponsorDetails> {
     // print(results[0]);
   }
 
-
   addASponsor() async {
     await Navigator.pushReplacement(
         context,
@@ -245,10 +244,14 @@ Widget AdminSponsorPostUI(
             style: new TextStyle(
                 fontSize: 36.0, color: Colors.black, fontFamily: "Signatra"),
           ),
-          new Image.network(
-            logo,
+          Image.asset(
+            "assets/images/sponsor.png",
             fit: BoxFit.cover,
           ),
+          // new Image.network(
+          //   logo,
+          //   fit: BoxFit.cover,
+          // ),
           new Text(
             "sponsor ID",
             textAlign: TextAlign.center,

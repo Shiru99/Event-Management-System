@@ -37,7 +37,7 @@ Container loading() {
 
 Widget logo(double h, double w) {
   return new Hero(
-    tag: (h*w+h).toString(),
+    tag: (h * w + h).toString(),
     child: Container(
       // alignment: Alignment.center,
       width: w,
@@ -159,40 +159,39 @@ Widget DetailDescription(String data) {
 // ignore: non_constant_identifier_names
 Widget DetailImage(String data) {
   return SingleChildScrollView(
-    child:new Card(
-            elevation: 20.0,
-            clipBehavior: Clip.antiAlias,
-            margin: EdgeInsets.all(15.0),
-            color: Colors.white,
+    child: new Card(
+      elevation: 20.0,
+      clipBehavior: Clip.antiAlias,
+      margin: EdgeInsets.all(15.0),
+      color: Colors.white,
 
-            // shape: RoundedRectangleBorder(
-            //     borderRadius: BorderRadius.only(
-            //         bottomRight: Radius.circular(50)),
-            //     side: BorderSide(width: 1, color: Colors.black)
-            // ),
+      // shape: RoundedRectangleBorder(
+      //     borderRadius: BorderRadius.only(
+      //         bottomRight: Radius.circular(50)),
+      //     side: BorderSide(width: 1, color: Colors.black)
+      // ),
 
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(40.0),
-              side: BorderSide(
-                color: Colors.white,
-                width: 1.0,
-              ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(40.0),
+        side: BorderSide(
+          color: Colors.white,
+          width: 1.0,
+        ),
+      ),
+      child: new Container(
+        color: Colors.white,
+        padding: new EdgeInsets.all(15.0),
+        child: new Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            new Image.network(
+              data,
+              fit: BoxFit.cover,
             ),
-            child: new Container(
-              color: Colors.white,
-              padding: new EdgeInsets.all(15.0),
-              child: new Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  new Image.network(
-                    data,
-                    fit: BoxFit.cover,
-                  ),
-                ],
-              ),
-            ),
-        
-          ),
+          ],
+        ),
+      ),
+    ),
   );
 }
 
@@ -229,7 +228,6 @@ Widget appBarMain(BuildContext context) {
       );
 }
 
-
 // ignore: non_constant_identifier_names
 Widget SponsorPostUI(
   // ignore: non_constant_identifier_names
@@ -240,8 +238,6 @@ Widget SponsorPostUI(
   String sponsor_category,
   String logo,
 ) {
-  
-
   return new Card(
     elevation: 20.0,
     clipBehavior: Clip.antiAlias,
@@ -268,22 +264,25 @@ Widget SponsorPostUI(
                 textAlign: TextAlign.center,
                 style: new TextStyle(fontSize: 20.0, color: Colors.indigo),
               ),
-              
             ],
           ),
           SizedBox(
             height: 10.0,
           ),
           new Text(
-                sponsor_name,
-                textAlign: TextAlign.center,
-                style: new TextStyle(fontSize: 36.0, color: Colors.black,fontFamily: "Signatra"),
-              ),
-          
-          new Image.network(
-            logo,
+            sponsor_name,
+            textAlign: TextAlign.center,
+            style: new TextStyle(
+                fontSize: 36.0, color: Colors.black, fontFamily: "Signatra"),
+          ),
+          Image.asset(
+            "assets/images/sponsor.png",
             fit: BoxFit.cover,
           ),
+          // new Image.network(
+          //   logo,
+          //   fit: BoxFit.cover,
+          // ),
           SizedBox(
             height: 10.0,
           ),
@@ -301,4 +300,76 @@ Widget SponsorPostUI(
   );
 }
 
+// ignore: non_constant_identifier_names
+Widget SponsorPostUIGUEST(
+  // ignore: non_constant_identifier_names
+  String sponsor_link,
+  // ignore: non_constant_identifier_names
+  String sponsor_name,
+  // ignore: non_constant_identifier_names
+  String sponsor_category,
+  String logo,
+) {
+  return new Card(
+    elevation: 20.0,
+    clipBehavior: Clip.antiAlias,
+    margin: EdgeInsets.all(15.0),
+    color: Colors.red,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(40.0),
+      side: BorderSide(
+        color: Colors.black,
+        width: 1.0,
+      ),
+    ),
+    child: new Container(
+      color: Colors.white,
+      padding: new EdgeInsets.all(25.0),
+      child: new Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          new Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              new Text(
+                sponsor_category,
+                textAlign: TextAlign.center,
+                style: new TextStyle(fontSize: 20.0, color: Colors.indigo),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 10.0,
+          ),
+          new Text(
+            sponsor_name,
+            textAlign: TextAlign.center,
+            style: new TextStyle(
+                fontSize: 36.0, color: Colors.black, fontFamily: "Signatra"),
+          ),
 
+          Image.asset(
+            "assets/images/Guest.png",
+            fit: BoxFit.cover,
+          ),
+
+          // new Image.network(
+          //   logo,
+          //   fit: BoxFit.cover,
+          // ),
+          SizedBox(
+            height: 10.0,
+          ),
+          new Text(
+            sponsor_link,
+            textAlign: TextAlign.center,
+            style: new TextStyle(fontSize: 16.0, color: Colors.black),
+          ),
+          SizedBox(
+            height: 10.0,
+          ),
+        ],
+      ),
+    ),
+  );
+}

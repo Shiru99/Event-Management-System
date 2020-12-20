@@ -87,10 +87,9 @@ class _AdminRegisteredStudentsState extends State<AdminRegisteredStudents> {
       print(_guestList);
       print(_guestList.length);
     } else {
+      // print("Many");
 
-    // print("Many");
-
-    print("Many");
+      print("Many");
       String query = '''
 
       SELECT * 
@@ -118,7 +117,7 @@ class _AdminRegisteredStudentsState extends State<AdminRegisteredStudents> {
       print(resOfGuests.length);
       print(group_size[0][0]);
 
-      for (int i = 0; i < resOfGuests.length;i+= group_size[0][0]) {
+      for (int i = 0; i < resOfGuests.length; i += group_size[0][0]) {
         print(i);
         Teams _teamInfo = new Teams();
 
@@ -129,7 +128,7 @@ class _AdminRegisteredStudentsState extends State<AdminRegisteredStudents> {
         print("J :");
         for (int j = 0; j < group_size[0][0]; j++) {
           print(j);
-          print(i+j);
+          print(i + j);
           _teamInfo.participant_id.add(resOfGuests[i + j][6]);
           _teamInfo.participant_name.add(resOfGuests[i + j][7]);
           _teamInfo.participant_cno.add(resOfGuests[i + j][8]);
@@ -143,7 +142,6 @@ class _AdminRegisteredStudentsState extends State<AdminRegisteredStudents> {
       print(_teamList);
       print(_teamList.length);
       total_registered = _teamList.length;
-      
 
       // await Navigator.pushReplacement(
       //     context,
@@ -152,14 +150,9 @@ class _AdminRegisteredStudentsState extends State<AdminRegisteredStudents> {
       //             widget._user, widget._postgresKonnection, widget.event_id)));
     }
 
-      
-
-      setState(() {
+    setState(() {
       _isLoading = false;
     });
-
-    
-
   }
 
   Future addAInvigilator() async {
@@ -183,136 +176,135 @@ class _AdminRegisteredStudentsState extends State<AdminRegisteredStudents> {
       body: _isLoading
           ? loading()
           : ((size == 1)
-                ? SingleChildScrollView(
-              child: Container(
-                child: Center(
-                  child: Column(
-                    children: <Widget>[
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
+              ? SingleChildScrollView(
+                  child: Container(
+                    child: Center(
+                      child: Column(
                         children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.only(top: 150.0),
-                            child: logo(90, 280),
-                          ),
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(top: 8.0, bottom: 50.0),
-                            child: Text(
-                              " A Paradigm  Shift  💫", // 💫🌠
-                              style: TextStyle(
-                                  fontSize: 30.0,
-                                  color: Colors.white,
-                                  fontFamily: "Signatra"),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 8.0, horizontal: 50),
-                            child: new Text(
-                              "Registered  Students",
-                              style: new TextStyle(
-                                  fontSize: 40.0,
-                                  color: Colors.yellow,
-                                  fontFamily: "Signatra"),
-                            ),
-                          ),
-                          new Text(
-                            "Registered  Students $total_registered",
-                            textAlign: TextAlign.center,
-                            style: new TextStyle(
-                                fontSize: 16, color: Colors.white),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 24.0, vertical: 10.0),
-                            child: Container(
-                              color: Colors.black,
-                              child: new ListView.builder(
-                                padding: EdgeInsets.all(8.0),
-                                physics: const ClampingScrollPhysics(),
-                                scrollDirection: Axis.vertical,
-                                shrinkWrap: true,
-                                itemCount: _guestList.length,
-                                itemBuilder: (_, index) {
-                                  return AdminRegisteredStudentPostUI(
-                                    context,
-                                    widget._user,
-                                    widget._postgresKonnection,
-                                    _guestList[index].guest_id,
-                                    _guestList[index].guest_name,
-                                    _guestList[index].description,
-                                    _guestList[index].guest_cno,
-                                    _guestList[index].guest_email,
-                                    _guestList[index].imageURL,
-                                  );
-                                },
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.only(top: 150.0),
+                                child: logo(90, 280),
                               ),
-                            ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 8.0, bottom: 50.0),
+                                child: Text(
+                                  " A Paradigm  Shift  💫", // 💫🌠
+                                  style: TextStyle(
+                                      fontSize: 30.0,
+                                      color: Colors.white,
+                                      fontFamily: "Signatra"),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 8.0, horizontal: 50),
+                                child: new Text(
+                                  "Registered  Students",
+                                  style: new TextStyle(
+                                      fontSize: 40.0,
+                                      color: Colors.yellow,
+                                      fontFamily: "Signatra"),
+                                ),
+                              ),
+                              new Text(
+                                "Registered  Students $total_registered",
+                                textAlign: TextAlign.center,
+                                style: new TextStyle(
+                                    fontSize: 16, color: Colors.white),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 24.0, vertical: 10.0),
+                                child: Container(
+                                  color: Colors.black,
+                                  child: new ListView.builder(
+                                    padding: EdgeInsets.all(8.0),
+                                    physics: const ClampingScrollPhysics(),
+                                    scrollDirection: Axis.vertical,
+                                    shrinkWrap: true,
+                                    itemCount: _guestList.length,
+                                    itemBuilder: (_, index) {
+                                      return AdminRegisteredStudentPostUI(
+                                        context,
+                                        widget._user,
+                                        widget._postgresKonnection,
+                                        _guestList[index].guest_id,
+                                        _guestList[index].guest_name,
+                                        _guestList[index].description,
+                                        _guestList[index].guest_cno,
+                                        _guestList[index].guest_email,
+                                        _guestList[index].imageURL,
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
-              ),
-            )
-
-          : SingleChildScrollView(
-                    child: Container(
-                      child: Center(
-                        child: Column(
-                          children: <Widget>[
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 150.0),
-                                  child: logo(90, 280),
+                )
+              : SingleChildScrollView(
+                  child: Container(
+                    child: Center(
+                      child: Column(
+                        children: <Widget>[
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.only(top: 150.0),
+                                child: logo(90, 280),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 8.0, bottom: 50.0),
+                                child: Text(
+                                  " A Paradigm  Shift  💫", // 💫🌠
+                                  style: TextStyle(
+                                      fontSize: 30.0,
+                                      color: Colors.white,
+                                      fontFamily: "Signatra"),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 8.0, bottom: 50.0),
-                                  child: Text(
-                                    " A Paradigm  Shift  💫", // 💫🌠
-                                    style: TextStyle(
-                                        fontSize: 30.0,
-                                        color: Colors.white,
-                                        fontFamily: "Signatra"),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 8.0, horizontal: 50),
-                                  child: new Text(
-                                    "Registered  Teams",
-                                    style: new TextStyle(
-                                        fontSize: 40.0,
-                                        color: Colors.yellow,
-                                        fontFamily: "Signatra"),
-                                  ),
-                                ),
-                                new Text(
-                                  "Registered  Teams $total_registered",
-                                  textAlign: TextAlign.center,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 8.0, horizontal: 50),
+                                child: new Text(
+                                  "Registered  Teams",
                                   style: new TextStyle(
-                                      fontSize: 16, color: Colors.white),
+                                      fontSize: 40.0,
+                                      color: Colors.yellow,
+                                      fontFamily: "Signatra"),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 24.0, vertical: 10.0),
-                                  child: Container(
-                                    color: Colors.black,
-                                    child: new ListView.builder(
-                                      padding: EdgeInsets.all(8.0),
-                                      physics: const ClampingScrollPhysics(),
-                                      scrollDirection: Axis.vertical,
-                                      shrinkWrap: true,
-                                      itemCount: _teamList.length,
-                                      itemBuilder: (_, index) {
-                                        return AdminRegisteredTeamPostUI(
+                              ),
+                              new Text(
+                                "Registered  Teams $total_registered",
+                                textAlign: TextAlign.center,
+                                style: new TextStyle(
+                                    fontSize: 16, color: Colors.white),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 24.0, vertical: 10.0),
+                                child: Container(
+                                  color: Colors.black,
+                                  child: new ListView.builder(
+                                    padding: EdgeInsets.all(8.0),
+                                    physics: const ClampingScrollPhysics(),
+                                    scrollDirection: Axis.vertical,
+                                    shrinkWrap: true,
+                                    itemCount: _teamList.length,
+                                    itemBuilder: (_, index) {
+                                      return AdminRegisteredTeamPostUI(
                                           context,
                                           widget._user,
                                           widget._postgresKonnection,
@@ -324,20 +316,18 @@ class _AdminRegisteredStudentsState extends State<AdminRegisteredStudents> {
                                           _teamList[index].participant_name,
                                           _teamList[index].participant_cno,
                                           _teamList[index].participant_email,
-                                          festImageURL
-                                        );
-                                      },
-                                    ),
+                                          festImageURL);
+                                    },
                                   ),
                                 ),
-                              ],
-                            ),
-                          ],
-                        ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
-                  )
-    ),
+                  ),
+                )),
     );
   }
 }
@@ -392,13 +382,19 @@ Widget AdminRegisteredStudentPostUI(
               ),
             ],
           ),
-
           SizedBox(height: 10),
-          Icon(
-            Icons.person,
-            color: Colors.green,
-            size: 100.0,
+
+Image.asset(
+            "assets/images/personRegistration.jpeg",
+            fit: BoxFit.cover,
           ),
+          
+          SizedBox(height: 10),
+          // Icon(
+          //   Icons.person,
+          //   color: Colors.green,
+          //   size: 100.0,
+          // ),
 
           new Text(
             guest_name,
@@ -455,24 +451,23 @@ Widget AdminRegisteredTeamPostUI(
   String score,
   String review,
   // ignore: non_constant_identifier_names
-  List <String>participant_id,
+  List<String> participant_id,
   // ignore: non_constant_identifier_names
-  List <String>participant_name,
+  List<String> participant_name,
   // ignore: non_constant_identifier_names
-  List <String>participant_cno,
+  List<String> participant_cno,
   // ignore: non_constant_identifier_names
-  List <String>participant_email,
+  List<String> participant_email,
   String logo,
-) 
-{
+) {
   print("101");
   String team = "";
-  for(int i=0;i<participant_id.length;i++ ){
-    team = team+participant_id[i]+"\t\t\t"+participant_name[i]+"\n";
+  for (int i = 0; i < participant_id.length; i++) {
+    team = team + participant_id[i] + "\t\t\t" + participant_name[i] + "\n";
   }
 
   print(team);
-  print("1 "+participant_name[0]);
+  print("1 " + participant_name[0]);
 
   return new Card(
     elevation: 20.0,
@@ -492,7 +487,6 @@ Widget AdminRegisteredTeamPostUI(
       child: new Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -509,29 +503,38 @@ Widget AdminRegisteredTeamPostUI(
               ),
             ],
           ),
-         SizedBox(height: 10),
-         new Text(
+          SizedBox(height: 10),
+          new Text(
             group_name,
             textAlign: TextAlign.center,
             style: new TextStyle(
                 fontSize: 36.0, color: Colors.black, fontFamily: "Signatra"),
           ),
 
-        SizedBox(height: 10),
-          Icon(
-            Icons.group,
-            color: Colors.green,
-            size: 100.0,
-          ),
+          SizedBox(height: 10),
 
-         new Text(
+          Image.asset(
+            "assets/images/team.png",
+            fit: BoxFit.cover,
+          ),
+          SizedBox(height: 10),
+          // Icon(
+          //   Icons.person,
+          //   color: Colors.green,
+          //   size: 100.0,
+          // ),
+          // SizedBox(height: 10),
+          //   Icon(
+          //     Icons.group,
+          //     color: Colors.green,
+          //     size: 100.0,
+          //   ),
+
+          new Text(
             team,
             textAlign: TextAlign.center,
-            style: new TextStyle(
-                fontSize: 18.0, color: Colors.black),
+            style: new TextStyle(fontSize: 18.0, color: Colors.black),
           ),
-
-         
         ],
       ),
     ),

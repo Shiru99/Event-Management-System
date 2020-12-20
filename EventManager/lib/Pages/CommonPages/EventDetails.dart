@@ -70,15 +70,15 @@ class _EventDetailsState extends State<EventDetails> {
       body: _isLoading
           ? loading()
           : SingleChildScrollView(
-        child: Container(
-          child: Center(
-            child: Column(
-              children: <Widget>[
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Padding(
+              child: Container(
+                child: Center(
+                  child: Column(
+                    children: <Widget>[
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Padding(
                             padding: const EdgeInsets.only(top: 150.0),
                             child: logo(90, 280),
                           ),
@@ -93,76 +93,89 @@ class _EventDetailsState extends State<EventDetails> {
                                   fontFamily: "Signatra"),
                             ),
                           ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
-                      
-                      child: new Text(
-                        eventName,
-                        style: new TextStyle(
-                            fontSize: 48.0,
-                            color: Colors.white,
-                            fontFamily: "Signatra"),
+                          Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: new Image.asset(
+                                      "assets/images/tech.jpg",
+                                      fit: BoxFit.cover,
+                                      
+                                    ),
+                                  
+                          ),
+
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 10.0, bottom: 10.0),
+                            child: new Text(
+                              eventName,
+                              style: new TextStyle(
+                                  fontSize: 48.0,
+                                  color: Colors.white,
+                                  fontFamily: "Signatra"),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 24.0, vertical: 10.0),
+                            child: Container(
+                              color: Colors.black,
+                              child: new ListView(
+                                padding: EdgeInsets.all(8.0),
+                                physics: const ClampingScrollPhysics(),
+                                scrollDirection: Axis.vertical,
+                                shrinkWrap: true,
+                                children: [
+                                  SizedBox(height: 20.0),
+                                  // DatailTitle("Event  Name"),
+                                  // DetailDescription(_eventInfo.event_name.toString()),
+                                  
+                                  // DetailImage(_eventInfo.imageURL.toString()),
+                                  SizedBox(height: 20.0),
+                                  DatailTitle("Event  Description"),
+                                  DetailDescription(
+                                      _eventInfo.short_description.toString() +
+                                          "\n\n" +
+                                          _eventInfo.description.toString()),
+                                  SizedBox(height: 20.0),
+                                  DatailTitle("Price"),
+                                  DetailDescription(
+                                      _eventInfo.price.toString()),
+                                  SizedBox(height: 20.0),
+                                  DatailTitle("Location"),
+                                  DetailDescription(
+                                      _eventInfo.place.toString()),
+                                  SizedBox(height: 20.0),
+                                  DatailTitle("Event  Time"),
+                                  DetailDescription("From\n" +
+                                      _eventInfo.start_date_time
+                                          .toString()
+                                          .split(' ')[0] +
+                                      "\n\nTo\n" +
+                                      _eventInfo.end_date_time
+                                          .toString()
+                                          .split(' ')[0]),
+                                  SizedBox(height: 20.0),
+                                  DatailTitle("Registration  Date"),
+                                  DetailDescription("From\n" +
+                                      _eventInfo.register_start_date_time
+                                          .toString()
+                                          .split(' ')[0] +
+                                      "\n\nTo\n" +
+                                      _eventInfo.register_end_date_time
+                                          .toString()
+                                          .split(' ')[0]),
+                                  SizedBox(height: 20.0),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 24.0, vertical: 10.0),
-                      child: Container(
-                        color: Colors.black,
-                        child: new ListView(
-                          padding: EdgeInsets.all(8.0),
-                          physics: const ClampingScrollPhysics(),
-                          scrollDirection: Axis.vertical,
-                          shrinkWrap: true,
-                          children: [
-                            SizedBox(height: 20.0),
-                            // DatailTitle("Event  Name"),
-                            // DetailDescription(_eventInfo.event_name.toString()),
-                            DetailImage(_eventInfo.imageURL.toString()),
-                            SizedBox(height: 20.0),
-                            DatailTitle("Event  Description"),
-                            DetailDescription(
-                                _eventInfo.short_description.toString() +
-                                    "\n\n" +
-                                    _eventInfo.description.toString()),
-                            SizedBox(height: 20.0),
-                            DatailTitle("Price"),
-                            DetailDescription(_eventInfo.price.toString()),
-                            SizedBox(height: 20.0),
-                            DatailTitle("Location"),
-                            DetailDescription(_eventInfo.place.toString()),
-                            SizedBox(height: 20.0),
-                            DatailTitle("Event  Time"),
-                            DetailDescription("From\n" +
-                                _eventInfo.start_date_time
-                                    .toString()
-                                    .split(' ')[0] +
-                                "\n\nTo\n" +
-                                _eventInfo.end_date_time
-                                    .toString()
-                                    .split(' ')[0]),
-                            SizedBox(height: 20.0),
-                            DatailTitle("Registration  Date"),
-                            DetailDescription("From\n" +
-                                _eventInfo.register_start_date_time
-                                    .toString()
-                                    .split(' ')[0] +
-                                "\n\nTo\n" +
-                                _eventInfo.register_end_date_time
-                                    .toString()
-                                    .split(' ')[0]),
-                            SizedBox(height: 20.0),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ],
+              ),
             ),
-          ),
-        ),
-      ),
     );
   }
 }

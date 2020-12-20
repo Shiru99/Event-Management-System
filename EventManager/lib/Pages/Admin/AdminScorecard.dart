@@ -366,11 +366,16 @@ Widget AdminRegisteredStudentPostUI(
           ),
 
           SizedBox(height: 10),
-          Icon(
-            Icons.emoji_events_rounded,
-            color: Colors.yellow,
-            size: 100.0,
+          Image.asset(
+            "assets/images/winner.jpeg",
+            fit: BoxFit.cover,
           ),
+          SizedBox(height: 10),
+          // Icon(
+          //   Icons.emoji_events_rounded,
+          //   color: Colors.yellow,
+          //   size: 100.0,
+          // ),
 
           new Text(
             guest_name,
@@ -492,11 +497,17 @@ Widget AdminRegisteredTeamPostUI(
                 fontSize: 36.0, color: Colors.black, fontFamily: "Signatra"),
           ),
           SizedBox(height: 10),
-          Icon(
-            Icons.emoji_events_rounded,
-            color: Colors.yellow,
-            size: 100.0,
+
+          Image.asset(
+            "assets/images/winningteam.jpeg",
+            fit: BoxFit.cover,
           ),
+          SizedBox(height: 10),
+          // Icon(
+          //   Icons.emoji_events_rounded,
+          //   color: Colors.yellow,
+          //   size: 100.0,
+          // ),
           new Text(
             team,
             textAlign: TextAlign.center,

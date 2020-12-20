@@ -251,28 +251,49 @@ Widget AdminPostUI(
         child: new Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            new Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+             new Row(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                new Text(
-                  short_description,
-                  textAlign: TextAlign.center,
-                  style: new TextStyle(fontSize: 16.0, color: Colors.black),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 8.0),
+                  child: new Text(
+                    short_description,
+                    textAlign: TextAlign.center,
+                    style: new TextStyle(
+                        fontSize: 16.0,
+                        color: Colors.black,
+                        fontStyle: FontStyle.italic),
+                  ),
                 ),
-                new Text(
-                  event_name,
-                  textAlign: TextAlign.center,
-                  style: new TextStyle(fontSize: 16.0, color: Colors.black),
-                )
+                // new Text(
+                //   event_name,
+                //   textAlign: TextAlign.center,
+                //   style: new TextStyle(fontSize: 16.0, color: Colors.black),
+                // )
               ],
+            ),
+            new Text(
+              event_name,
+              textAlign: TextAlign.center,
+              style: new TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16.0,
+                  color: Colors.black),
             ),
             SizedBox(
               height: 10.0,
             ),
-            new Image.network(
-              image,
+            new Image.asset(
+              "assets/images/tech.jpg",
               fit: BoxFit.cover,
             ),
+            // new Image.network(
+            //   image,
+            //   fit: BoxFit.cover,
+            // ),
+            
+            
             SizedBox(
               height: 10.0,
             ),

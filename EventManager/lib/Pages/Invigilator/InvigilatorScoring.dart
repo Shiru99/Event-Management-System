@@ -715,12 +715,18 @@ Widget AdminRegisteredTeamPostUI(
                 fontSize: 36.0, color: Colors.black, fontFamily: "Signatra"),
           ),
           SizedBox(height: 10),
-          Icon(
-            Icons.emoji_events_rounded,
-            color: Colors.yellow,
-            size: 100.0,
+
+          Image.asset(
+            "assets/images/grades.jpg",
+            fit: BoxFit.cover,
           ),
-          new Text(
+          SizedBox(height: 10),
+          // Icon(
+          //   Icons.emoji_events_rounded,
+          //   color: Colors.yellow,
+          //   size: 100.0,
+          // ),
+           new Text(
             team,
             textAlign: TextAlign.center,
             style: new TextStyle(fontSize: 18.0, color: Colors.black),

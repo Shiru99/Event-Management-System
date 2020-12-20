@@ -229,11 +229,18 @@ Widget AdminGuestPostUI(
             style: new TextStyle(
                 fontSize: 36.0, color: Colors.black, fontFamily: "Signatra"),
           ),
-          new Image.network(
-            logo,
+          Image.asset(
+            "assets/images/Guest.png",
             fit: BoxFit.cover,
           ),
-          SizedBox(height: 10,),
+
+          // new Image.network(
+          //   logo,
+          //   fit: BoxFit.cover,
+          // ),
+          SizedBox(
+            height: 10.0,
+          ),
           new Text(
             "Guest ID",
             textAlign: TextAlign.center,

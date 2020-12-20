@@ -107,9 +107,10 @@ class _AdminFestDetailsState extends State<AdminFestDetails> {
       await Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) =>
-                  AdminParsecDetails(widget._user, widget._postgresKonnection)));
+              builder: (context) => AdminParsecDetails(
+                  widget._user, widget._postgresKonnection)));
     }
+
     Future eventDetails() async {
       await Navigator.push(
           context,
@@ -117,13 +118,15 @@ class _AdminFestDetailsState extends State<AdminFestDetails> {
               builder: (context) =>
                   AdminEventDetails(widget._user, widget._postgresKonnection)));
     }
+
     Future sponsorDetails() async {
       await Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) =>
-                  AdminSponsorDetails(widget._user, widget._postgresKonnection)));
+              builder: (context) => AdminSponsorDetails(
+                  widget._user, widget._postgresKonnection)));
     }
+
     Future guestDetails() async {
       await Navigator.push(
           context,
@@ -131,7 +134,8 @@ class _AdminFestDetailsState extends State<AdminFestDetails> {
               builder: (context) =>
                   AdminGuestDetails(widget._user, widget._postgresKonnection)));
     }
-      // AdminSponsorDetails // AdminGuestDetails // AdminEventDetails
+
+    // AdminSponsorDetails // AdminGuestDetails // AdminEventDetails
     return Scaffold(
       appBar: _isLoading ? null : appBarMain(context),
       resizeToAvoidBottomPadding: false,
@@ -199,10 +203,12 @@ class _AdminFestDetailsState extends State<AdminFestDetails> {
                                           fontFamily: "Signatra"),
                                     ),
                                   ),
-                                  new Image.network(
-                                    festImageURL.toString(),
+                                  new Image.asset(
+                                    "assets/images/ParsecDetails.png",
                                     fit: BoxFit.cover,
                                   ),
+                                  // assets/images/tech.jpg
+                                  
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
@@ -218,7 +224,6 @@ class _AdminFestDetailsState extends State<AdminFestDetails> {
                             ),
                           ),
                         ),
-
 
                         SizedBox(height: 40),
                         GestureDetector(
@@ -273,10 +278,11 @@ class _AdminFestDetailsState extends State<AdminFestDetails> {
                                           fontFamily: "Signatra"),
                                     ),
                                   ),
-                                  new Image.network(
-                                    festImageURL.toString(),
+                                  new Image.asset(
+                                    "assets/images/tech.jpg",
                                     fit: BoxFit.cover,
                                   ),
+                                  // assets/images/tech.jpg
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
@@ -292,7 +298,6 @@ class _AdminFestDetailsState extends State<AdminFestDetails> {
                             ),
                           ),
                         ),
-
 
                         SizedBox(height: 40),
                         GestureDetector(
@@ -347,10 +352,11 @@ class _AdminFestDetailsState extends State<AdminFestDetails> {
                                           fontFamily: "Signatra"),
                                     ),
                                   ),
-                                  new Image.network(
-                                    festImageURL.toString(),
+                                   new Image.asset(
+                                    "assets/images/sponsors.jpg",
                                     fit: BoxFit.cover,
                                   ),
+                                  // assets/images/tech.jpg
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
@@ -367,11 +373,10 @@ class _AdminFestDetailsState extends State<AdminFestDetails> {
                           ),
                         ),
 
-
                         SizedBox(height: 40),
                         GestureDetector(
                           onTap: () {
-                            guestDetails() ;
+                            guestDetails();
                           },
                           child: new Card(
                             elevation: 20.0,
@@ -421,10 +426,11 @@ class _AdminFestDetailsState extends State<AdminFestDetails> {
                                           fontFamily: "Signatra"),
                                     ),
                                   ),
-                                  new Image.network(
-                                    festImageURL.toString(),
+                                   new Image.asset(
+                                    "assets/images/guests.jpg",
                                     fit: BoxFit.cover,
                                   ),
+                                  // assets/images/tech.jpg
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
@@ -441,7 +447,6 @@ class _AdminFestDetailsState extends State<AdminFestDetails> {
                           ),
                         ),
 
-                        
                         // Padding(
                         //   padding: const EdgeInsets.symmetric(
                         //       vertical: 10.0, horizontal: 75),

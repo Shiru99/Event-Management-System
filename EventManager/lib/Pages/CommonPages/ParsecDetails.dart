@@ -388,7 +388,7 @@ class _ParsecDetailsState extends State<ParsecDetails> {
                                 shrinkWrap: true,
                                 itemCount: _guestList.length,
                                 itemBuilder: (_, index) {
-                                  return SponsorPostUI(
+                                  return SponsorPostUIGUEST(
                                     _guestList[index].description,
                                     _guestList[index].guest_name,
                                     "",

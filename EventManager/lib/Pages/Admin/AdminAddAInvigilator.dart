@@ -345,10 +345,14 @@ Widget AdminInvigilatorPostUI(
             style: new TextStyle(
                 fontSize: 36.0, color: Colors.black, fontFamily: "Signatra"),
           ),
-          new Image.network(
-            logo,
-            fit: BoxFit.cover,
-          ),
+          new Image.asset(
+              "assets/images/invigilator.jpg",
+              fit: BoxFit.cover,
+            ),
+          // new Image.network(
+          //   logo,
+          //   fit: BoxFit.cover,
+          // ),
           SizedBox(
             height: 10.0,
           ),
@@ -378,7 +382,7 @@ Widget AdminInvigilatorPostUI(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10.0),
                   child: new Text(
-                    "Edit Invigilator Details",
+                    "Edit Details",
                     style: new TextStyle(
                       fontSize: 20.0,
                     ),
