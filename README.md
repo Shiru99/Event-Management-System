@@ -40,3 +40,8 @@ Invigilator Credentials :
     email ID : invigilator@eventmanager.em 
     password : ABC123abc@
 ```
+
+# Demo
+
+
+[![Event Manager](https://img.youtube.com/vi/VID/0.jpg)](https://www.youtube.com/watch?v=VID)
