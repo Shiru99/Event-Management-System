@@ -1,7 +1,5 @@
 /*    For Fest       */
 INSERT INTO fest VALUES ('202023','PARSEC','IIT Dharwad','2020-01-23','3 days');
-INSERT INTO fest VALUES ('202001','Mood Indigo','IIT Bombay','2020-01-02','7 days');
-INSERT INTO fest VALUES ('202003','Madras Fest','IIT Madras','2020-03-10','2 days');
 
 /*      For Event       */
 INSERT INTO evento VALUES ('20202301','DevHack 2.0 - Software','2020-01-23 09:00:00','2020-01-24 21:00:00','2020-01-01 00:00:00','2020-01-23 09:00:00','Academic Building - Room no. 23','Hackathon','Do you have what it takes to code sleeplessly for 36 hrs to develop a groundbreaking piece of software? Well then, this event is rightly engineered for you.',4,'₹ 2,50,000');
@@ -127,7 +125,7 @@ INSERT INTO group_participant VALUES ('2020230094','20202305',90,'2020230509','S
 /*      Admin   */
 INSERT INTO admino VALUES ('20202301','Shriram','8889991234','shriram.ghadge1999@gmail.com');
 INSERT INTO admino VALUES ('20202302','Manjeet','9837593752','manjeet@gmail.com');
-INSERT INTO admino VALUES ('20202303','Yashwant','9837593752','yashwant@gmail.com');
+INSERT INTO admino VALUES ('20202303','Yashwant','9837593752','yashwantyash225@gmail.com');
 
 
 /*      For Sponsor */
@@ -179,7 +177,7 @@ INSERT INTO invigilator VALUES ('20202312','Glenn','IIT Madras professor','91245
 INSERT INTO invigilator VALUES ('20202313','Gauti','IIT Bombey professor','9124599635','gauti@gmail.com');
 
 
-INSERT INTO invigilator VALUES ('20202315','Gill','IIT Roorkee professor','9124562600','gill@gmail.com');
+INSERT INTO invigilator VALUES ('20202315','Gill','IIT Roorkee professor','9124562600','imanjeet@gmail.com');
 INSERT INTO invigilator VALUES ('20202316','Raavi','IIT Kharagpur professor','9124599600','raavi@gmail.com');
 
 

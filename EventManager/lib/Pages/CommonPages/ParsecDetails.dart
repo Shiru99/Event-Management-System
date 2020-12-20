@@ -162,6 +162,15 @@ class _ParsecDetailsState extends State<ParsecDetails> {
                             ),
                           ),
 
+                          new Text(
+                            "_____",
+                            textAlign: TextAlign.center,
+                            style: new TextStyle(
+                              fontSize: 32.0,
+                              color: Colors.yellow,
+                            ),
+                          ),
+
                           Padding(
                             padding: const EdgeInsets.only(
                                 right: 50, left: 50, top: 30),
@@ -209,6 +218,105 @@ class _ParsecDetailsState extends State<ParsecDetails> {
                               ],
                             ),
                           ),
+
+                          new Text(
+                            "_____",
+                            textAlign: TextAlign.center,
+                            style: new TextStyle(
+                              fontSize: 32.0,
+                              color: Colors.yellow,
+                            ),
+                          ),
+
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                top: 30.0, bottom: 8.0, left: 50, right: 50.0),
+                            child: new Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                new Text(
+                                  "Fest Website",
+                                  textAlign: TextAlign.center,
+                                  style: new TextStyle(
+                                      fontSize: 20.0, color: Colors.yellow),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10.0,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 16.0),
+                            child: new Text(
+                              "https://parsec.iitdh.ac.in",
+                              textAlign: TextAlign.center,
+                              style: new TextStyle(
+                                  fontSize: 36.0,
+                                  color: Colors.white,
+                                  fontFamily: "Signatra"),
+                            ),
+                          ),
+
+                          new Text(
+                            "_____",
+                            textAlign: TextAlign.center,
+                            style: new TextStyle(
+                              fontSize: 32.0,
+                              color: Colors.yellow,
+                            ),
+                          ),
+
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 8.0, horizontal: 50),
+                            child: new Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                new Text(
+                                  "Contact Details",
+                                  textAlign: TextAlign.center,
+                                  style: new TextStyle(
+                                      fontSize: 20.0, color: Colors.yellow),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10.0,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 16.0),
+                            child: new Text(
+                              "+91  9916228725",
+                              textAlign: TextAlign.center,
+                              style: new TextStyle(
+                                  fontSize: 36.0,
+                                  color: Colors.white,
+                                  fontFamily: "Signatra"),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 16.0),
+                            child: new Text(
+                              "support.parsec@iitdh.ac.in",
+                              textAlign: TextAlign.center,
+                              style: new TextStyle(
+                                  fontSize: 36.0,
+                                  color: Colors.white,
+                                  fontFamily: "Signatra"),
+                            ),
+                          ),
+
+                          new Text(
+                            "_______________",
+                            textAlign: TextAlign.center,
+                            style: new TextStyle(
+                              fontSize: 32.0,
+                              color: Colors.yellow,
+                            ),
+                          ),
+
                           SizedBox(height: 20),
 
                           Padding(
@@ -245,6 +353,16 @@ class _ParsecDetailsState extends State<ParsecDetails> {
                               ),
                             ),
                           ),
+
+                          new Text(
+                            "_______________",
+                            textAlign: TextAlign.center,
+                            style: new TextStyle(
+                              fontSize: 32.0,
+                              color: Colors.yellow,
+                            ),
+                          ),
+
                           SizedBox(height: 20),
                           Padding(
                             padding:
@@ -280,6 +398,15 @@ class _ParsecDetailsState extends State<ParsecDetails> {
                               ),
                             ),
                           ),
+                          new Text(
+                            "_______________",
+                            textAlign: TextAlign.center,
+                            style: new TextStyle(
+                              fontSize: 32.0,
+                              color: Colors.yellow,
+                            ),
+                          ),
+                          SizedBox(height: 40.0),
                         ],
                       ),
                     ],
