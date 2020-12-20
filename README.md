@@ -23,3 +23,20 @@ $ cd EventManager
 
 $ flutter run
 ```
+
+# Application Details
+
+Admin Credentials : 
+
+
+```
+    email ID : admin@eventmanager.em 
+    password : ABC123abc@
+```
+
+Invigilator Credentials : 
+
+```
+    email ID : invigilator@eventmanager.em 
+    password : ABC123abc@
+```
