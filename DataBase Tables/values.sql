@@ -124,6 +124,8 @@ INSERT INTO group_participant VALUES ('2020230094','20202305',90,'2020230509','S
 
 /*      Admin   */
 INSERT INTO admino VALUES ('20202301','Shriram','8889991234','shriram.ghadge1999@gmail.com');
+INSERT INTO admino VALUES ('20202301','Admin','1113335550','admin@eventmanager.em');
+
 
 
 /*      For Sponsor */
@@ -171,7 +173,7 @@ INSERT INTO invite VALUES ('20202304','20202305');
 
 INSERT INTO invigilator VALUES ('20202314','Mahi','IIT Hyadrabad professor','9177882600','shriram.ghadge27@gmail.com');
 
-INSERT INTO invigilator VALUES ('20202311','Sidhu','IIT Dharwad professor','9177882635','sidhu@gmail.com');
+INSERT INTO invigilator VALUES ('20202311','Sidhu','IIT Dharwad professor','9177882635','invigilator@eventmanager.em');
 INSERT INTO invigilator VALUES ('20202312','Glenn','IIT Madras professor','9124562635','glenn@gmail.com');
 INSERT INTO invigilator VALUES ('20202313','Gauti','IIT Bombey professor','9124599635','gauti@gmail.com');
 
