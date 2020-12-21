@@ -43,5 +43,4 @@ Invigilator Credentials :
 
 # Demo
 
-
-[![Event Manager](https://img.youtube.com/vi/VID/0.jpg)](https://www.youtube.com/watch?v=VID)
+[![Event Manager](https://img.youtube.com/vi/9wZZMw7hJhs/0.jpg)](https://www.youtube.com/watch?v=9wZZMw7hJhs)
