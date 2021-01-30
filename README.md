@@ -6,13 +6,13 @@
 ```
 All Installions are added in corresponding folders 
 
-1. Install Dart
+1. Install Dart (Dart Folder)
 
-2. Install Java
+2. Install Java 
 
-3. Install Android Studio
+3. Install Android Studio (Android Studio folder)
 
-4. Install Flutter
+4. Install Flutter (Flutter folder)
 ```
 
 
