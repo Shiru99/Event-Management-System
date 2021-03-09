@@ -124,7 +124,7 @@ INSERT INTO group_participant VALUES ('2020230094','20202305',90,'2020230509','S
 
 /*      Admin   */
 INSERT INTO admino VALUES ('20202301','Shriram','8889991234','shriram.ghadge1999@gmail.com');
-INSERT INTO admino VALUES ('20202301','Admin','1113335550','admin@eventmanager.em');
+INSERT INTO admino VALUES ('20202302','Admin','1113335550','admin@eventmanager.em');
 
 
 

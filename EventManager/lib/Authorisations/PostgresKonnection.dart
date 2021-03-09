@@ -6,6 +6,13 @@ class PostgresKonnection {
   int port;
   PostgreSQLConnection konnection;
 
+  //   int port = 5432;
+  // String databaseName = "dduqb27ithoti5";
+  // String userName = "fvlgwozxresisn";
+  // String hostURL = "ec2-52-50-171-4.eu-west-1.compute.amazonaws.com";
+  // String password =
+  //     "8443d65087d36e370bc002f7396ccbd8d373a5b7b01bf694d288e6568325c3b0";
+
   setKonnection(String hostURL, int port, String databaseName,
       String userName, String password) async {
     this.userName = userName;
@@ -58,6 +65,7 @@ class PostgresKonnection {
 // );
 // await conn.open();
 
-// psql -U oofplrsgbytwdc -h ec2-34-232-24-202.compute-1.amazonaws.com -p 5432 -d djb7v0o318g55;
 
-// password : b72bf90efb5e5f52b3c22146e1180e36d03a87f7ef5f76f8025733511e663583
+// psql -U fvlgwozxresisn -h ec2-52-50-171-4.eu-west-1.compute.amazonaws.com -p 5432 -d dduqb27ithoti5;
+
+// password : 8443d65087d36e370bc002f7396ccbd8d373a5b7b01bf694d288e6568325c3b0

@@ -42,12 +42,19 @@ class _SignUpState extends State<SignUp> {
   // String password =
   //     "b72bf90efb5e5f52b3c22146e1180e36d03a87f7ef5f76f8025733511e663583";
 
+  // int port = 5432;
+  // String databaseName = "d7ver50f63di4m";
+  // String userName = "blmdqcwysoloof";
+  // String hostURL = "ec2-54-247-103-43.eu-west-1.compute.amazonaws.com";
+  // String password =
+  //     "160185461ad432128d675228ff460ea95f9024dd6d669667d2137503082a9a22";
+
   int port = 5432;
-  String databaseName = "d7ver50f63di4m";
-  String userName = "blmdqcwysoloof";
-  String hostURL = "ec2-54-247-103-43.eu-west-1.compute.amazonaws.com";
+  String databaseName = "dduqb27ithoti5";
+  String userName = "fvlgwozxresisn";
+  String hostURL = "ec2-52-50-171-4.eu-west-1.compute.amazonaws.com";
   String password =
-      "160185461ad432128d675228ff460ea95f9024dd6d669667d2137503082a9a22";
+      "8443d65087d36e370bc002f7396ccbd8d373a5b7b01bf694d288e6568325c3b0";
 
   PostgresKonnection _postgresKonnection = new PostgresKonnection();
 

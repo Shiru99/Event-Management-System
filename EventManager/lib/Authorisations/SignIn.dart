@@ -28,9 +28,6 @@ class _SignInState extends State<SignIn> {
 
   AuthorisationMethods _authorisationMethods = new AuthorisationMethods();
 
-
-
-
   bool _passwordVisible = false;
   bool _isLoading = false;
 
@@ -56,12 +53,11 @@ class _SignInState extends State<SignIn> {
   //     "b72bf90efb5e5f52b3c22146e1180e36d03a87f7ef5f76f8025733511e663583";
 
   int port = 5432;
-  String databaseName = "d7ver50f63di4m";
-  String userName = "blmdqcwysoloof";
-  String hostURL = "ec2-54-247-103-43.eu-west-1.compute.amazonaws.com";
+  String databaseName = "dduqb27ithoti5";
+  String userName = "fvlgwozxresisn";
+  String hostURL = "ec2-52-50-171-4.eu-west-1.compute.amazonaws.com";
   String password =
-      "160185461ad432128d675228ff460ea95f9024dd6d669667d2137503082a9a22";
-
+      "8443d65087d36e370bc002f7396ccbd8d373a5b7b01bf694d288e6568325c3b0";
 
   PostgresKonnection _postgresKonnection = new PostgresKonnection();
 
@@ -80,7 +76,8 @@ class _SignInState extends State<SignIn> {
 
     bool isGuest = false;
 
-    var result = await _konnection.query('select invigilator_email from invigilator');
+    var result =
+        await _konnection.query('select invigilator_email from invigilator');
     for (var resu in result) {
       if (resu[0] == _user.email) {
         isGuest = true;
@@ -93,15 +90,12 @@ class _SignInState extends State<SignIn> {
     var results = await _konnection.query('select admin_email from admino');
 
     bool isAdmin = false;
-    
 
     for (var result in results) {
       if (result[0] == _user.email) {
         isAdmin = true;
       }
     }
-
-  
 
     _isLoading = false;
 
@@ -111,7 +105,8 @@ class _SignInState extends State<SignIn> {
       await Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => AdminFestDetails(_user, _postgresKonnection)));
+              builder: (context) =>
+                  AdminFestDetails(_user, _postgresKonnection)));
     } else if (isGuest) {
       print("Welcome, Invigilator");
       toastMessage("Welcome, Invigilator");
@@ -136,8 +131,6 @@ class _SignInState extends State<SignIn> {
     // print(_isLoading);
     // _isLoading = false;
     // print(_isLoading);
-    
-
   }
 
   signingWithGoogle() async {
@@ -200,9 +193,8 @@ class _SignInState extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
-
-      _email.text = 'john.doe@gmail.com';
-      _password.text = 'abcABC123@';
+    _email.text = 'john.doe@gmail.com';
+    _password.text = 'abcABC123@';
 
     return Scaffold(
       resizeToAvoidBottomPadding: false,
@@ -244,28 +236,28 @@ class _SignInState extends State<SignIn> {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 30.0, vertical: 5.0),
                                   child: new TextFormField(
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                      ),
-                                      decoration: textInputDecoration(
-                                          "Email", " john.doe@gmail.com"),
-                                      // autofocus: true,
-                                      textInputAction: TextInputAction.next,
-                                      // onFieldSubmitted: (_) => FocusScope.of(context).nextFocus(),
-                                      controller: _email,
-                                      keyboardType: TextInputType.emailAddress,
-                                      validator: (email) {
-                                        if (email.isEmpty) {
-                                          return 'Please enter some text';
-                                        }
-                                        return EmailValidator.validate(email)
-                                            ? null
-                                            : "Invalid email address";
-                                      },
-                                      onSaved: (value) {
-                                        return _email.text = value;
-                                      },
-                                      ),
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                    decoration: textInputDecoration(
+                                        "Email", " john.doe@gmail.com"),
+                                    // autofocus: true,
+                                    textInputAction: TextInputAction.next,
+                                    // onFieldSubmitted: (_) => FocusScope.of(context).nextFocus(),
+                                    controller: _email,
+                                    keyboardType: TextInputType.emailAddress,
+                                    validator: (email) {
+                                      if (email.isEmpty) {
+                                        return 'Please enter some text';
+                                      }
+                                      return EmailValidator.validate(email)
+                                          ? null
+                                          : "Invalid email address";
+                                    },
+                                    onSaved: (value) {
+                                      return _email.text = value;
+                                    },
+                                  ),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.symmetric(

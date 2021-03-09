@@ -1,50 +1,34 @@
 {
   "project_info": {
-    "project_number": "413504642905",
-    "firebase_url": "https://event-manager-9bbbc.firebaseio.com",
-    "project_id": "event-manager-9bbbc",
-    "storage_bucket": "event-manager-9bbbc.appspot.com"
+    "project_number": "81734498573",
+    "project_id": "event-management-01",
+    "storage_bucket": "event-management-01.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:413504642905:android:5e9c45007410ac7219b648",
+        "mobilesdk_app_id": "1:81734498573:android:0f948760061bf7df2e9844",
         "android_client_info": {
-          "package_name": "com.example.EventManager"
+          "package_name": "com.myapp.eventmanager"
         }
       },
       "oauth_client": [
         {
-          "client_id": "413504642905-cpbsbmp28gjajsk3u9vlkjln6ed6vh2f.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.EventManager",
-            "certificate_hash": "7ce18853e3367deac4b080db51b4abd61009c8f4"
-          }
-        },
-        {
-          "client_id": "413504642905-q884akb6sbl07ipt9cu8bvcfku7nm2o3.apps.googleusercontent.com",
+          "client_id": "81734498573-v00j7t7rkq8rhs7kmjt3999auqr4kbci.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDqzzlFfohfYWB9qt_Y-HJgj2A0LwW9oOA"
+          "current_key": "AIzaSyDJmbn-w8O-nGogHVUfBImUJBD-EzHYf7Y"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "413504642905-q884akb6sbl07ipt9cu8bvcfku7nm2o3.apps.googleusercontent.com",
+              "client_id": "81734498573-v00j7t7rkq8rhs7kmjt3999auqr4kbci.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "413504642905-j6nt2md106i2b3po32dojagftlp0km1b.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.EventManager"
-              }
             }
           ]
         }
