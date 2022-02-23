@@ -197,7 +197,7 @@ class _SignInState extends State<SignIn> {
     _password.text = 'abcABC123@';
 
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
+      // // resizeToAvoidBottomPadding: false,
       resizeToAvoidBottomInset: true,
       body: _isLoading
           ? loading()

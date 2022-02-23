@@ -147,7 +147,7 @@ class _ParticipantRegistrationState extends State<ParticipantRegistration> {
 
     return Scaffold(
       appBar: _isLoading ? null : appBarMain(context),
-      resizeToAvoidBottomPadding: false,
+      // resizeToAvoidBottomPadding: false,
       resizeToAvoidBottomInset: true,
       body: _isLoading
           ? loading()

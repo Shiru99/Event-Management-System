@@ -100,7 +100,7 @@ class _AdminAddAInvigilatorState extends State<AdminAddAInvigilator> {
 
     return Scaffold(
       appBar: _isLoading ? null : appBarMain(context),
-      resizeToAvoidBottomPadding: false,
+      // resizeToAvoidBottomPadding: false,
       resizeToAvoidBottomInset: true,
       body: _isLoading
           ? loading()

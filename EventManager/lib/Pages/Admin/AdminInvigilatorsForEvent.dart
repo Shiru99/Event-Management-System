@@ -97,7 +97,7 @@ class _InvigilatorsForEventState extends State<InvigilatorsForEvent> {
 
     return Scaffold(
       appBar: _isLoading ? null : appBarMain(context),
-      resizeToAvoidBottomPadding: false,
+      // resizeToAvoidBottomPadding: false,
       resizeToAvoidBottomInset: true,
       body: _isLoading
           ? loading()

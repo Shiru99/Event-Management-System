@@ -171,7 +171,7 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
+      // // resizeToAvoidBottomPadding: false,
       resizeToAvoidBottomInset: true,
       body: _isLoading
           ? loading()

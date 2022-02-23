@@ -95,7 +95,7 @@ class _ParsecDetailsState extends State<ParsecDetails> {
 
     return Scaffold(
       appBar: _isLoading ? null : appBarMain(context),
-      resizeToAvoidBottomPadding: false,
+      // resizeToAvoidBottomPadding: false,
       resizeToAvoidBottomInset: true,
       body: _isLoading
           ? loading()

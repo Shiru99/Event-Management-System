@@ -151,7 +151,7 @@ class _AdminAddAEventState extends State<AdminAddAEvent> {
 
     return Scaffold(
       appBar: _isLoading ? null : appBarMain(context),
-      resizeToAvoidBottomPadding: false,
+      // resizeToAvoidBottomPadding: false,
       resizeToAvoidBottomInset: true,
       body: _isLoading
           ? loading()

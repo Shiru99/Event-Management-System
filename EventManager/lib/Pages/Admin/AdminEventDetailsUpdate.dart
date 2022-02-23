@@ -177,7 +177,7 @@ class _AdminEventDetailsUpdateState extends State<AdminEventDetailsUpdate> {
 
     return Scaffold(
       appBar: _isLoading ? null : appBarMain(context),
-      resizeToAvoidBottomPadding: false,
+      // resizeToAvoidBottomPadding: false,
       resizeToAvoidBottomInset: true,
       body: _isLoading
           ? loading()

@@ -48,7 +48,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
 
   Scaffold buildSignInScreen() {
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
+      // // resizeToAvoidBottomPadding: false,
       resizeToAvoidBottomInset: true,
       body: _isLoading
           ? loading()
